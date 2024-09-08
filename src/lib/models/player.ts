@@ -9,9 +9,9 @@ enum EffectFor {
 }
 
 enum ItemType {
-    Weapon,
-    Badge,
-    Misc
+    Weapon = "Weapon",
+    Badge = "Badge",
+    Misc = "Misc"
 }
 
 enum EffectType {
@@ -79,18 +79,13 @@ class ItemSkill {
     public name: string = "";
     public description: string = "";
     public effects: ItemSkillEffect[] = []
-
     public itemName?: string = "";
     public itemColor?: string = "";
 
-    
     public doAttack: boolean = true;
     public cooldownRound: number = 0;
-
     public currentCooldown: number = 0;
-
     public itemSlot?: number = 0;
-
     public animation?: string = '';
 
     constructor(

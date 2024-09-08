@@ -139,15 +139,18 @@ class Battle {
     public battleLog: BattleLog[] = [];
     public status: string = "pending";
     public timestamp: number = Date.now();
+    public round: number = 1;
 
     //constructor
-    constructor(args?: { id: string, attacker: Attacker, defender: Defender, battleLog: BattleLog[], timestamp?: number }) {
+    constructor(args?: { id: string, attacker: Attacker, defender: Defender, battleLog: BattleLog[], timestamp?: number, round?: number, status?: string }) {
         if (args) {
             this.id = args.id;
             this.attacker = args.attacker;
             this.defender = args.defender;
             this.battleLog = args.battleLog;
             this.timestamp = args.timestamp || Date.now();
+            this.round = args.round || 1;
+            this.status = args.status || "pending";
         }
     }
 
@@ -159,7 +162,9 @@ class Battle {
             attacker: Attacker.fromJson(JSON.stringify(data.attacker)),
             defender: Defender.fromJson(JSON.stringify(data.defender)),
             battleLog: data.battleLog.map((log: any) => BattleLog.fromJson(JSON.stringify(log))),
-            timestamp: data.timestamp
+            timestamp: data.timestamp,
+            round: data.round,
+            status: data.status
         });
 
         return newBattle;

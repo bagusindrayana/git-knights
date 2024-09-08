@@ -7,22 +7,26 @@ import { getPlayer } from "../../../lib/mongo";
 
 //handle post request check session and get user data
 export const POST: RequestHandler = async (event): Promise<Response> => {
-    const {username} = await event.request.json();
+    const {username,id} = await event.request.json();
   
-    
-    const user = await getProfil(username);
+    let userId = id;
+    if(username != null && username != undefined){
+        const user = await getProfil(username);
 
-    if(!user){
-        return json({
-            data: {
-                error: "User not found",
-            }
-        }, {
-            status: 404,
-        });
+        if(!user){
+            return json({
+                data: {
+                    error: "User not found",
+                }
+            }, {
+                status: 404,
+            });
+        }
+        
+        userId = user.id;
     }
 
-    const player = await getPlayer(user.id.toString());
+    const player = await getPlayer(userId.toString());
     
     if(!player){
         return json({
@@ -34,10 +38,6 @@ export const POST: RequestHandler = async (event): Promise<Response> => {
         });
     }
 
-
-    // const data = await getGithubData(username);
-    // data.playerData.id = user.id;
-    // data.playerData.name = user.name;
     return json({
         data:{
             playerData: player

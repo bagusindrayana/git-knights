@@ -29,7 +29,7 @@ export const POST: RequestHandler = async (event): Promise<Response> => {
         ?.split("/")
     [imageUrl.split("/").length - 1].split("?")[0];
     
-    const findPlayer = await getPlayer(userId!);
+    const findPlayer = await getPlayer(userId!.toString());
     if(!sync || sync == "false"){
         
 

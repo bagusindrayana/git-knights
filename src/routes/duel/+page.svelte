@@ -153,9 +153,9 @@
                                                 </div>
                                             </div>
                                             <div class="flex flex-col gap-1">
-                                                <button class="retro-btn red-retro-btn retro-btn-sm">
+                                                <a href="/battle?id={player.id}" class="retro-btn red-retro-btn retro-btn-sm">
                                                     Duel
-                                                </button>
+                                                </a>
                                                 <button class="retro-btn blue-retro-btn retro-btn-sm">
                                                     Info
                                                 </button>

@@ -3,6 +3,21 @@ import { ItemSkill } from "$lib/models/player";
 import { getBattleData, insertBattleData } from "$lib/mongo";
 import { json, type RequestHandler } from "@sveltejs/kit";
 
+function transformAttr(attr: string):string {
+    if (attr == "hp") {
+        return "hp";
+    } else if (attr == "atk") {
+        return "attack";
+    } else if (attr == "def") {
+        return "defense";
+    } else if (attr == "spd") {
+        return "speed";
+    } else if (attr == "str") {
+        return "strength";
+    }
+    return attr;
+}
+
 function getSkillEffect(attacker: {
     hp: number,
     currentHp: number,
@@ -24,7 +39,7 @@ function getSkillEffect(attacker: {
     const newAttacker = { ...attacker };
     const newDefender = { ...defender };
 
-    type AtatckerKey = keyof typeof newAttacker;
+    type AttackerKey = keyof typeof newAttacker;
     type DefenderKey = keyof typeof newDefender;
 
     const effectPlayerVals: number[] = [];
@@ -33,16 +48,15 @@ function getSkillEffect(attacker: {
     skill.effects.forEach((effect: any) => {
         let effectPlayer: number = 0;
         let effectEnemy: number = 0;
-        const attr = effect.attrTarget;
-
+        const attr:string = transformAttr(effect.attrTarget);
         if (effect.for == "Player") {
-            let attrVal = newAttacker[attr as AtatckerKey];
+            let attrVal = newAttacker[attr as AttackerKey];
             if (attr == "hp") {
                 attrVal = attacker.currentHp;
             }
             let nilaiBonus: number = effect.value;
             if (effect.unit == "Percent") {
-                if (effect.unit == "Increase") {
+                if (effect.type == "Increase") {
                     effectPlayer +=
                         (attrVal * nilaiBonus) / 100;
                 } else {
@@ -50,7 +64,7 @@ function getSkillEffect(attacker: {
                         (attrVal * nilaiBonus) / 100;
                 }
             } else {
-                if (effect.unit == "Increase") {
+                if (effect.type == "Increase") {
                     effectPlayer += nilaiBonus;
                 } else {
                     effectPlayer -= nilaiBonus;
@@ -63,7 +77,7 @@ function getSkillEffect(attacker: {
                 attrVal = defender.currentHp;
             }
             if (effect.unit == "Percent") {
-                if (effect.unit == "Increase") {
+                if (effect.type == "Increase") {
 
                     effectEnemy +=
                         (attrVal * nilaiBonus) / 100;
@@ -72,7 +86,7 @@ function getSkillEffect(attacker: {
                         (attrVal * nilaiBonus) / 100;
                 }
             } else {
-                if (effect.unit == "Increase") {
+                if (effect.type == "Increase") {
                     effectEnemy += nilaiBonus;
                 } else {
                     effectEnemy -= nilaiBonus;
@@ -84,14 +98,13 @@ function getSkillEffect(attacker: {
             newAttacker.currentHp = attacker.currentHp + Math.round(effectPlayer);
             newDefender.currentHp = defender.currentHp + Math.round(effectEnemy);
         } else {
-
-            newAttacker[attr as AtatckerKey] = Math.max(0, attacker[attr as AtatckerKey] + Math.round(effectPlayer));
+           
+            newAttacker[attr as AttackerKey] = Math.max(0, attacker[attr as AttackerKey] + Math.round(effectPlayer));
             newDefender[attr as DefenderKey] = Math.max(0, defender[attr as DefenderKey] + Math.round(effectEnemy));
 
         }
         effectPlayerVals.push(effectPlayer);
         effectEnemyVals.push(effectEnemy);
-
 
 
 
@@ -110,7 +123,7 @@ function getSkillEffect(attacker: {
 
 
 function calculateEvasionChance(attackerSPD: number, defenderSPD: number): number {
-    const evasionChance = Math.max(0, Math.min(0.1, (defenderSPD - attackerSPD) / 100)); // max 30% evasion
+    const evasionChance = Math.max(0, Math.min(0.3, (defenderSPD - attackerSPD) / 100)); // max 30% evasion
     return evasionChance;
 }
 
@@ -132,7 +145,6 @@ function calculateDamage(attacker: {
 
     // Penggunaan STR penyerang untuk meningkatkan damage
     let baseDamage = ((attacker.strength) + (attacker.strength) * 0.3) * (1 - defenderDamageReduction);
-    console.log("baseDamage", baseDamage);
 
     // Pengurangan tambahan oleh STR musuh
     const strengthReduction = (defender.strength) * 0.1; // STR musuh mengurangi damage lebih lanjut
@@ -144,12 +156,9 @@ function calculateDamage(attacker: {
 
     baseDamage = Math.max(1, baseDamage);
 
-    console.log("strengthReduction", baseDamage);
-
     // Menggunakan HP musuh sebagai faktor random untuk damage
-    const randomFactor = 1 + (Math.random() * 0.1) * ((defender.hp) / 1000); // Random 0-10% tergantung HP musuh
+    const randomFactor = 1 + (Math.random() * 0.1) * ((defender.hp) / 100); // Random 0-10% tergantung HP musuh
     let totalDamage = baseDamage * randomFactor;
-    console.log("randomFactor", totalDamage);
 
     totalDamage = Math.max(0, Math.round(totalDamage));
 
@@ -163,7 +172,6 @@ function calculateDamage(attacker: {
 
     const evasionChance = calculateEvasionChance(attacker.speed, defender.speed);
     const rnd = Math.random();
-    console.log(rnd, evasionChance);
     const isDodge = rnd < evasionChance;
     if (isDodge) {
         totalDamage = 0;
@@ -328,6 +336,22 @@ export const POST: RequestHandler = async (event): Promise<Response> => {
         }));
     }
 
+
+    if(battleData.attacker.currentHp <= 0 && battleData.defender.currentHp <= 0){
+        battleData.status = "draw";
+    } else if(battleData.attacker.currentHp <= 0){
+        battleData.status = "lose";
+    } else if(battleData.defender.currentHp <= 0){
+        battleData.status = "win";
+    } else {
+        battleData.status = "pending";
+    }
+
+    if(!originalAttacker){
+        battleData.round += 1;
+    }
+
+    console.log(battleData.status);
 
     await insertBattleData(battleData);
 

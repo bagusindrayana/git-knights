@@ -81,6 +81,7 @@
     };
 
     const enemyUsername = $page.url.searchParams.get("username");
+    const id = $page.url.searchParams.get("id");
 
     let round = 1;
     let status = "idle";
@@ -142,6 +143,7 @@
         });
 
         battle = Battle.fromJson(JSON.stringify(response.data.data));
+        round = battle.round;
     }
 
     async function loadAllData() {
@@ -166,8 +168,8 @@
             dataStatus = "error : " + error.message;
         }
         setTimeout(() => {
-                    scrollEventLogs();
-                }, 500);
+            scrollEventLogs();
+        }, 500);
     }
 
     async function getEnemy() {
@@ -175,6 +177,7 @@
         try {
             const response = await axios.post(apiUrl, {
                 username: enemyUsername,
+                id: id,
             });
 
             enemyPlayer = Player.fromJson(
@@ -207,15 +210,14 @@
         player = player;
     }
 
-
     function playBgMusic() {
         (document.getElementById("bg-music") as HTMLAudioElement)!.volume = 0.1;
         (document.getElementById("bg-music") as HTMLAudioElement)!.play();
     }
 
-    function scrollEventLogs(){
+    function scrollEventLogs() {
         const logs = document.getElementById("event-logs");
-        if(logs){
+        if (logs) {
             logs.scrollTop = logs.scrollHeight;
         }
     }
@@ -224,45 +226,7 @@
         loadAllData();
 
         playBgMusic();
-        
     });
-
-    function updateCooldown() {
-        // listSkills.forEach((skill) => {
-        //     if (skill.currentCooldown > 0) {
-        //         skill.currentCooldown -= 1;
-        //     }
-        // });
-        // listSkills = listSkills;
-
-        // let enemyPlayerListSkills: ItemSkill[] = [];
-        // enemyPlayer.skillSlots.forEach((slot) => {
-        //     if (slot != null) {
-        //         const skill = enemyPlayer.getSkill(skills, slot);
-        //         if (skill) {
-        //             enemyPlayerListSkills.push(skill);
-        //         }
-        //     }
-        // });
-
-        // enemyPlayerListSkills.forEach((skill) => {
-        //     if (skill.currentCooldown > 0) {
-        //         skill.currentCooldown -= 1;
-        //     }
-        // });
-
-        // battle.attacker.skills.forEach((skill) => {
-        //     if (skill.currentCooldown > 0) {
-        //         skill.currentCooldown -= 1;
-        //     }
-        // });
-
-        // battle.defender.skills.forEach((skill) => {
-        //     if (skill.currentCooldown > 0) {
-        //         skill.currentCooldown -= 1;
-        //     }
-        // });
-    }
 
     const timer = (ms: number) => new Promise((res) => setTimeout(res, ms));
 
@@ -271,7 +235,6 @@
         from: string,
         damageResult: any = null,
     ) {
-        console.log(from);
         const playerElm = document.getElementById("player-effect");
         const playerAdio = document.getElementById(
             "player-audio",
@@ -290,7 +253,7 @@
             arenaElm.classList.add("move-right");
         }
 
-        await timer(1000);
+        await timer(1500);
 
         const elm = from == "player" ? enemyElm : playerElm;
 
@@ -301,6 +264,7 @@
                     if (effect.for == EffectFor.Player) {
                         arenaElm.classList.remove("move-right");
                         arenaElm.classList.add("move-left");
+                        await timer(500);
                         playerAdio!.src =
                             animations[
                                 effect.type == EffectType.Decrease
@@ -313,6 +277,7 @@
                     } else {
                         arenaElm.classList.remove("move-left");
                         arenaElm.classList.add("move-right");
+                        await timer(500);
                         enemyAudio!.src =
                             animations[
                                 effect.type == EffectType.Decrease
@@ -327,7 +292,7 @@
                     if (effect.for == EffectFor.Player) {
                         arenaElm.classList.remove("move-left");
                         arenaElm.classList.add("move-right");
-
+                        await timer(500);
                         playerAdio!.src =
                             animations[
                                 effect.type == EffectType.Decrease
@@ -340,6 +305,7 @@
                     } else {
                         arenaElm.classList.remove("move-right");
                         arenaElm.classList.add("move-left");
+                        await timer(500);
                         enemyAudio!.src =
                             animations[
                                 effect.type == EffectType.Decrease
@@ -368,6 +334,13 @@
             }
             if (skill.doAttack) {
                 if (from == "player") {
+                    document.getElementById("player-character")!.innerHTML =
+                        `<div class="char-attack absolute"></div>`;
+                    setTimeout(() => {
+                        document.getElementById("player-character")!.innerHTML =
+                            `<div class="char-idle absolute"></div>`;
+                    }, 1300);
+                    await timer(300);
                     if (damageResult.finalDamage > 0) {
                         if (damageResult.isCriticalHit) {
                             enemyElm!.innerHTML += `<div class="hit-text text-red-700">${damageResult.finalDamage}</div>`;
@@ -381,13 +354,14 @@
                         enemyAudio!.src = "/sounds/35_Miss_Evade_02.wav";
                         enemyAudio!.play();
                     }
-                    document.getElementById("player-character")!.innerHTML =
+                } else {
+                    document.getElementById("enemy-character")!.innerHTML =
                         `<div class="char-attack absolute"></div>`;
                     setTimeout(() => {
-                        document.getElementById("player-character")!.innerHTML =
+                        document.getElementById("enemy-character")!.innerHTML =
                             `<div class="char-idle absolute"></div>`;
-                    }, 1000);
-                } else {
+                    }, 1300);
+                    await timer(300);
                     if (damageResult.finalDamage > 0) {
                         playerAdio!.src = animations[skill.animation!].sound;
                         playerAdio!.play();
@@ -401,12 +375,6 @@
                         playerAdio!.src = "/sounds/35_Miss_Evade_02.wav";
                         playerAdio!.play();
                     }
-                    document.getElementById("enemy-character")!.innerHTML =
-                        `<div class="char-attack absolute"></div>`;
-                    setTimeout(() => {
-                        document.getElementById("enemy-character")!.innerHTML =
-                            `<div class="char-idle absolute"></div>`;
-                    }, 1000);
                 }
             } else if (damageResult.finalDamage <= 0 && skill.doAttack) {
                 if (from == "player") {
@@ -449,7 +417,7 @@
                 (s) => s.id === skill.id,
             );
             if (findSkill && findSkill.currentCooldown > 0) {
-                return
+                return;
             }
         }
         status = "attacking";
@@ -480,7 +448,9 @@
                     setTimeout(() => {
                         document.getElementById("player-character")!.innerHTML =
                             `<div class="char-idle absolute"></div>`;
-                    }, 1000);
+                    }, 1300);
+                    await timer(300);
+
                     if (res.data.damageResult.finalDamage > 0) {
                         if (res.data.damageResult.isCriticalHit) {
                             enemyAudio.src = animations["big-hit"].sound;
@@ -500,28 +470,20 @@
                     }
                 }
                 battle = Battle.fromJson(JSON.stringify(res.data.battleData));
+
                 setTimeout(() => {
                     scrollEventLogs();
                 }, 500);
-                setTimeout(() => {
-                    // battle.attacker.currentHp = res.data.attacker.currentHp;
-                    // battle.attacker.attack = res.data.attacker.attack;
-                    // battle.attacker.defense = res.data.attacker.defense;
-                    // battle.attacker.strength = res.data.attacker.strength;
-                    // battle.attacker.speed = res.data.attacker.speed;
-
-                    // battle.defender.currentHp = res.data.defender.currentHp;
-                    // battle.defender.attack = res.data.defender.attack;
-                    // battle.defender.defense = res.data.defender.defense;
-                    // battle.defender.strength = res.data.defender.strength;
-                    // battle.defender.speed = res.data.defender.speed;
-
-                    // battle = battle;
-                    
-                    enemyAttack();
-                    enemyElm!.innerHTML = "";
-                   
-                }, 1000);
+                if (battle.status != "pending") {
+                    alert(battle.status);
+                } else {
+                    setTimeout(() => {
+                        if (battle.status == "pending") {
+                            enemyAttack();
+                        }
+                        enemyElm!.innerHTML = "";
+                    }, 1000);
+                }
             })
             .catch((err) => {
                 status = "error : " + err;
@@ -532,11 +494,26 @@
     function enemyAttack() {
         const isPrimeRound = round % 2 == 0;
 
-        let randomSkill: ItemSkill | undefined = battle.defender.skills.find(
-            (s) => s.currentCooldown <= 0,
-        );
+        let randomSkill: ItemSkill | undefined;
 
-       
+        //if isPrimeRound find skill that "doAttack" with high cooldownRound
+        if (isPrimeRound) {
+            const skills = battle.defender.skills.filter(
+                (skill) => skill.doAttack && skill.currentCooldown == 0,
+            );
+            if (skills.length > 0) {
+                randomSkill = skills[Math.floor(Math.random() * skills.length)];
+            }
+        } else {
+            //else sort skill with less "cooldownRound"
+            const skills = battle.defender.skills
+                .sort((a, b) => a.cooldownRound - b.cooldownRound)
+                .filter((skill) => skill.currentCooldown == 0);
+
+            if (skills.length > 0) {
+                randomSkill = skills[Math.floor(Math.random() * skills.length)];
+            }
+        }
 
         const apiUrl = "/api/battle/attack";
         axios
@@ -565,7 +542,8 @@
                     setTimeout(() => {
                         document.getElementById("enemy-character")!.innerHTML =
                             `<div class="char-idle absolute"></div>`;
-                    }, 1000);
+                    }, 1300);
+                    await timer(300);
                     if (res.data.damageResult.finalDamage > 0) {
                         if (res.data.damageResult.isCriticalHit) {
                             playerAudio.src = animations["big-hit"].sound;
@@ -599,10 +577,12 @@
 
                 battle = Battle.fromJson(JSON.stringify(res.data.battleData));
 
-                updateCooldown();
                 round = round + 1;
                 status = "idle";
                 playerElm!.innerHTML = "";
+                if (battle.status != "pending") {
+                    alert(battle.status);
+                }
                 setTimeout(() => {
                     scrollEventLogs();
                 }, 500);
@@ -629,9 +609,8 @@
         <b class="text-green-400"> Cooldown : ${skill.cooldownRound} turns</b> 
         <hr><b>Effects:</b><ul class="list-disc">`;
         skill.effects.forEach((effect: ItemSkillEffect) => {
-          
             desc += `<li>
-                ${effect.name}: ${effect.type} ${effect.value}${(effect.unit == EffectUnit.Percent) ? "%" : ""} ${effect.for} ${effect.attrTarget.toUpperCase()}
+                ${effect.name}: ${effect.type} ${effect.value}${effect.unit == EffectUnit.Percent ? "%" : ""} ${effect.for} ${effect.attrTarget.toUpperCase()}
                 <br>
                 <div class="text-[#9bbc0f] text-sm">${effect.description}
             `;
@@ -746,7 +725,7 @@
             background-repeat: no-repeat;
             width: 550px;
             height: 598px;
-            animation: char-anim 1s steps(8) forwards;
+            animation: char-anim 1s steps(8);
         }
 
         #player-character .char-attack {

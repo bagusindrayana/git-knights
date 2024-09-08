@@ -33,17 +33,17 @@
     let pushNotificaton: any = null;
 
     let newUser: boolean = true;
-    let introTab : boolean[] = [false, false, false];
+    let introTab: boolean[] = [false, false, false];
 
     function setActiveTab(tabId: string) {
         activeTab = tabId;
 
-        if(tabId === "tab2" && !introTab[1] && newUser) {
+        if (tabId === "tab2" && !introTab[1] && newUser) {
             setTimeout(() => {
                 tourTab2();
                 introTab[1] = true;
             }, 100);
-        } else if(tabId === "tab3" && !introTab[2] && newUser) {
+        } else if (tabId === "tab3" && !introTab[2] && newUser) {
             setTimeout(() => {
                 tourTab3();
                 introTab[2] = true;
@@ -160,7 +160,7 @@ DEF: accumulation of levels with number of issues`,
         tour.start();
     }
 
-    function tourTab3(){
+    function tourTab3() {
         const tour = new Shepherd.Tour({
             useModalOverlay: true,
             defaultStepOptions: {
@@ -225,7 +225,7 @@ DEF: accumulation of levels with number of issues`,
             playerData = Player.fromJson(JSON.stringify(user.data.playerData));
             getAllSkillFromEquipItem();
 
-            newUser = user.data.newUser ?? false;
+            newUser = user.newUser ?? false;
             if (newUser) {
                 setTimeout(() => {
                     introTab[0] = true;
@@ -622,19 +622,27 @@ DEF: accumulation of levels with number of issues`,
                     skillSlots: playerData.skillSlots,
                 })
                 .then((response) => {
-                    alert("User data updated successfully");
-                    console.log(response);
+                    pushNotificaton = {
+                        title: "Success",
+                        content: "User data updated successfully",
+                        type: "success",
+                        show: true,
+                    };
+
+                    button.disabled = false;
+                    button.innerHTML = "Update Equipment";
                 })
                 .catch((error) => {
-                    alert("Failed to update user data");
+                    pushNotificaton = {
+                        title: "Error",
+                        content: "Failed to update user data",
+                        type: "error",
+                        show: true,
+                    };
                     console.error(error);
+                    button.disabled = false;
+                    button.innerHTML = "Update Equipment";
                 });
-            pushNotificaton = {
-                title: "Success",
-                content: "User data updated successfully",
-                type: "success",
-                show: true,
-            };
         } catch (error) {
             pushNotificaton = {
                 title: "Error",
@@ -642,9 +650,9 @@ DEF: accumulation of levels with number of issues`,
                 type: "error",
                 show: true,
             };
+            button.disabled = false;
+            button.innerHTML = "Update Equipment";
         }
-        button.disabled = false;
-        button.innerHTML = "Update Data";
     }
 
     function getAllSkillFromEquipItem() {
@@ -832,13 +840,14 @@ DEF: accumulation of levels with number of issues`,
     {/if}
 
     <!-- Tooltip -->
-     <Tooltip
+    <Tooltip
         show={showTooltip}
-        mouseX={mouseX}
-        mouseY={mouseY}
-        tooltipTitle={tooltipTitle}
-        tooltipContent={tooltipContent}/>
-    
+        {mouseX}
+        {mouseY}
+        {tooltipTitle}
+        {tooltipContent}
+    />
+
     <div class="container mx-auto p-8">
         <div class="flex items-center justify-center">
             <div
@@ -897,7 +906,9 @@ DEF: accumulation of levels with number of issues`,
                         <div class="text-red-500 text-center p-4">{status}</div>
                     {:else}
                         <div class="w-full mx-auto">
-                            <div class="flex border-b border-[#9bbc0f] border-solid">
+                            <div
+                                class="flex border-b border-[#9bbc0f] border-solid"
+                            >
                                 <button
                                     type="button"
                                     class={`py-2 px-4 text-sm focus:outline-none  border-solid ${
@@ -1181,7 +1192,8 @@ DEF: accumulation of levels with number of issues`,
                                         >
                                     </div>
                                 </div>
-                                <div id="tab2"
+                                <div
+                                    id="tab2"
                                     class={activeTab !== "tab2" ? "hidden" : ""}
                                 >
                                     <div
@@ -1443,7 +1455,9 @@ DEF: accumulation of levels with number of issues`,
                                     <div
                                         class="flex justify-center items-center p-4 gap-4"
                                     >
-                                        <a href="/duel" class="retro-btn red-retro-btn"
+                                        <a
+                                            href="/duel"
+                                            class="retro-btn red-retro-btn"
                                             >Duel</a
                                         >
                                         <button class="retro-btn red-retro-btn"

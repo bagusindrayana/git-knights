@@ -182,11 +182,11 @@ export async function getGithubData(username: string) {
     playerData.exp = totalXP;
 
 
-    playerData.hp = 75 + (user.repositories.totalCount * 10) + ((playerData.currentLevel() - 1) * 25);
-    playerData.strength = 20 + (totalPR * 10) + ((playerData.currentLevel() - 1) * 5);
-    playerData.attack = 30 + (listLanguages.length * 10) + ((playerData.currentLevel() - 1) * 15);
-    playerData.speed = 15 + (totalAcceptedPR * 25) + ((playerData.currentLevel() - 1) * 25);
-    playerData.defense = 25 + (totalClosedIssues * 15) + ((playerData.currentLevel() - 1) * 15);
+    playerData.hp = 75 + (user.repositories.totalCount * 10) + ((playerData.currentLevel() - 1) * 15);
+    playerData.strength = 75 + (totalPR * 10) + ((playerData.currentLevel() - 1) * 5);
+    playerData.attack = 75 + (listLanguages.length * 10) + ((playerData.currentLevel() - 1) * 15);
+    playerData.speed = 75 + (totalAcceptedPR * 10) + ((playerData.currentLevel() - 1) * 15);
+    playerData.defense = 75 + (totalClosedIssues * 10) + ((playerData.currentLevel() - 1) * 15);
 
     for (let i = 0; i < languages.length; i++) {
         let ni = findItem(languages[i].name.toLowerCase().replace(' ', '-'));
