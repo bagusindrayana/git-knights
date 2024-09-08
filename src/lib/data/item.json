@@ -1,0 +1,1534 @@
+[
+    {
+       "id":"html",
+       "name":"Web Weaver's Staff",
+       "description":"A staff imbued with the ancient magic of the web, granting its wielder the power to weave intricate spells that enhance their combat prowess.",
+       "type":"Weapon",
+       "effects":[
+          {
+             "name":"Webbed Strength",
+             "description":"Increases the wielder's physical strength, granting them greater power in combat.",
+             "value":15,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"str",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":3
+                },
+                {
+                   "sameItem":3,
+                   "bonus":6
+                }
+             ]
+          },
+          {
+             "name":"Webbed Agility",
+             "description":"Increases the wielder's speed and agility, allowing them to move faster and strike with greater precision.",
+             "value":10,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"spd",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":2
+                },
+                {
+                   "sameItem":3,
+                   "bonus":4
+                }
+             ]
+          },
+          {
+             "name":"Webbed Defense",
+             "description":"Enhances the wielder's defensive capabilities, making them more resistant to enemy attacks.",
+             "value":12,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"def",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":2
+                },
+                {
+                   "sameItem":3,
+                   "bonus":4
+                }
+             ]
+          }
+       ]
+    },
+    {
+       "id":"javascript",
+       "name":"Arcane Script",
+       "description":"A powerful enchanted scroll that unleashes the chaotic energy of coding, granting the wielder unpredictable but potent abilities.",
+       "type":"Weapon",
+       "effects":[
+          {
+             "name":"Code Surge",
+             "description":"A surge of energy flows through the wielder, increasing their attack power.",
+             "value":15,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"atk",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":5
+                }
+             ]
+          },
+          {
+             "name":"Logic Loop",
+             "description":"A defensive loop encases the wielder, reducing incoming damage.",
+             "value":10,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"def",
+             "bonusEffects":[
+                {
+                   "sameItem":3,
+                   "bonus":10
+                }
+             ]
+          },
+          {
+             "name":"Data Overflow",
+             "description":"The script overwhelms the opponent with a burst of information, causing temporary confusion and reducing their speed.",
+             "value":15,
+             "unit":"Percent",
+             "for":"Enemy",
+             "type":"Decrease",
+             "attrTarget":"spd",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":5
+                }
+             ]
+          }
+       ]
+    },
+    {
+       "id":"blade",
+       "name":"Whispering Edge",
+       "description":"A blade forged from the whispers of fallen heroes.  It grants its wielder increased strength and attack power, but at the cost of their own defense.",
+       "type":"Weapon",
+       "effects":[
+          {
+             "name":"Hero's Fury",
+             "description":"Increases attack power and strength, but lowers defense.",
+             "value":10,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"atk",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":2
+                }
+             ]
+          },
+          {
+             "name":"Shadow's Embrace",
+             "description":"Increases attack power and strength, but lowers defense.",
+             "value":10,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"str",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":2
+                }
+             ]
+          },
+          {
+             "name":"Unwavering Resolve",
+             "description":"Increases attack power and strength, but lowers defense.",
+             "value":10,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Decrease",
+             "attrTarget":"def",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":2
+                }
+             ]
+          }
+       ]
+    },
+    {
+       "id":"php",
+       "name":"Zend's Scepter",
+       "description":"A mystical staff imbued with the power of dynamic web scripting, capable of conjuring powerful spells and enhancing the wielder's abilities.",
+       "type":"Weapon",
+       "effects":[
+          {
+             "name":"Dynamic Scripting",
+             "description":"A surge of code empowers the user, boosting their attack power.",
+             "value":12,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"atk",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":4
+                },
+                {
+                   "sameItem":3,
+                   "bonus":6
+                }
+             ]
+          },
+          {
+             "name":"Server-Side Might",
+             "description":"The scepter draws upon the power of the server, granting the user a temporary surge of strength.",
+             "value":150,
+             "unit":"Number",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"str",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":20
+                },
+                {
+                   "sameItem":3,
+                   "bonus":30
+                }
+             ]
+          },
+          {
+             "name":"Efficient Execution",
+             "description":"The scepter's optimized code allows for faster movement and action.",
+             "value":10,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"spd",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":2
+                },
+                {
+                   "sameItem":3,
+                   "bonus":4
+                }
+             ]
+          }
+       ]
+    },
+    {
+       "id":"css",
+       "name":"Cascading Style Sheets",
+       "description":"A versatile and adaptable wand woven from the very fabric of the web, granting its wielder the power to style and shape the battlefield to their advantage.",
+       "type":"Weapon",
+       "effects":[
+          {
+             "name":"Web Weaver's Boon",
+             "description":"Increases the wielder's strength and defense, allowing them to withstand even the fiercest attacks.",
+             "value":10,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"str",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":5
+                }
+             ]
+          },
+          {
+             "name":"Style and Substance",
+             "description":"Increases the wielder's attack power, ensuring their every strike lands with devastating force.",
+             "value":12,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"atk",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":3
+                },
+                {
+                   "sameItem":3,
+                   "bonus":6
+                }
+             ]
+          },
+          {
+             "name":"Graceful Maneuvers",
+             "description":"Boosts the wielder's agility, allowing them to strike first and avoid enemy attacks with ease.",
+             "value":8,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"spd",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":2
+                }
+             ]
+          }
+       ]
+    },
+    {
+       "id":"vue",
+       "name":"Celestial Weaver",
+       "description":"A radiant wand crafted from starlight, imbued with the power to mend and fortify. Its ethereal glow grants the wielder a harmonious balance between offense and defense.",
+       "type":"Weapon",
+       "effects":[
+          {
+             "name":"Stellar Weave",
+             "description":"A gentle yet potent weave of starlight that strengthens the wielder's defenses, bolstering their physical and magical resilience.",
+             "value":10,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"def",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":5
+                },
+                {
+                   "sameItem":3,
+                   "bonus":10
+                }
+             ]
+          },
+          {
+             "name":"Celestial Grace",
+             "description":"A blessing from the heavens that imbues the wielder with a swiftness that rivals the celestial bodies, granting them the ability to act before their foes.",
+             "value":12,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"spd",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":3
+                },
+                {
+                   "sameItem":3,
+                   "bonus":6
+                }
+             ]
+          },
+          {
+             "name":"Starlight Strike",
+             "description":"A concentrated burst of celestial energy that pierces through enemy defenses, dealing significant damage.",
+             "value":150,
+             "unit":"Number",
+             "for":"Enemy",
+             "type":"Decrease",
+             "attrTarget":"hp",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":20
+                },
+                {
+                   "sameItem":3,
+                   "bonus":40
+                }
+             ]
+          }
+       ]
+    },
+    {
+       "id":"nextjs",
+       "name":"The Weaver's Loom",
+       "description":"A powerful artifact woven from the threads of time and code, capable of manipulating reality itself. It grants the user unmatched control over the flow of combat, allowing for strategic maneuvers and devastating attacks.",
+       "type":"Weapon",
+       "effects":[
+          {
+             "name":"Temporal Shift",
+             "description":"Rewinds time slightly, granting the user a brief moment to react to their opponent's actions. This effect allows for increased agility and precision in combat.",
+             "value":10,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"spd",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":5
+                },
+                {
+                   "sameItem":3,
+                   "bonus":10
+                }
+             ]
+          },
+          {
+             "name":"Codex of Creation",
+             "description":"The Loom imbues the user with the ability to summon and control digital constructs, capable of both attacking and defending.",
+             "value":120,
+             "unit":"Number",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"atk",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":20
+                },
+                {
+                   "sameItem":3,
+                   "bonus":40
+                }
+             ]
+          },
+          {
+             "name":"Digital Shield",
+             "description":"The Loom's threads weave a protective barrier around the user, absorbing incoming attacks and reducing damage.",
+             "value":10,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"def",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":5
+                },
+                {
+                   "sameItem":3,
+                   "bonus":10
+                }
+             ]
+          }
+       ]
+    },
+    {
+       "id":"svelte",
+       "name":"Weaver's Web",
+       "description":"A shimmering, silken thread imbued with the magic of creation.  Each cast of this spell weaves a web of intricate code, manipulating the flow of battle with swift and precise movements.",
+       "type":"Weapon",
+       "effects":[
+          {
+             "name":"Codeweave Strike",
+             "description":"A potent attack that pierces through defenses with the force of a thousand threads.",
+             "value":120,
+             "unit":"Number",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"atk",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":10
+                },
+                {
+                   "sameItem":3,
+                   "bonus":20
+                }
+             ]
+          },
+          {
+             "name":"Quantum Weave",
+             "description":"A spell that manipulates the fabric of reality, enhancing the user's agility and speed.",
+             "value":10,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"spd",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":5
+                },
+                {
+                   "sameItem":3,
+                   "bonus":10
+                }
+             ]
+          }
+       ]
+    },
+    {
+       "id":"laravel",
+       "name":"Artisan's Staff",
+       "description":"A mystical staff imbued with the power of Laravel, capable of enhancing its wielder's combat prowess and strategic thinking.  It grants its user a swiftness and agility unmatched by others, allowing for quick and precise actions in battle.",
+       "type":"Weapon",
+       "effects":[
+          {
+             "name":"Agile Mind",
+             "description":"Boosts the user's reaction time, granting a temporary speed advantage.",
+             "value":10,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"spd",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":5
+                }
+             ]
+          },
+          {
+             "name":"Blade of Eloquence",
+             "description":"Sharpens the user's attacks, increasing their attack power.",
+             "value":120,
+             "unit":"Number",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"atk",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":10
+                }
+             ]
+          }
+       ]
+    },
+    {
+       "id":"csharp",
+       "name":"Arcane Code",
+       "description":"A mystical staff forged from the very essence of C#. Its runes pulse with a radiant light, granting its wielder unparalleled control over the flow of combat.",
+       "type":"Weapon",
+       "effects":[
+          {
+             "name":"Code Enhancement",
+             "description":"Increases the user's attack power by a significant margin, allowing them to unleash devastating attacks.",
+             "value":120,
+             "unit":"Number",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"atk",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":10
+                },
+                {
+                   "sameItem":3,
+                   "bonus":20
+                }
+             ]
+          },
+          {
+             "name":"Agile Logic",
+             "description":"Enhances the user's speed, allowing them to strike first and react quickly to incoming attacks.",
+             "value":10,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"spd",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":2
+                },
+                {
+                   "sameItem":3,
+                   "bonus":4
+                }
+             ]
+          }
+       ]
+    },
+    {
+       "id":"cpp",
+       "name":"The Code Weaver",
+       "description":"A powerful and versatile enchanted blade forged from the very essence of code. Its wielder commands the language of computation, manipulating its power to enhance their combat prowess.",
+       "type":"Weapon",
+       "effects":[
+          {
+             "name":"Compile & Conquer",
+             "description":"The wielder's code runs flawlessly, granting them a significant boost to their attack power.",
+             "value":120,
+             "unit":"Number",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"atk",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":10
+                },
+                {
+                   "sameItem":3,
+                   "bonus":20
+                }
+             ]
+          },
+          {
+             "name":"Memory Optimization",
+             "description":"A surge of computational efficiency strengthens the wielder's defenses.",
+             "value":15,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"def",
+             "bonusEffects":[
+                
+             ]
+          },
+          {
+             "name":"Fast Execution",
+             "description":"The wielder's actions are executed with lightning speed, granting them a significant advantage in combat.",
+             "value":10,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"spd",
+             "bonusEffects":[
+                
+             ]
+          }
+       ]
+    },
+    {
+       "id":"c",
+       "name":"The Code of Blades",
+       "description":"A sentient blade forged from the very essence of the programming language C, its code whispers tales of efficiency and power. Its wielder gains control over the flow of battle,  optimizing their attacks and defenses with precise commands.",
+       "type":"Weapon",
+       "effects":[
+          {
+             "name":"Code Optimization",
+             "description":"Enhances the player's combat efficiency, increasing attack and speed.",
+             "value":10,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"atk",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":2
+                }
+             ]
+          },
+          {
+             "name":"Memory Management",
+             "description":"Refines the player's defenses, minimizing the impact of incoming attacks.",
+             "value":15,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"def",
+             "bonusEffects":[
+                {
+                   "sameItem":3,
+                   "bonus":3
+                }
+             ]
+          },
+          {
+             "name":"Runtime Efficiency",
+             "description":"Speeds up the player's actions, allowing for quicker attacks and dodging.",
+             "value":5,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"spd",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":1
+                }
+             ]
+          }
+       ]
+    },
+    {
+       "id":"go",
+       "name":"Gopher's Grace",
+       "description":"A shimmering, jade-green wand crafted from the heartwood of the ancient Gopher Tree. Its whispers of code imbue its wielder with swiftness and tactical prowess.",
+       "type":"Weapon",
+       "effects":[
+          {
+             "name":"Gopher's Agility",
+             "description":"Increases speed, allowing for faster actions and quicker attacks.",
+             "value":10,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"spd",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":3
+                }
+             ]
+          },
+          {
+             "name":"Gopher's Precision",
+             "description":"Enhances attack power, delivering more potent strikes.",
+             "value":120,
+             "unit":"Number",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"atk",
+             "bonusEffects":[
+                {
+                   "sameItem":3,
+                   "bonus":5
+                }
+             ]
+          }
+       ]
+    },
+    {
+       "id":"rust",
+       "name":"Crimson Fang",
+       "description":"Forged in the heart of a dying star, the Crimson Fang is a weapon of unparalleled ferocity. Its fiery blade grants its wielder a surge of raw power, allowing them to unleash devastating attacks with unmatched speed. However, wielding such a weapon comes at a price, as its heat can be overwhelming for even the most seasoned warrior.",
+       "type":"Weapon",
+       "effects":[
+          {
+             "name":"Blazing Fury",
+             "description":"The Crimson Fang burns with an intense heat that sears the flesh of its enemies. Each attack unleashes a wave of scorching flames that incinerate the foe, granting the wielder a temporary surge in power.",
+             "value":10,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"atk",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":5
+                },
+                {
+                   "sameItem":3,
+                   "bonus":10
+                }
+             ]
+          },
+          {
+             "name":"Swift Strike",
+             "description":"The Crimson Fang's blade is so light and swift that it seems to defy the laws of physics. The wielder gains a boost to their speed, allowing them to strike with lightning-fast reflexes.",
+             "value":8,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"spd",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":3
+                },
+                {
+                   "sameItem":3,
+                   "bonus":6
+                }
+             ]
+          },
+          {
+             "name":"Burning Sacrifice",
+             "description":"The Crimson Fang's fiery energy is so intense that it takes a toll on the wielder's own vitality.  Each strike leaves a scar of searing pain, temporarily reducing the wielder's health.",
+             "value":5,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Decrease",
+             "attrTarget":"hp",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":2
+                },
+                {
+                   "sameItem":3,
+                   "bonus":4
+                }
+             ]
+          }
+       ]
+    },
+    {
+       "id":"dart",
+       "name":"Whispering Wind",
+       "description":"A slender dart crafted from the feathers of a mythical windbird. Its whispers carry the power to pierce armor and quicken the wielder's movements.",
+       "type":"Weapon",
+       "effects":[
+          {
+             "name":"Swift Strike",
+             "description":"Increases attack speed, granting the wielder the ability to strike with lightning-fast precision.",
+             "value":10,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"spd",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":5
+                }
+             ]
+          },
+          {
+             "name":"Piercing Wind",
+             "description":"Increases attack power, making each strike capable of bypassing enemy defenses.",
+             "value":120,
+             "unit":"Number",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"atk",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":10
+                }
+             ]
+          }
+       ]
+    },
+    {
+       "id":"swift",
+       "name":"Zephyr's Whisper",
+       "description":"A slender staff forged from wind-touched silver, imbued with the swiftness of a storm. Its wielder gains a surge of speed, striking with blinding agility.",
+       "type":"Weapon",
+       "effects":[
+          {
+             "name":"Wind's Grace",
+             "description":"Grants a boost to speed, allowing for quicker attacks and evasive maneuvers.",
+             "value":12,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"spd",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":2
+                },
+                {
+                   "sameItem":3,
+                   "bonus":5
+                }
+             ]
+          },
+          {
+             "name":"Swift Strike",
+             "description":"Increases attack power, empowering every blow with the force of a tempest.",
+             "value":105,
+             "unit":"Number",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"atk",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":10
+                },
+                {
+                   "sameItem":3,
+                   "bonus":25
+                }
+             ]
+          }
+       ]
+    },
+    {
+       "id":"java",
+       "name":"Dragon's Brew",
+       "description":"A potent elixir brewed from ancient dragon scales, granting the wielder enhanced strength and resilience. Its effects are as unpredictable as a dragon's fury, capable of boosting both attack and defense.",
+       "type":"Weapon",
+       "effects":[
+          {
+             "name":"Dragon's Might",
+             "description":"The elixir grants the wielder a surge of strength, increasing their attack power.",
+             "value":12,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"atk",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":5
+                },
+                {
+                   "sameItem":3,
+                   "bonus":10
+                }
+             ]
+          },
+          {
+             "name":"Dragon's Hide",
+             "description":"The elixir imbues the wielder with the dragon's resilience, bolstering their defense.",
+             "value":10,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"def",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":3
+                },
+                {
+                   "sameItem":3,
+                   "bonus":7
+                }
+             ]
+          }
+       ]
+    },
+    {
+       "id":"kotlin",
+       "name":"Rune of the Swift Code",
+       "description":"A rune etched with ancient glyphs that hums with a subtle energy.  It grants the wielder a sharp intellect and quick reflexes, allowing them to execute code with speed and precision.",
+       "type":"Weapon",
+       "effects":[
+          {
+             "name":"Code Acceleration",
+             "description":"Increases the user's attack speed, granting a tactical advantage in combat.",
+             "value":10,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"spd",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":5
+                },
+                {
+                   "sameItem":3,
+                   "bonus":10
+                }
+             ]
+          },
+          {
+             "name":"Logical Fortification",
+             "description":"Bolsters the user's defenses, making them more resilient to attacks.",
+             "value":120,
+             "unit":"Number",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"def",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":20
+                },
+                {
+                   "sameItem":3,
+                   "bonus":40
+                }
+             ]
+          }
+       ]
+    },
+    {
+       "id":"objective-c",
+       "name":"Arcane Code",
+       "description":"A powerful enchanted scroll imbued with the ancient wisdom of programming. Its lines of code hum with arcane energy, granting the wielder swift execution and versatile capabilities.",
+       "type":"Weapon",
+       "effects":[
+          {
+             "name":"Swift Execution",
+             "description":"Grants the wielder the ability to perform actions with incredible speed and efficiency.",
+             "value":10,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"spd",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":5
+                },
+                {
+                   "sameItem":3,
+                   "bonus":10
+                }
+             ]
+          },
+          {
+             "name":"Robust Defense",
+             "description":"Shields the wielder from harm with a sturdy and resilient codebase.",
+             "value":12,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"def",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":3
+                },
+                {
+                   "sameItem":3,
+                   "bonus":7
+                }
+             ]
+          },
+          {
+             "name":"Arcane Might",
+             "description":"Enhances the wielder's offensive capabilities with potent code spells.",
+             "value":10,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"atk",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":5
+                },
+                {
+                   "sameItem":3,
+                   "bonus":10
+                }
+             ]
+          }
+       ]
+    },
+    {
+       "id":"coffeescript",
+       "name":"Caffeinated Codex",
+       "description":"A tome imbued with the potent magic of CoffeeScript, its pages whisper with the power to boost your stats and grant a burst of speed.  Its effects are subtle yet potent, best suited for those who appreciate a clean and efficient approach to combat.",
+       "type":"Weapon",
+       "effects":[
+          {
+             "name":"Caffeine Kick",
+             "description":"A temporary surge of energy grants a boost to your attack speed.",
+             "value":10,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"spd",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":5
+                }
+             ]
+          },
+          {
+             "name":"Clarity of Code",
+             "description":"A heightened sense of clarity and focus boosts your attack power.",
+             "value":12,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"atk",
+             "bonusEffects":[
+                {
+                   "sameItem":3,
+                   "bonus":3
+                }
+             ]
+          },
+          {
+             "name":"Resilience of Logic",
+             "description":"A defensive barrier of logic protects you from damage.",
+             "value":10,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"def",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":2
+                }
+             ]
+          }
+       ]
+    },
+    {
+       "id":"shaderlab",
+       "name":"Arcane Shader",
+       "description":"A shimmering, ethereal wand imbued with the power to manipulate the flow of magical energy. It grants the wielder the ability to weave intricate spells that can bolster their strength, speed, or defense, while weakening their opponent.",
+       "type":"Weapon",
+       "effects":[
+          {
+             "name":"Augment Vitality",
+             "description":"A surge of healing energy replenishes the wielder's vitality.",
+             "value":15,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"hp",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":5
+                }
+             ]
+          },
+          {
+             "name":"Enfeeble Foe",
+             "description":"Drains the enemy's vitality, leaving them vulnerable.",
+             "value":10,
+             "unit":"Percent",
+             "for":"Enemy",
+             "type":"Decrease",
+             "attrTarget":"hp",
+             "bonusEffects":[
+                
+             ]
+          },
+          {
+             "name":"Swiftness",
+             "description":"Infuses the wielder with speed, allowing for quicker actions.",
+             "value":12,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"spd",
+             "bonusEffects":[
+                
+             ]
+          },
+          {
+             "name":"Weaken Resolve",
+             "description":"Impairs the enemy's resolve, reducing their ability to withstand attacks.",
+             "value":10,
+             "unit":"Percent",
+             "for":"Enemy",
+             "type":"Decrease",
+             "attrTarget":"def",
+             "bonusEffects":[
+                
+             ]
+          }
+       ]
+    },
+    {
+       "id":"less",
+       "name":"Shadow Weave",
+       "description":"A spectral wand woven from the very essence of shadows. Its power grants the user the ability to manipulate the flow of energy, bolstering their strength and cunning.",
+       "type":"Weapon",
+       "effects":[
+          {
+             "name":"Whispers of Power",
+             "description":"Increases the wielder's attack power by a significant margin, granting them an edge in combat.",
+             "value":120,
+             "unit":"Number",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"atk",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":15
+                },
+                {
+                   "sameItem":3,
+                   "bonus":30
+                }
+             ]
+          },
+          {
+             "name":"Shadow's Embrace",
+             "description":"Grants a temporary boost to the wielder's defense, making them more resilient to enemy attacks.",
+             "value":20,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"def",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":5
+                },
+                {
+                   "sameItem":3,
+                   "bonus":10
+                }
+             ]
+          }
+       ]
+    },
+    {
+       "id":"scss",
+       "name":"Stylus of Swiftness",
+       "description":"A shimmering wand woven from the threads of time itself, imbued with the power to manipulate the very fabric of speed. Its user gains an advantage in the flow of battle, weaving through attacks with uncanny grace.",
+       "type":"Weapon",
+       "effects":[
+          {
+             "name":"Temporal Agility",
+             "description":"Increases the wielder's speed, allowing for quicker attacks and evasive maneuvers.",
+             "value":10,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"spd",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":5
+                },
+                {
+                   "sameItem":3,
+                   "bonus":10
+                }
+             ]
+          },
+          {
+             "name":"Swift Strikes",
+             "description":"Enhances the wielder's attack power, granting them the ability to deliver swift and devastating blows.",
+             "value":12,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"atk",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":3
+                },
+                {
+                   "sameItem":3,
+                   "bonus":7
+                }
+             ]
+          }
+       ]
+    },
+    {
+       "id":"shell",
+       "name":"Chitinous Carapace",
+       "description":"A shimmering shell imbued with the essence of ancient crustaceans, granting the wielder a temporary boost to their defenses. ",
+       "type":"Weapon",
+       "effects":[
+          {
+             "name":"Hardened Scales",
+             "description":"The shell grants a temporary increase to the user's defense.",
+             "value":15,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"def",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":3
+                }
+             ]
+          },
+          {
+             "name":"Crustacean Vigor",
+             "description":"The shell's energy revitalizes the user.",
+             "value":10,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"hp",
+             "bonusEffects":[
+                
+             ]
+          }
+       ]
+    },
+    {
+       "id":"hlsl",
+       "name":"Arcane Weaver's Codex",
+       "description":"An ancient tome imbued with arcane energy, its pages ripple with ethereal light, allowing the wielder to channel potent spells that amplify their power and resilience.",
+       "type":"Weapon",
+       "effects":[
+          {
+             "name":"Arcane Fortitude",
+             "description":"Grants a surge of magical energy, bolstering the wielder's defenses.",
+             "value":10,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"def",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":5
+                },
+                {
+                   "sameItem":3,
+                   "bonus":10
+                }
+             ]
+          },
+          {
+             "name":"Swift Casting",
+             "description":"Enhances the wielder's speed, allowing them to weave spells with greater agility.",
+             "value":12,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"spd",
+             "bonusEffects":[
+                
+             ]
+          },
+          {
+             "name":"Arcane Might",
+             "description":"Imbues the wielder's attacks with potent magic, increasing their striking power.",
+             "value":15,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"atk",
+             "bonusEffects":[
+                
+             ]
+          }
+       ]
+    },
+    {
+       "id":"handlebars",
+       "name":"Emberwood Staff",
+       "description":"A staff crafted from the heartwood of an ancient ember tree. Its fiery essence grants its wielder a surge of power, empowering their attacks and bolstering their defenses.",
+       "type":"Weapon",
+       "effects":[
+          {
+             "name":"Ember Strike",
+             "description":"Ignites the staff, imbuing attacks with scorching flames.",
+             "value":12,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"atk",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":5
+                },
+                {
+                   "sameItem":3,
+                   "bonus":10
+                }
+             ]
+          },
+          {
+             "name":"Ember Shield",
+             "description":"Surrounds the wielder with a fiery aura, deflecting incoming blows.",
+             "value":10,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"def",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":3
+                },
+                {
+                   "sameItem":3,
+                   "bonus":7
+                }
+             ]
+          }
+       ]
+    },
+    {
+       "id":"python",
+       "name":"Serpent's Whisper",
+       "description":"A serpentine staff imbued with the essence of Python, granting its wielder the power to weave intricate spells and manipulate the flow of battle.",
+       "type":"Weapon",
+       "effects":[
+          {
+             "name":"Slithering Strike",
+             "description":"Increases the user's attack power with a swift and cunning strike.",
+             "value":12,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"atk",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":5
+                },
+                {
+                   "sameItem":3,
+                   "bonus":10
+                }
+             ]
+          },
+          {
+             "name":"Scales of Protection",
+             "description":"Grants a temporary shield, bolstering the user's defense.",
+             "value":150,
+             "unit":"Number",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"def",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":50
+                },
+                {
+                   "sameItem":3,
+                   "bonus":100
+                }
+             ]
+          }
+       ]
+    },
+    {
+       "id":"ruby",
+       "name":"Crimson Ruby",
+       "description":"A heart-shaped ruby, imbued with the fiery spirit of a long-lost dragon.  It grants its wielder an intense burst of energy, bolstering their strength and speed in battle.",
+       "type":"Weapon",
+       "effects":[
+          {
+             "name":"Dragon's Fury",
+             "description":"Empowers the wielder with the dragon's raw power, increasing their attack and speed.",
+             "value":15,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"atk",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":5
+                },
+                {
+                   "sameItem":3,
+                   "bonus":10
+                }
+             ]
+          },
+          {
+             "name":"Dragon's Heart",
+             "description":"The dragon's heart beats strong within this ruby, providing a surge of health.",
+             "value":100,
+             "unit":"Number",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"hp",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":50
+                },
+                {
+                   "sameItem":3,
+                   "bonus":150
+                }
+             ]
+          }
+       ]
+    },
+    {
+       "id":"sql",
+       "name":"Oracle's Query",
+       "description":"A shimmering staff imbued with the power of ancient knowledge. Its incantations can manipulate data with precision, granting its wielder enhanced strength and agility.",
+       "type":"Weapon",
+       "effects":[
+          {
+             "name":"Data Manipulation",
+             "description":"The staff's power surges, granting the wielder a temporary boost to strength and attack.",
+             "value":15,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"str",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":3
+                }
+             ]
+          },
+          {
+             "name":"Information Overload",
+             "description":"The staff unleashes a torrent of data, temporarily overwhelming the enemy and hindering their movements.",
+             "value":12,
+             "unit":"Percent",
+             "for":"Enemy",
+             "type":"Decrease",
+             "attrTarget":"spd",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":2
+                }
+             ]
+          }
+       ]
+    },
+    {
+       "id":"lua",
+       "name":"Scripter's Staff",
+       "description":"A staff imbued with the ancient art of scripting, allowing its wielder to manipulate the very fabric of reality through code. Its power is only limited by the user's imagination and knowledge of the arcane language of Lua.",
+       "type":"Weapon",
+       "effects":[
+          {
+             "name":"Arcane Enhancement",
+             "description":"Increases the user's attack power, granting them the ability to unleash more potent spells.",
+             "value":15,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"atk",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":5
+                },
+                {
+                   "sameItem":3,
+                   "bonus":10
+                }
+             ]
+          },
+          {
+             "name":"Swift Script",
+             "description":"Enhances the user's speed, allowing them to cast spells and execute commands with greater alacrity.",
+             "value":10,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"spd",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":3
+                },
+                {
+                   "sameItem":3,
+                   "bonus":7
+                }
+             ]
+          },
+          {
+             "name":"Code Shield",
+             "description":"Fortifies the user's defenses, making them more resistant to enemy attacks.",
+             "value":12,
+             "unit":"Percent",
+             "for":"Player",
+             "type":"Increase",
+             "attrTarget":"def",
+             "bonusEffects":[
+                {
+                   "sameItem":2,
+                   "bonus":4
+                },
+                {
+                   "sameItem":3,
+                   "bonus":9
+                }
+             ]
+          }
+       ]
+    }
+ ]

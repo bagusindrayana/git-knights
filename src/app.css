@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.retro-btn {
+    @apply min-w-24 font-bold py-2 px-4 rounded text-center;
+}
+
+.retro-btn:focus {
+    @apply outline-none;
+}
+
+.retro-btn-sm {
+    @apply text-sm min-w-16 py-1 px-2;
+}
+
+/* red */
+.red-retro-btn {
+    @apply bg-red-500 text-white border-b-4 border-red-700 ;
+}
+
+.red-retro-btn:hover{
+    @apply bg-red-600;
+}
+
+.red-retro-btn:active {
+    @apply border-red-800;
+}
+
+/* green */
+.green-retro-btn {
+    @apply bg-green-500 text-white border-b-4 border-green-700 ;
+}
+
+.green-retro-btn:hover{
+    @apply bg-green-600;
+}
+
+.green-retro-btn:active {
+    @apply border-green-800;
+}
+
+/* blue */
+.blue-retro-btn {
+    @apply bg-blue-500 text-white border-b-4 border-blue-700 ;
+}
+
+.blue-retro-btn:hover{
+    @apply bg-blue-600;
+}
+
+.blue-retro-btn:active {
+    @apply border-blue-800;
+}
+
+/* yellow */
+.yellow-retro-btn {
+    @apply bg-yellow-500 text-white border-b-4 border-yellow-700 ;
+}
+
+.yellow-retro-btn:hover{
+    @apply bg-yellow-600;
+}
+
+.yellow-retro-btn:active {
+    @apply border-yellow-800;
+}
+
+/* purple */
+.purple-retro-btn {
+    @apply bg-purple-500 text-white border-b-4 border-purple-700 ;
+}
+
+.purple-retro-btn:hover{
+    @apply bg-purple-600;
+}
+
+.purple-retro-btn:active {
+    @apply border-purple-800;
+}
+
+.main-card {
+    @apply w-full max-w-5xl font-mono bg-[#d0d058] text-[#0f380f] rounded-lg overflow-hidden border-4 border-[#8bac0f] shadow-[8px_8px_0px_#306230];
+}
