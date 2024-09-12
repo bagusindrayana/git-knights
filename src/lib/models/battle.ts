@@ -2,6 +2,8 @@ import { Item, ItemSkill } from "./player";
 
 class BasePlayer {
     public playerId: string = "";
+    public playerName: string = "";
+    public playerLevel: number = 1;
     public currentHp: number = 0;
     public hp: number = 0;
     public attack: number = 0;
@@ -26,9 +28,11 @@ class BasePlayer {
     public skills: ItemSkill[] = [];
 
     //constructor
-    constructor(args?: { playerId: string, currentHp: number, hp: number, attack: number, defense: number, speed: number, strength: number, originalStats: { hp: number, attack: number, defense: number, speed: number, strength: number }, exp: number, items: Item[], skills: ItemSkill[] }) {
+    constructor(args?: { playerId: string, playerName: string, playerLevel: number , currentHp: number, hp: number, attack: number, defense: number, speed: number, strength: number, originalStats: { hp: number, attack: number, defense: number, speed: number, strength: number }, exp: number, items: Item[], skills: ItemSkill[] }) {
         if (args) {
             this.playerId = args.playerId;
+            this.playerName = args.playerName;
+            this.playerLevel = args.playerLevel;
             this.currentHp = args.currentHp;
             this.hp = args.hp;
             this.attack = args.attack;
@@ -47,6 +51,8 @@ class BasePlayer {
         const data = JSON.parse(json);
         const newPlayer = new BasePlayer({
             playerId: data.playerId,
+            playerName: data.playerName,
+            playerLevel: Number(data.playerLevel),
             currentHp: data.currentHp,
             hp: data.hp,
             attack: data.attack,
@@ -140,9 +146,10 @@ class Battle {
     public status: string = "pending";
     public timestamp: number = Date.now();
     public round: number = 1;
+    public score: number = 0;
 
     //constructor
-    constructor(args?: { id: string, attacker: Attacker, defender: Defender, battleLog: BattleLog[], timestamp?: number, round?: number, status?: string }) {
+    constructor(args?: { id: string, attacker: Attacker, defender: Defender, battleLog: BattleLog[], timestamp?: number, round?: number, status?: string, score?: number }) {
         if (args) {
             this.id = args.id;
             this.attacker = args.attacker;
@@ -151,6 +158,7 @@ class Battle {
             this.timestamp = args.timestamp || Date.now();
             this.round = args.round || 1;
             this.status = args.status || "pending";
+            this.score = args.score || 0;
         }
     }
 
@@ -164,7 +172,8 @@ class Battle {
             battleLog: data.battleLog.map((log: any) => BattleLog.fromJson(JSON.stringify(log))),
             timestamp: data.timestamp,
             round: data.round,
-            status: data.status
+            status: data.status,
+            score: data.score
         });
 
         return newBattle;
@@ -179,6 +188,14 @@ class Battle {
             battleLog: this.battleLog,
             timestamp: this.timestamp
         });
+    }
+
+    getPlayer(playerId:string){
+        if(this.attacker.playerId == playerId){
+            return this.attacker;
+        }else if(this.defender.playerId == playerId){
+            return this.defender;
+        }
     }
 }
 

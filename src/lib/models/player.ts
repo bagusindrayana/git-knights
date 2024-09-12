@@ -1,3 +1,5 @@
+import type { BattleLog } from "./battle";
+
 enum EffectUnit {
     Number = "Number",
     Percent = "Percent"
@@ -74,6 +76,29 @@ class ItemSkillEffect {
     }
 }
 
+class UltimateRequire {
+    public skillLanguage: string = "";
+    public skillLanguageAmmount: number = 0;
+
+    constructor(
+        attributes?: { skillLanguage: string, skillLanguageAmmount: number }
+    ) {
+        if (attributes) {
+            this.skillLanguage = attributes.skillLanguage;
+            this.skillLanguageAmmount = attributes.skillLanguageAmmount;
+        }
+    }
+
+    //from json
+    public static fromJson(json: string): UltimateRequire {
+        const obj = JSON.parse(json);
+        return new UltimateRequire({
+            skillLanguage: obj.skillLanguage,
+            skillLanguageAmmount: obj.skillLanguageAmmount
+        });
+    }
+}
+
 class ItemSkill {
     public id: string = '';
     public name: string = "";
@@ -85,11 +110,17 @@ class ItemSkill {
     public doAttack: boolean = true;
     public cooldownRound: number = 0;
     public currentCooldown: number = 0;
+    public baseDamage: number = 0;
     public itemSlot?: number = 0;
     public animation?: string = '';
+    public isUltimate: boolean = false;
+    public ultimateDamage?: number = 0;
+    public ultimateAnimation?: string = '';
+    public ultimateRequires?: UltimateRequire[];
+    
 
     constructor(
-        attributes?: { id: string, name: string, description: string, effects?: ItemSkillEffect[], doAttack?: boolean, cooldownRound?: number, animation?: string, currentCooldown?: number }
+        attributes?: { id: string, name: string, description: string, effects?: ItemSkillEffect[], doAttack?: boolean, cooldownRound?: number, animation?: string, currentCooldown?: number, baseDamage?: number, isUltimate?: boolean, ultimateDamage?: number, ultimateAnimation?: string, ultimateRequires?: UltimateRequire[] }
     ) {
         if (attributes) {
             
@@ -101,6 +132,11 @@ class ItemSkill {
             this.cooldownRound = attributes.cooldownRound || 0;
             this.animation = attributes.animation;
             this.currentCooldown = attributes.currentCooldown || 0;
+            this.baseDamage = attributes.baseDamage || 0;
+            this.isUltimate = attributes.isUltimate || false;
+            this.ultimateDamage = attributes.ultimateDamage;
+            this.ultimateAnimation = attributes.ultimateAnimation;
+            this.ultimateRequires = attributes.ultimateRequires;
         }
     }
 
@@ -114,7 +150,11 @@ class ItemSkill {
             doAttack: obj.doAttack,
             cooldownRound: obj.cooldownRound || 0,
             animation: obj.animation,
-            currentCooldown: obj.currentCooldown || 0
+            currentCooldown: obj.currentCooldown || 0,
+            baseDamage: obj.baseDamage || 0,
+            isUltimate: obj.isUltimate || false,
+            ultimateDamage: obj.ultimateDamage,
+            ultimateAnimation: obj.ultimateAnimation
         });
 
         if (obj.effects) {
@@ -123,6 +163,9 @@ class ItemSkill {
             });
         }
 
+        if (obj.ultimateRequires) {
+            ni.ultimateRequires = obj.ultimateRequires.map((require: any) => UltimateRequire.fromJson(JSON.stringify(require)));
+        }
         return ni;
     }
 
@@ -138,6 +181,32 @@ class ItemSkill {
             currentCooldown: this.currentCooldown,
             effects: this.effects.map((effect: ItemSkillEffect) => JSON.parse(effect.toJson()))
         })
+    }
+
+    public canDoUltimate(logs: BattleLog[]):boolean {
+        if(this.isUltimate){
+            if(this.ultimateRequires){
+                for (let index = 0; index < this.ultimateRequires.length; index++) {
+                    const require = this.ultimateRequires[index];
+                    let count = 0;
+                    for (let i = 0; i < logs.length; i++) {
+                        const log = logs[i];
+                        if(log.skill?.id.includes(require.skillLanguage)){
+                            count++;
+                        }
+                        if(log.skill?.id.includes(this.id)){
+                            count = 0;
+                        }
+                    }
+                    if(count < require.skillLanguageAmmount){
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+
+        return false;
     }
     
 }
@@ -336,6 +405,8 @@ class Player {
     //battle
     public currentHP: number = 0;
 
+    public score: number = 0;
+
     constructor(
         attributes?: { hp: number, atk: number, def: number, spd: number, str: number,  exp?: number,profile?: {
             id?: string,
@@ -344,7 +415,10 @@ class Player {
         },
         items?: Item[],
         bonusAttributes?: { hp: number, atk: number, def: number, spd: number, str: number },
-        slots?: string[]
+        slots?: string[],
+        skillSlots?: string[],
+        currentHP?: number,
+        score?: number
     },
         
     ) {
@@ -370,6 +444,18 @@ class Player {
 
             if(attributes.slots){
                 this.slots = attributes.slots;
+            }
+
+            if(attributes.skillSlots){
+                this.skillSlots = attributes.skillSlots;
+            }
+
+            if(attributes.currentHP){
+                this.currentHP = attributes.currentHP;
+            }
+
+            if(attributes.score){
+                this.score = attributes.score;
             }
         }
 

@@ -24,6 +24,8 @@ export const POST: RequestHandler = async (event): Promise<Response> => {
 
     const attacker = new Attacker({
         playerId: attackerPlayer.id!,
+        playerName: attackerPlayer.name!,
+        playerLevel: attackerPlayer.currentLevel(),
         hp: attackerPlayer.hp+attackerPlayer.bonusAttributes.hp,
         attack: attackerPlayer.attack+attackerPlayer.bonusAttributes.atk,
         defense: attackerPlayer.defense+attackerPlayer.bonusAttributes.def,
@@ -44,6 +46,8 @@ export const POST: RequestHandler = async (event): Promise<Response> => {
 
     const defender = new Defender({
         playerId: defenderPlayer.id!,
+        playerName: defenderPlayer.name!,
+        playerLevel: defenderPlayer.currentLevel(),
         hp: defenderPlayer.hp+defenderPlayer.bonusAttributes.hp,
         attack: defenderPlayer.attack+defenderPlayer.bonusAttributes.atk,
         defense: defenderPlayer.defense+defenderPlayer.bonusAttributes.def,

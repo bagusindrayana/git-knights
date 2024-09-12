@@ -27,7 +27,8 @@ export const GET: RequestHandler = async (event): Promise<Response> => {
 
     const _page = Number(event.url.searchParams.get('page')) || 1;
     const _limit = Number(event.url.searchParams.get('limit')) || 10;
-    const datas = await getPlayers(_page, _limit,xpFilter);
+    const _q = event.url.searchParams.get('q');
+    const datas = await getPlayers(_page, _limit,xpFilter,_q);
     const players: any[] = datas.map((data: any) => {
         const player = Player.fromJson(JSON.stringify(data));
         player.applyEquipedEffect();

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import "../../skill.css";
+    import "../../../skill.css";
     import {
         ItemSkill,
         Player,
@@ -12,10 +12,10 @@
     import { onMount } from "svelte";
     import axios from "axios";
     import { page } from "$app/stores";
-    import skills from "../../lib/data/skill.json";
-    import Tooltip from "../../components/Tooltip.svelte";
+    import skills from "../../../lib/data/skill.json";
+    import Tooltip from "../../../components/Tooltip.svelte";
     import { Battle } from "$lib/models/battle";
-    import PlayerCard from "../../components/PlayerCard.svelte";
+    import PlayerCard from "../../../components/PlayerCard.svelte";
 
     const animations: { [key: string]: any } = {
         hit: {
@@ -272,7 +272,7 @@
                                     : "buff"
                             ].sound;
                         playerAdio!.play();
-                        playerElm!.innerHTML += `<div class="hit-text text-${effect.type == EffectType.Decrease ? "red" : "green"}-700">${effect.type == EffectType.Decrease ? "-" : "+"}${effect.value}${effect.unit == EffectUnit.Percent ? "%" : ""} ${effect.attrTarget}</div>`;
+                        playerElm!.innerHTML += `<div class="hit-text bg-${effect.type == EffectType.Decrease ? "red" : "green"}-500">${effect.type == EffectType.Decrease ? "-" : "+"}${effect.value}${effect.unit == EffectUnit.Percent ? "%" : ""} ${effect.attrTarget}</div>`;
                         playerElm!.innerHTML += `<div class="animation-effect ${effect.type == EffectType.Decrease ? "debuff" : "buff"}-animation"/>`;
                     } else {
                         arenaElm.classList.remove("move-left");
@@ -285,7 +285,7 @@
                                     : "buff"
                             ].sound;
                         enemyAudio!.play();
-                        enemyElm!.innerHTML += `<div class="hit-text text-${effect.type == EffectType.Decrease ? "red" : "green"}-700">${effect.type == EffectType.Decrease ? "-" : "+"}${effect.value}${effect.unit == EffectUnit.Percent ? "%" : ""} ${effect.attrTarget}</div>`;
+                        enemyElm!.innerHTML += `<div class="hit-text bg-${effect.type == EffectType.Decrease ? "red" : "green"}-500">${effect.type == EffectType.Decrease ? "-" : "+"}${effect.value}${effect.unit == EffectUnit.Percent ? "%" : ""} ${effect.attrTarget}</div>`;
                         enemyElm!.innerHTML += `<div class="animation-effect ${effect.type == EffectType.Decrease ? "debuff" : "buff"}-animation"/>`;
                     }
                 } else {
@@ -300,7 +300,7 @@
                                     : "buff"
                             ].sound;
                         playerAdio!.play();
-                        enemyElm!.innerHTML += `<div class="hit-text text-${effect.type == EffectType.Decrease ? "red" : "green"}-700">${effect.type == EffectType.Decrease ? "-" : "+"}${effect.value}${effect.unit == EffectUnit.Percent ? "%" : ""} ${effect.attrTarget}</div>`;
+                        enemyElm!.innerHTML += `<div class="hit-text bg-${effect.type == EffectType.Decrease ? "red" : "green"}-500">${effect.type == EffectType.Decrease ? "-" : "+"}${effect.value}${effect.unit == EffectUnit.Percent ? "%" : ""} ${effect.attrTarget}</div>`;
                         enemyElm!.innerHTML += `<div class="animation-effect ${effect.type == EffectType.Decrease ? "debuff" : "buff"}-animation"/>`;
                     } else {
                         arenaElm.classList.remove("move-right");
@@ -313,7 +313,7 @@
                                     : "buff"
                             ].sound;
                         enemyAudio!.play();
-                        playerElm!.innerHTML += `<div class="hit-text text-${effect.type == EffectType.Decrease ? "red" : "green"}-700">${effect.type == EffectType.Decrease ? "-" : "+"}${effect.value}${effect.unit == EffectUnit.Percent ? "%" : ""} ${effect.attrTarget}</div>`;
+                        playerElm!.innerHTML += `<div class="hit-text bg-${effect.type == EffectType.Decrease ? "red" : "green"}-500">${effect.type == EffectType.Decrease ? "-" : "+"}${effect.value}${effect.unit == EffectUnit.Percent ? "%" : ""} ${effect.attrTarget}</div>`;
                         playerElm!.innerHTML += `<div class="animation-effect ${effect.type == EffectType.Decrease ? "debuff" : "buff"}-animation"/>`;
                     }
                 }
@@ -343,14 +343,14 @@
                     await timer(300);
                     if (damageResult.finalDamage > 0) {
                         if (damageResult.isCriticalHit) {
-                            enemyElm!.innerHTML += `<div class="hit-text text-red-700">${damageResult.finalDamage}</div>`;
+                            enemyElm!.innerHTML += `<div class="hit-text bg-red-500">${damageResult.finalDamage}</div>`;
                         } else {
-                            enemyElm!.innerHTML += `<div class="hit-text text-yellow-700">${damageResult.finalDamage}</div>`;
+                            enemyElm!.innerHTML += `<div class="hit-text bg-yellow-500">${damageResult.finalDamage}</div>`;
                         }
                         enemyAudio!.src = animations[skill.animation!].sound;
                         enemyAudio!.play();
                     } else {
-                        enemyElm!.innerHTML += `<div class="hit-text text-gray-700">Miss</div>`;
+                        enemyElm!.innerHTML += `<div class="hit-text bg-gray-500">Miss</div>`;
                         enemyAudio!.src = "/sounds/35_Miss_Evade_02.wav";
                         enemyAudio!.play();
                     }
@@ -366,23 +366,23 @@
                         playerAdio!.src = animations[skill.animation!].sound;
                         playerAdio!.play();
                         if (damageResult.isCriticalHit) {
-                            playerElm!.innerHTML += `<div class="hit-text text-red-700">${damageResult.finalDamage}</div>`;
+                            playerElm!.innerHTML += `<div class="hit-text bg-red-500">${damageResult.finalDamage}</div>`;
                         } else {
-                            playerElm!.innerHTML += `<div class="hit-text text-yellow-700">${damageResult.finalDamage}</div>`;
+                            playerElm!.innerHTML += `<div class="hit-text bg-yellow-500">${damageResult.finalDamage}</div>`;
                         }
                     } else {
-                        playerElm!.innerHTML += `<div class="hit-text text-gray-700">Miss</div>`;
+                        playerElm!.innerHTML += `<div class="hit-text bg-gray-500">Miss</div>`;
                         playerAdio!.src = "/sounds/35_Miss_Evade_02.wav";
                         playerAdio!.play();
                     }
                 }
             } else if (damageResult.finalDamage <= 0 && skill.doAttack) {
                 if (from == "player") {
-                    enemyElm!.innerHTML += `<div class="hit-text text-gray-700">Miss</div>`;
+                    enemyElm!.innerHTML += `<div class="hit-text bg-gray-500">Miss</div>`;
                     enemyAudio!.src = "/sounds/35_Miss_Evade_02.wav";
                     enemyAudio!.play();
                 } else {
-                    playerElm!.innerHTML += `<div class="hit-text text-gray-700">Miss</div>`;
+                    playerElm!.innerHTML += `<div class="hit-text bg-gray-500">Miss</div>`;
                     playerAdio!.src = "/sounds/35_Miss_Evade_02.wav";
                     playerAdio!.play();
                 }
@@ -475,7 +475,7 @@
                     scrollEventLogs();
                 }, 500);
                 if (battle.status != "pending") {
-                    alert(battle.status);
+                    // alert(battle.status);
                 } else {
                     setTimeout(() => {
                         if (battle.status == "pending") {
@@ -600,23 +600,31 @@
         );
         tooltipTitle = skill.name;
         let desc = skill.description;
+
         if (skill.doAttack === true) {
             desc += `<br>
-            <b class="text-red-400"> Attack Skill </b>`;
+            <b class="text-red-600"> Attack Skill </b>`;
         }
+
         desc += `
         <br>
-        <b class="text-green-400"> Cooldown : ${skill.cooldownRound} turns</b> 
-        <hr><b>Effects:</b><ul class="list-disc">`;
-        skill.effects.forEach((effect: ItemSkillEffect) => {
-            desc += `<li>
-                ${effect.name}: ${effect.type} ${effect.value}${effect.unit == EffectUnit.Percent ? "%" : ""} ${effect.for} ${effect.attrTarget.toUpperCase()}
-                <br>
-                <div class="text-[#9bbc0f] text-sm">${effect.description}
-            `;
+        <b class="text-green-800"> Cooldown : ${skill.cooldownRound} turns</b>`;
+        if (skill.doAttack == true) {
+            desc += `<br>
+                    <b class="text-green-800"> Base Damage : ${skill.baseDamage + (skill.ultimateDamage ?? 0)}</b> `;
+        }
 
-            desc += `</div></li>`;
-        });
+        if (skill.effects.length > 0) {
+            desc += `<hr><b>Effects:</b><ul class="list-disc">`;
+            skill.effects.forEach((effect: any) => {
+                desc += `<li>
+                    ${effect.name}: ${effect.type} ${effect.value}${effect.unit == "Percent" ? "%" : ""} ${effect.for} ${effect.attrTarget.toUpperCase()}
+                    </li>
+                `;
+            });
+            desc += `</ul>`;
+        }
+
         tooltipContent = desc;
     }
 
@@ -639,6 +647,14 @@
             if (mouseY + tooltip.offsetHeight + 10 > window.innerHeight) {
                 mouseY -= tooltip.offsetHeight;
             }
+        }
+    }
+
+    function getPlayer(id:string){
+        if (id == player.id) {
+            return player;
+        } else {
+            return enemyPlayer;
         }
     }
 </script>
@@ -748,6 +764,8 @@
             font-weight: bold;
             top: 0;
             right: 0;
+            color: white;
+            padding: 4px;
         }
 
         @keyframes hit-text {
@@ -784,10 +802,57 @@
             transform: translateX(-25%);
             zoom: 1.5;
         }
+
+        .bg-arena {
+            background-color: #b24f49;
+            background-image: url("/images/4455.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: 0px -200px;
+        }
     </style>
 </svelte:head>
 
-<main class="w-full h-screen flex flex-col justify-between font-mono">
+<main class="w-full h-screen flex flex-col justify-between font-mono bg-arena">
+    {#if battle.status == "win"}
+        <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+            <div class="bg-yellow-300 border-4 border-orange-500 rounded-lg p-6 max-w-sm w-full text-center relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-2 bg-orange-500" />
+            <div class="absolute bottom-0 left-0 w-full h-2 bg-orange-500" />
+            <div class="absolute top-0 left-0 w-2 h-full bg-orange-500" />
+            <div class="absolute top-0 right-0 w-2 h-full bg-orange-500" />
+            <h2 class="text-4xl font-bold text-red-600 mb-4 pixel-font">YOU WIN!</h2>
+            <p class="text-xl text-green-700 mb-6 pixel-font">Congratulations, knight! You've conquered the arena!</p>
+            <div class="space-y-4">
+                <!-- <button class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded pixel-font">
+                    Next Level
+                </button> -->
+                <a  href="/player/duel"  class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded pixel-font">
+                    Main Menu
+                </a>
+            </div>
+            </div>
+        </div>
+    {:else if battle.status == "lose"}
+        <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
+            <div class="bg-gray-800 border-4 border-red-600 rounded-lg p-6 max-w-sm w-full text-center relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-2 bg-red-600" />
+            <div class="absolute bottom-0 left-0 w-full h-2 bg-red-600" />
+            <div class="absolute top-0 left-0 w-2 h-full bg-red-600" />
+            <div class="absolute top-0 right-0 w-2 h-full bg-red-600" />
+            <h2 class="text-4xl font-bold text-red-500 mb-4 pixel-font">GAME OVER</h2>
+            <p class="text-xl text-yellow-300 mb-6 pixel-font">Don't give up, knight! The duel awaits your return!</p>
+            <div class="space-y-4">
+                <a href="/player/battle?id={battle.defender.playerId}" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded pixel-font">
+                    Try Again
+                </a>
+                <a href="/player/duel" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded pixel-font">
+                    Main Menu
+                </a>
+            </div>
+            </div>
+        </div>
+    {/if}
     <audio
         id="bg-music"
         src="/musics/Battle-Conflict.mp3"
@@ -988,7 +1053,7 @@
                             {#if log.skill}
                                 {#if log.skill.doAttack}
                                     <p>
-                                        <b>{log.from}</b> use
+                                        <b>{getPlayer(log.from).name}</b> use
                                         <b
                                             class="text-blue-700"
                                             data-skill={JSON.stringify(
@@ -1000,13 +1065,13 @@
                                             data-id={log.skill.id}
                                             >{log.skill.name}</b
                                         >
-                                        to <b>{log.to}</b> : give
+                                        to <b>{getPlayer(log.to).name}</b> : give
                                         <b class="text-red-700">{log.damage}</b>
                                         damage
                                     </p>
                                 {:else}
                                     <p>
-                                        <b>{log.from}</b> using
+                                        <b>{getPlayer(log.from).name}</b> using
                                         <b
                                             class="text-blue-700"
                                             data-skill={JSON.stringify(
@@ -1022,15 +1087,15 @@
                                 {/if}
                             {:else if log.isCriticalHit}
                                 <p>
-                                    <b>{log.from}</b> attack
-                                    <b>{log.to}</b>
+                                    <b>{getPlayer(log.from).name}</b> attack
+                                    <b>{getPlayer(log.to).name}</b>
                                     with critical hit : give
                                     <b class="text-red-700">{log.damage}</b> damage
                                 </p>
                             {:else}
                                 <p>
-                                    <b>{log.from}</b> attack
-                                    <b>{log.to}</b>
+                                    <b>{getPlayer(log.from).name}</b> attack
+                                    <b>{getPlayer(log.to).name}</b>
                                     with normal attack : give
                                     <b class="text-red-700">{log.damage}</b> damage
                                 </p>

@@ -34,11 +34,18 @@ export async function getPlayer(id: string) {
 }
 
 //get players with paginate
-export async function getPlayers(page: number, limit: number, xpFilter?: { min: number, max: number }) {
+export async function getPlayers(page: number, limit: number, xpFilter?: { min: number, max: number }, q?:string | null) {
     const { db } = await connect();
     const collection = db.collection("players");
-    const players = await collection.find((xpFilter)?{ exp: { $gte: xpFilter.min, $lte: xpFilter.max } }:{}).sort({ exp: -1 }).skip((page - 1) * limit).limit(limit).toArray();
+    collection.createIndex({name : 'text', id: 'text'})
+    if(q){
+        const players = await collection.find((xpFilter)?{ $text: {$search: q },exp: { $gte: xpFilter.min, $lte: xpFilter.max } }:{$text: {$search: q }}).sort({ exp: -1 }).skip((page - 1) * limit).limit(limit).toArray();
         return players;
+    } else {
+        const players = await collection.find((xpFilter)?{ exp: { $gte: xpFilter.min, $lte: xpFilter.max } }:{}).sort({ exp: -1 }).skip((page - 1) * limit).limit(limit).toArray();
+        return players;
+    }
+    
 }
 
 export async function insertBattleData(battaleData: Battle) {
@@ -60,4 +67,17 @@ export async function getBattleData(id: string,status?:string) {
     const collection = db.collection("battles");
     const battleData = await collection.findOne({ id: id,status:status });
     return battleData;
+}
+
+export async function myHistory(id: string, page: number, limit: number, q?:string | null) {
+    const { db } = await connect();
+    const collection = db.collection("battles");
+    collection.createIndex({"defender.playerId" : 'text', "defender.playerName": 'text'})
+    if(q){
+        const battleData = await collection.find({ $text: {$search: q },"attacker.playerId":id,status : { $nin: ["pending"]} }).skip((page - 1) * limit).sort( { timestamp: -1 } ).limit(limit).toArray();
+        return battleData;
+    } else {
+        const battleData = await collection.find({ "attacker.playerId":id,status : { $nin: ["pending"]} }).skip((page - 1) * limit).sort( { timestamp: -1 } ).limit(limit).toArray();
+        return battleData;
+    }
 }

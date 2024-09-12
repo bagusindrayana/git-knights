@@ -8,7 +8,7 @@
 
 <div
     id="tooltip"
-    class="{!show?'opacity-0':'opacity-1'} transition-opacity absolute z-10 w-2/3 md:w-1/3 p-4 bg-green-800 text-white text-sm rounded-lg shadow-lg pointer-events-none"
+    class="{!show?'opacity-0':'opacity-1'} transition-opacity absolute z-10 w-2/3 md:w-1/3 p-4 text-sm bg-[#d0d058] text-[#0f380f] rounded-lg overflow-hidden border-4 border-[#8bac0f] shadow-lg pointer-events-none"
     style="top: {mouseY + 10}px; left: {mouseX + 10}px;"
 >
     <p class="font-semibold">

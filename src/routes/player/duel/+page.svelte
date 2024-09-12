@@ -1,0 +1,264 @@
+<script lang="ts">
+    import { onMount } from "svelte";
+    import axios from "axios";
+
+    var players: any[] = [];
+
+    let page = 1;
+    let limit = 5;
+    let filter = "recomended";
+
+    let search: string = "";
+
+    async function loadPlayers() {
+        const response = await axios.get("/api/topPlayers", {
+            params: {
+                page: page,
+                limit: limit,
+                recomended: filter === "recomended" ? true : false,
+                q: search,
+            },
+        });
+
+        players = response.data.data;
+    }
+
+    async function loadMore(e: any) {
+        const _myButton = e.currentTarget;
+        _myButton.disabled = true;
+        _myButton.textContent = "Loading...";
+        try {
+            page++;
+            const response = await axios.get("/api/topPlayers", {
+                params: {
+                    page: page,
+                    limit: limit,
+                    recomended: filter === "recomended" ? true : false,
+                    q: search,
+                },
+            });
+
+            players = [...players, ...response.data.data];
+            _myButton.disabled = false;
+            _myButton.textContent = "Load More";
+        } catch (error) {
+            alert(error);
+            page--;
+            console.error(error);
+            _myButton.disabled = false;
+            _myButton.textContent = "Load More";
+        }
+    }
+
+    const debounce = (fn: Function, ms = 300) => {
+        let timeoutId: ReturnType<typeof setTimeout>;
+        return function (this: any, ...args: any[]) {
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => fn.apply(this, args), ms);
+        };
+    };
+
+    const doSearch = (e: any) => {
+        page = 1;
+        debounce(() => {
+            search = e.target.value;
+            loadPlayers();
+        }, 500)();
+    };
+
+    onMount(() => {
+        loadPlayers();
+    });
+</script>
+
+<svelte:head>
+    <title>D-D-D-DUELLLLLL</title>
+</svelte:head>
+<div class="container mx-auto p-8">
+    <div class="flex items-center justify-center mt-4">
+        <div class="main-card">
+            <div class="p-8">
+                <div
+                    class="flex justify-between border-b-green-800 border-b-2 py-4"
+                >
+                    <div>
+                        <a href="/player" class="retro-btn blue-retro-btn"
+                            >Back</a
+                        >
+                    </div>
+                    <div class="flex-1 text-center">
+                        <h2 class="text-2xl font-bold text-green-900 -ml-4">
+                            D-D-D-DUELLLLLL
+                        </h2>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <div id="tab1">
+                        <div class="flex w-full gap-1">
+                            <!-- Retro Search Input -->
+                            <input
+                                on:keyup={doSearch}
+                                type="text"
+                                placeholder="Search..."
+                                class="text-gray-900 px-4 py-2 w-full rounded-md shadow-md border-4 border-blue-500 bg-blue-100 focus:outline-none focus:ring-4 focus:ring-blue-300
+                                       placeholder-gray-500 text-lg font-mono tracking-wider"
+                            />
+                            <!-- Search Button Icon -->
+                            <button class="retro-btn blue-retro-btn">
+                                Search
+                            </button>
+                        </div>
+
+                        <div class="flex gap-2 mt-2">
+                            <button
+                                on:click={() => {
+                                    filter = "recomended";
+                                    loadPlayers();
+                                }}
+                                class="rounded-md px-2 py-1 text-sm border-green-900 border-2 hover:bg-green-700 hover:text-white {filter ==
+                                'recomended'
+                                    ? 'bg-green-700 text-white'
+                                    : ''}"
+                            >
+                                Recomended
+                            </button>
+                            <button
+                                on:click={() => {
+                                    filter = "all";
+                                    loadPlayers();
+                                }}
+                                class="rounded-md px-2 py-1 text-sm border-green-900 border-2 hover:bg-green-700 hover:text-white {filter ==
+                                'all'
+                                    ? 'bg-green-700 text-white'
+                                    : ''}"
+                            >
+                                All
+                            </button>
+                        </div>
+                        <div class="flex flex-col gap-4 w-full mt-4">
+                            {#if players.length == 0}
+                                    <p class="text-center text-red-900">
+                                        Not fin player
+                                    </p>
+                                {/if}
+                            {#each players as player}
+                                <div
+                                    class="font-mono bg-[#d0d058] text-[#0f380f] rounded-lg overflow-hidden border-4 border-[#8bac0f]"
+                                >
+                                    <div class="p-2 space-y-2">
+                                        <div
+                                            class="flex items-center space-x-2"
+                                        >
+                                            <img
+                                                src="https://avatars.githubusercontent.com/u/{player.id}"
+                                                alt="Pixel art character avatar"
+                                                class="w-16 h-16 border-2 border-[#0f380f]"
+                                            />
+                                            <div class="flex-1">
+                                                <h2
+                                                    class=" font-bold tracking-tight leading-none mb-1 text-shadow-[2px_2px_0px_#306230]"
+                                                >
+                                                    {player.name}
+                                                </h2>
+                                                <p class="text-sm">
+                                                    Level {player.level}
+                                                </p>
+                                            </div>
+                                            <div class="flex-1">
+                                                <div
+                                                    class="grid grid-cols-3 gap-2 text-sm"
+                                                >
+                                                    <div
+                                                        class="flex justify-between items-center bg-[#9bbc0f] p-1"
+                                                    >
+                                                        <span>HP</span>
+                                                        <span
+                                                            >{@html player.bonus
+                                                                .hp > 0
+                                                                ? `<small class="text-green-900">(+${player.bonus.hp})</small>`
+                                                                : ""}{player.hp}</span
+                                                        >
+                                                    </div>
+                                                    <div
+                                                        class="flex justify-between items-center bg-[#9bbc0f] p-1"
+                                                    >
+                                                        <span>ATK</span>
+                                                        <span
+                                                            >{@html player.bonus
+                                                                .atk > 0
+                                                                ? `<small class="text-green-900">(+${player.bonus.atk})</small>`
+                                                                : ""}{player.atk}</span
+                                                        >
+                                                    </div>
+                                                    <div
+                                                        class="flex justify-between items-center bg-[#9bbc0f] p-1"
+                                                    >
+                                                        <span>STR</span>
+                                                        <span
+                                                            >{@html player.bonus
+                                                                .str > 0
+                                                                ? `<small class="text-green-900">(+${player.bonus.str})</small>`
+                                                                : ""}{player.str}</span
+                                                        >
+                                                    </div>
+                                                    <div
+                                                        class="flex justify-between items-center bg-[#9bbc0f] p-1"
+                                                    >
+                                                        <span>DEF</span>
+                                                        <span
+                                                            >{@html player.bonus
+                                                                .def > 0
+                                                                ? `<small class="text-green-900">(+${player.bonus.def})</small>`
+                                                                : ""}{player.def}</span
+                                                        >
+                                                    </div>
+                                                    <div
+                                                        class="flex justify-between items-center bg-[#9bbc0f] p-1"
+                                                    >
+                                                        <span>SPD</span>
+                                                        <span
+                                                            >{@html player.bonus
+                                                                .spd > 0
+                                                                ? `<small class="text-green-900">(+${player.bonus.spd})</small>`
+                                                                : ""}{player.spd}</span
+                                                        >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="flex flex-col gap-1">
+                                                <a
+                                                    href="/player/battle?id={player.id}"
+                                                    class="retro-btn red-retro-btn retro-btn-sm"
+                                                >
+                                                    Duel
+                                                </a>
+                                                <button
+                                                    class="retro-btn blue-retro-btn retro-btn-sm"
+                                                >
+                                                    Info
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {/each}
+                            {#if players.length == 5}
+                                    <div class="flex justify-center">
+                                        <button
+                                            class="retro-btn blue-retro-btn"
+                                            on:click={(e) => {
+                                                loadMore(e);
+                                            }}
+                                        >
+                                            Load More
+                                        </button>
+                                    </div>
+                                {/if}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

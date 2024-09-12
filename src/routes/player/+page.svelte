@@ -526,8 +526,7 @@ DEF: accumulation of levels with number of issues`,
         item.effects.forEach((effect: any) => {
             desc += `<li>
                 ${effect.name}: ${effect.type} ${effect.value}${effect.unit == "Percent" ? "%" : ""} ${effect.for} ${effect.attrTarget.toUpperCase()}
-                <br>
-                <div class="text-[#9bbc0f] text-sm">${effect.description}
+               
             `;
 
             if (effect.bonusEffects) {
@@ -539,9 +538,9 @@ DEF: accumulation of levels with number of issues`,
                                 bonusEffect.sameItem &&
                             e.currentTarget.classList.contains(`slot-item`)
                         ) {
-                            desc += `<small class="text-green-400 bonus-${index}">- Stack ${bonusEffect.sameItem} same item: ${effect.type} +${bonusEffect.bonus}${effect.unit == "Percent" ? "%" : ""} ${effect.attrTarget.toUpperCase()}</small><br>`;
+                            desc += `<small class="text-green-900 font-bold bonus-${index}">- Stack ${bonusEffect.sameItem} same item: ${effect.type} +${bonusEffect.bonus}${effect.unit == "Percent" ? "%" : ""} ${effect.attrTarget.toUpperCase()}</small><br>`;
                         } else {
-                            desc += `<small class="text-gray-400 bonus-${index}">- Stack ${bonusEffect.sameItem} same item: ${effect.type} +${bonusEffect.bonus}${effect.unit == "Percent" ? "%" : ""} ${effect.attrTarget.toUpperCase()}</small><br>`;
+                            desc += `<small class="text-gray-700 bonus-${index}">- Stack ${bonusEffect.sameItem} same item: ${effect.type} +${bonusEffect.bonus}${effect.unit == "Percent" ? "%" : ""} ${effect.attrTarget.toUpperCase()}</small><br>`;
                         }
                     },
                 );
@@ -563,21 +562,40 @@ DEF: accumulation of levels with number of issues`,
 
         if (skill.doAttack === true) {
             desc += `<br>
-            <b class="text-red-400"> Attack Skill </b>`;
+            <b class="text-red-600"> Attack Skill </b>`;
         }
+        // if (skill.isUltimate === true) {
+        //     desc += `<br>
+        //     <b class="text-red-800"> Ultimate Skill </b>`;
+        // }
         desc += `
         <br>
-        <b class="text-green-400"> Cooldown : ${skill.cooldownRound} turns</b> 
-        <hr><b>Effects:</b><ul class="list-disc">`;
-        skill.effects.forEach((effect: any) => {
-            desc += `<li>
-                ${effect.name}: ${effect.unit} ${effect.value}${effect.unit == "Percent" ? "%" : ""} ${effect.for} ${effect.attrTarget.toUpperCase()}
-                <br>
-                <div class="text-[#9bbc0f] text-sm">${effect.description}
-            `;
+        <b class="text-green-800"> Cooldown : ${skill.cooldownRound} turns</b>`;
+        if (skill.doAttack == true) {
+            desc += `<br>
+                    <b class="text-green-800"> Base Damage : ${skill.baseDamage + (skill.ultimateDamage ?? 0)}</b> `;
+        }
+        if (skill.effects.length > 0) {
+            desc += `<hr><b>Effects:</b><ul class="list-disc">`;
+            skill.effects.forEach((effect: any) => {
+                desc += `<li>
+                    ${effect.name}: ${effect.type} ${effect.value}${effect.unit == "Percent" ? "%" : ""} ${effect.for} ${effect.attrTarget.toUpperCase()}
+                    </li>
+                `;
+            });
+            desc += `</ul>`;
+        }
 
-            desc += `</div></li>`;
-        });
+        // if (skill.isUltimate) {
+        //     desc += `<hr><b>Activate:</b><ul class="list-disc">`;
+        //     skill.ultimateRequires?.forEach((require: any) => {
+        //         desc += `<li>
+        //         Need use ${require.skillLanguageAmmount} ${require.skillLanguage} type skill in battle
+        //         </li>
+        //     `;
+        //     });
+        //     desc += `</ul>`;
+        // }
         tooltipContent = desc;
     }
 
@@ -1415,9 +1433,20 @@ DEF: accumulation of levels with number of issues`,
                                                             >
                                                             {#if skill.doAttack}
                                                                 <small
-                                                                    class="absolute text-xs bottom-0 left-0 bg-red-700 rounded-md p-1 text-white"
+                                                                    class="absolute text-xs bottom-0 left-0 bg-red-600 rounded-md p-1 text-white"
                                                                     >A</small
                                                                 >
+                                                                <!-- {#if skill.isUltimate}
+                                                                    <small
+                                                                        class="absolute text-xs bottom-0 left-0 bg-red-800 rounded-md p-1 text-white"
+                                                                        >U</small
+                                                                    >
+                                                                {:else}
+                                                                    <small
+                                                                        class="absolute text-xs bottom-0 left-0 bg-red-600 rounded-md p-1 text-white"
+                                                                        >A</small
+                                                                    >
+                                                                {/if} -->
                                                             {/if}
                                                         </button>
                                                     {/each}
@@ -1455,20 +1484,18 @@ DEF: accumulation of levels with number of issues`,
                                     <div
                                         class="flex justify-center items-center p-4 gap-4"
                                     >
-                                        <a
-                                            href="/duel"
-                                            class="retro-btn red-retro-btn"
-                                            >Duel</a
-                                        >
-                                        <button class="retro-btn red-retro-btn"
-                                            >Solo Raid</button
-                                        >
+                                        <a href="/player/duel" class="retro-btn red-retro-btn">
+                                            Duel
+                                        </a>
+                                        <a href="/player/history" class="retro-btn red-retro-btn blue-retro-btn">
+                                            HISTORY
+                                        </a>
                                         <button
-                                            class="retro-btn red-retro-btn"
+                                            class="retro-btn red-retro-btn green-retro-btn"
                                             disabled
-                                            title="Coming soon..."
-                                            >Global Raid</button
-                                        >
+                                            title="Coming soon...">
+                                            SCOREBOARD
+                                        </button>
                                     </div>
                                 </div>
                             </div>

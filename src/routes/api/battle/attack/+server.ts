@@ -1,6 +1,6 @@
 import { BasePlayer, Battle, BattleLog } from "$lib/models/battle";
 import { ItemSkill } from "$lib/models/player";
-import { getBattleData, insertBattleData } from "$lib/mongo";
+import { getBattleData, insertBattleData, getPlayer, insertData } from "$lib/mongo";
 import { json, type RequestHandler } from "@sveltejs/kit";
 
 function transformAttr(attr: string):string {
@@ -127,7 +127,7 @@ function calculateEvasionChance(attackerSPD: number, defenderSPD: number): numbe
     return evasionChance;
 }
 
-function calculateDamage(attacker: {
+function calculateDamage(skillDamage:number,attacker: {
     hp: number,
     attack: number,
     defense: number,
@@ -144,7 +144,7 @@ function calculateDamage(attacker: {
     const defenderDamageReduction = (defender.defense) / ((defender.defense) + 50); // Mengurangi damage berdasarkan DEF musuh
 
     // Penggunaan STR penyerang untuk meningkatkan damage
-    let baseDamage = ((attacker.strength) + (attacker.strength) * 0.3) * (1 - defenderDamageReduction);
+    let baseDamage = skillDamage+(((attacker.strength) + (attacker.strength) * 0.3) * (1 - defenderDamageReduction));
 
     // Pengurangan tambahan oleh STR musuh
     const strengthReduction = (defender.strength) * 0.1; // STR musuh mengurangi damage lebih lanjut
@@ -244,8 +244,11 @@ export const POST: RequestHandler = async (event): Promise<Response> => {
         speed: findDefender.speed,
         strength: findDefender.strength
     });
-
-    const damageResult = calculateDamage({
+    let skilDamage = 0;
+    if(skill){
+        skilDamage = skill.baseDamage+skill.ultimateDamage
+    }
+    const damageResult = calculateDamage(skilDamage,{
         hp: findAttacker.hp,
         attack: findAttacker.attack,
         defense: findAttacker.defense,
@@ -258,7 +261,6 @@ export const POST: RequestHandler = async (event): Promise<Response> => {
         speed: findDefender.speed,
         strength: findDefender.strength
     });
-
     if (skill) {
         if (skill.doAttack) {
             effectData.newDefender.currentHp -= Math.round(damageResult.finalDamage);
@@ -339,10 +341,44 @@ export const POST: RequestHandler = async (event): Promise<Response> => {
 
     if(battleData.attacker.currentHp <= 0 && battleData.defender.currentHp <= 0){
         battleData.status = "draw";
+        if (battleData.attacker.playerId != battleData.defender.playerId) {
+            const player = await getPlayer(battleData.attacker.playerId);
+            if(battleData.defender.playerLevel > battleData.attacker.playerLevel){
+                player.score += 1 * (battleData.defender.playerLevel-battleData.attacker.playerLevel);
+                await insertData(player);
+            }
+            
+            
+        }
     } else if(battleData.attacker.currentHp <= 0){
         battleData.status = "lose";
+        if (battleData.attacker.playerId != battleData.defender.playerId) {
+            const player = await getPlayer(battleData.attacker.playerId);
+            if(battleData.defender.playerLevel < battleData.attacker.playerLevel){
+                player.score -= 5 * (battleData.attacker.playerLevel-battleData.defender.playerLevel);
+                battleData.score = -5 * (battleData.attacker.playerLevel-battleData.defender.playerLevel);
+            } else {
+                player.score -= 5;
+                battleData.score = -5;
+            }
+            await insertData(player);
+            
+        }
     } else if(battleData.defender.currentHp <= 0){
         battleData.status = "win";
+        if (battleData.attacker.playerId != battleData.defender.playerId) {
+            const player = await getPlayer(battleData.attacker.playerId);
+            if(battleData.defender.playerLevel > battleData.attacker.playerLevel){
+                player.score += 5 * (battleData.defender.playerLevel-battleData.attacker.playerLevel);
+                battleData.score = 5 * (battleData.defender.playerLevel-battleData.attacker.playerLevel);
+            } else {
+                player.score += 5;
+                battleData.score = 5;
+                
+            }
+            await insertData(player);
+            
+        }
     } else {
         battleData.status = "pending";
     }
