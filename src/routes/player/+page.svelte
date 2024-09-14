@@ -252,10 +252,10 @@ DEF: accumulation of levels with number of issues`,
             const response = await axios.post(apiUrl);
             const user = response.data;
             playerData = Player.fromJson(JSON.stringify(user.data.playerData));
-            getAllSkillFromEquipItem();
+          
             playerData.applyEquipedEffect();
             updateApplyEquipedEffect();
-            playerData = playerData;
+            getAllSkillFromEquipItem();
             pushNotificaton = {
                 title: "Success",
                 content: "User data synced successfully",
@@ -522,10 +522,14 @@ DEF: accumulation of levels with number of issues`,
         const item = JSON.parse(e.currentTarget.getAttribute("data-item"));
         tooltipTitle = item.name;
         let desc = item.description;
-        desc += `<hr><b>Effects:</b><ul class="list-disc">`;
+        desc += `<hr>
+        <div class="w-full grid grid-cols-2 gap-1">
+        <div class="break-words">
+        <b>Effects:</b>
+        <ul class="list-disc">`;
         item.effects.forEach((effect: any) => {
-            desc += `<li>
-                ${effect.name}: ${effect.type} ${effect.value}${effect.unit == "Percent" ? "%" : ""} ${effect.for} ${effect.attrTarget.toUpperCase()}
+            desc += `<li class="break-words">
+                <span class="break-words">${effect.name}: ${effect.type} ${effect.value}${effect.unit == "Percent" ? "%" : ""} ${effect.for} ${effect.attrTarget.toUpperCase()}</span>
                
             `;
 
@@ -538,16 +542,24 @@ DEF: accumulation of levels with number of issues`,
                                 bonusEffect.sameItem &&
                             e.currentTarget.classList.contains(`slot-item`)
                         ) {
-                            desc += `<small class="text-green-900 font-bold bonus-${index}">- Stack ${bonusEffect.sameItem} same item: ${effect.type} +${bonusEffect.bonus}${effect.unit == "Percent" ? "%" : ""} ${effect.attrTarget.toUpperCase()}</small><br>`;
+                            desc += `<small class="break-words text-green-900 font-bold bonus-${index}">- Stack ${bonusEffect.sameItem} same item: ${effect.type} +${bonusEffect.bonus}${effect.unit == "Percent" ? "%" : ""} ${effect.attrTarget.toUpperCase()}</small><br>`;
                         } else {
-                            desc += `<small class="text-gray-700 bonus-${index}">- Stack ${bonusEffect.sameItem} same item: ${effect.type} +${bonusEffect.bonus}${effect.unit == "Percent" ? "%" : ""} ${effect.attrTarget.toUpperCase()}</small><br>`;
+                            desc += `<small class="break-words text-gray-700 bonus-${index}">- Stack ${bonusEffect.sameItem} same item: ${effect.type} +${bonusEffect.bonus}${effect.unit == "Percent" ? "%" : ""} ${effect.attrTarget.toUpperCase()}</small><br>`;
                         }
                     },
                 );
             }
-            desc += `</div></li>`;
+            desc += `</li>`;
         });
-        desc += `</ul>`;
+        desc += `</ul></div>
+        <div class="break-words">
+        <b>Skills:</b>
+        <ul class="list-disc">`;
+        let itemSkills = skills.find((skill:any)=>skill.id == item.id)?.skills
+        itemSkills?.forEach((skill: any) => {
+            desc += `<li>${skill.name}</li>`
+        });
+        desc += '</ul></div>';
 
         tooltipContent = desc;
     }
@@ -646,7 +658,12 @@ DEF: accumulation of levels with number of issues`,
                         type: "success",
                         show: true,
                     };
-
+                    playerData.slots = response.data.playerData.slots;
+                    playerData.skillSlots = response.data.playerData.skillSlots;
+                    playerData.tags = response.data.playerData.tags;
+                    playerData.applyEquipedEffect();
+                    updateApplyEquipedEffect();
+                    getAllSkillFromEquipItem();
                     button.disabled = false;
                     button.innerHTML = "Update Equipment";
                 })
@@ -881,15 +898,24 @@ DEF: accumulation of levels with number of issues`,
                                 alt="Character Avatar"
                             />
                             <div class="ml-4">
-                                <h1 class="text-3xl font-bold text-gray-900">
-                                    {$page.data.session?.user?.name}
-                                </h1>
-                                <p class="text-lg text-gray-600">
-                                    {playerData != null &&
-                                    playerData.id != undefined
-                                        ? `ID#${playerData.id}`
-                                        : ""}
-                                </p>
+                                {#if playerData != null}
+                                    <div class="flex gap-1">
+                                        <h1 class="text-3xl font-bold text-gray-900">
+                                            {$page.data.session?.user?.name}
+                                        </h1>
+                                        {#each playerData.tags as tag}
+                                                <div class="h-6 flex text-center justify-center items-center text-white font-bold rounded-full px-2 text-xs" style="background-color: {tag.color};">
+                                                    <span>{tag.name}</span>
+                                                </div>
+                                        {/each}
+                                    </div>
+                                    <p class="text-lg text-gray-600">
+                                        {playerData != null &&
+                                        playerData.id != undefined
+                                            ? `ID#${playerData.id}`
+                                            : ""}
+                                    </p>
+                                {/if}
                             </div>
                         </div>
                         <div class="text-right">
@@ -1353,7 +1379,7 @@ DEF: accumulation of levels with number of issues`,
                                         <button
                                             on:click={updateData}
                                             class="retro-btn blue-retro-btn"
-                                            >Update Equipment</button
+                                            >Update Equipments</button
                                         >
                                     </div>
                                 </div>
@@ -1477,6 +1503,15 @@ DEF: accumulation of levels with number of issues`,
                                             </div>
                                         </div>
                                     </div>
+                                    <div
+                                        class="mt-4 flex justify-end space-x-4"
+                                    >
+                                        <button
+                                            on:click={updateData}
+                                            class="retro-btn blue-retro-btn"
+                                            >Update Skills</button
+                                        >
+                                    </div>
                                 </div>
                                 <div
                                     class={activeTab !== "tab4" ? "hidden" : ""}
@@ -1490,12 +1525,9 @@ DEF: accumulation of levels with number of issues`,
                                         <a href="/player/history" class="retro-btn red-retro-btn blue-retro-btn">
                                             HISTORY
                                         </a>
-                                        <button
-                                            class="retro-btn red-retro-btn green-retro-btn"
-                                            disabled
-                                            title="Coming soon...">
+                                        <a href="/player/scoreboard" class="retro-btn red-retro-btn green-retro-btn">
                                             SCOREBOARD
-                                        </button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

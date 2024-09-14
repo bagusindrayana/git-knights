@@ -81,3 +81,17 @@ export async function myHistory(id: string, page: number, limit: number, q?:stri
         return battleData;
     }
 }
+
+export async function getTopPlayers(page: number, limit: number, q?:string | null) {
+    const { db } = await connect();
+    const collection = db.collection("players");
+    collection.createIndex({name : 'text', id: 'text'})
+    if(q){
+        const players = await collection.find({ $text: {$search: q }}).sort({ score: -1 }).skip((page - 1) * limit).limit(limit).toArray();
+        return players;
+    } else {
+        const players = await collection.find({}).sort({ score: -1 }).skip((page - 1) * limit).limit(limit).toArray();
+        return players;
+    }
+    
+}

@@ -1,0 +1,511 @@
+[
+    {
+        "name": "King PHP",
+        "requireItems": [
+            {
+                "id": "php",
+                "amount": 3
+            }
+        ],
+        "requireBattle": [
+            {
+                "id": "php",
+                "amount": 6,
+                "condition": "win"
+            }
+        ]
+    },
+    {
+        "name": "Fullstack Wizard",
+        "requireItems": [
+            {
+                "id": "php",
+                "amount": 3
+            },
+            {
+                "id": "javascript",
+                "amount": 3
+            }
+        ],
+        "requireBattle": [
+            {
+                "id": "php",
+                "amount": 6,
+                "condition": "win"
+            },
+            {
+                "id": "javascript",
+                "amount": 6,
+                "condition": "win"
+            }
+        ]
+    },
+    {
+        "name": "CSS Sorcerer",
+        "requireItems": [
+            {
+                "id": "css",
+                "amount": 5
+            }
+        ],
+        "requireBattle": [
+            {
+                "id": "css",
+                "amount": 8,
+                "condition": "win"
+            }
+        ]
+    },
+    {
+        "name": "JavaScript Ninja",
+        "requireItems": [
+            {
+                "id": "javascript",
+                "amount": 6
+            }
+        ],
+        "requireBattle": [
+            {
+                "id": "javascript",
+                "amount": 7,
+                "condition": "win"
+            }
+        ]
+    },
+    {
+        "name": "TypeScript Titan",
+        "requireItems": [
+            {
+                "id": "typescript",
+                "amount": 4
+            }
+        ],
+        "requireBattle": [
+            {
+                "id": "typescript",
+                "amount": 10,
+                "condition": "win"
+            }
+        ]
+    },
+    {
+        "name": "Python Paladin",
+        "requireItems": [
+            {
+                "id": "python",
+                "amount": 5
+            }
+        ],
+        "requireBattle": [
+            {
+                "id": "python",
+                "amount": 6,
+                "condition": "win"
+            }
+        ]
+    },
+    {
+        "name": "Rusty Knight",
+        "requireItems": [
+            {
+                "id": "rust",
+                "amount": 3
+            }
+        ],
+        "requireBattle": [
+            {
+                "id": "rust",
+                "amount": 8,
+                "condition": "win"
+            }
+        ]
+    },
+    {
+        "name": "Go Guru",
+        "requireItems": [
+            {
+                "id": "go",
+                "amount": 4
+            }
+        ],
+        "requireBattle": [
+            {
+                "id": "go",
+                "amount": 6,
+                "condition": "win"
+            }
+        ]
+    },
+    {
+        "name": "C++ Crusader",
+        "requireItems": [
+            {
+                "id": "cpp",
+                "amount": 6
+            }
+        ],
+        "requireBattle": [
+            {
+                "id": "cpp",
+                "amount": 9,
+                "condition": "win"
+            }
+        ]
+    },
+    {
+        "name": "Swift Samurai",
+        "requireItems": [
+            {
+                "id": "swift",
+                "amount": 4
+            }
+        ],
+        "requireBattle": [
+            {
+                "id": "swift",
+                "amount": 6,
+                "condition": "win"
+            }
+        ]
+    },
+    {
+        "name": "Stack Overlord",
+        "requireItems": [
+            {
+                "id": "php",
+                "amount": 2
+            },
+            {
+                "id": "javascript",
+                "amount": 2
+            },
+            {
+                "id": "python",
+                "amount": 2
+            }
+        ],
+        "requireBattle": [
+            {
+                "id": "php",
+                "amount": 6,
+                "condition": "win"
+            },
+            {
+                "id": "javascript",
+                "amount": 6,
+                "condition": "win"
+            },
+            {
+                "id": "python",
+                "amount": 5,
+                "condition": "win"
+            }
+        ]
+    },
+    {
+        "name": "Code Juggler",
+        "requireItems": [
+            {
+                "id": "javascript",
+                "amount": 2
+            },
+            {
+                "id": "css",
+                "amount": 2
+            },
+            {
+                "id": "html",
+                "amount": 2
+            }
+        ],
+        "requireBattle": [
+            {
+                "id": "javascript",
+                "amount": 8,
+                "condition": "win"
+            },
+            {
+                "id": "css",
+                "amount": 6,
+                "condition": "win"
+            },
+            {
+                "id": "html",
+                "amount": 6,
+                "condition": "win"
+            }
+        ]
+    },
+    {
+        "name": "Backend Beast",
+        "requireItems": [
+            {
+                "id": "php",
+                "amount": 2
+            },
+            {
+                "id": "python",
+                "amount": 3
+            },
+            {
+                "id": "nodejs",
+                "amount": 1
+            }
+        ],
+        "requireBattle": [
+            {
+                "id": "php",
+                "amount": 7,
+                "condition": "win"
+            },
+            {
+                "id": "python",
+                "amount": 6,
+                "condition": "win"
+            },
+            {
+                "id": "nodejs",
+                "amount": 5,
+                "condition": "win"
+            }
+        ]
+    },
+    {
+        "name": "Front-End Frenzy",
+        "requireItems": [
+            {
+                "id": "html",
+                "amount": 2
+            },
+            {
+                "id": "css",
+                "amount": 3
+            },
+            {
+                "id": "javascript",
+                "amount": 1
+            }
+        ],
+        "requireBattle": [
+            {
+                "id": "html",
+                "amount": 6,
+                "condition": "win"
+            },
+            {
+                "id": "css",
+                "amount": 6,
+                "condition": "win"
+            },
+            {
+                "id": "javascript",
+                "amount": 5,
+                "condition": "win"
+            }
+        ]
+    },
+    {
+        "name": "Polyglot Paladin",
+        "requireItems": [
+            {
+                "id": "python",
+                "amount": 2
+            },
+            {
+                "id": "java",
+                "amount": 2
+            },
+            {
+                "id": "cpp",
+                "amount": 2
+            }
+        ],
+        "requireBattle": [
+            {
+                "id": "python",
+                "amount": 7,
+                "condition": "win"
+            },
+            {
+                "id": "java",
+                "amount": 6,
+                "condition": "win"
+            },
+            {
+                "id": "cpp",
+                "amount": 5,
+                "condition": "win"
+            }
+        ]
+    },
+    {
+        "name": "Cloud Conqueror",
+        "requireItems": [
+            {
+                "id": "go",
+                "amount": 2
+            },
+            {
+                "id": "nodejs",
+                "amount": 2
+            },
+            {
+                "id": "python",
+                "amount": 2
+            }
+        ],
+        "requireBattle": [
+            {
+                "id": "go",
+                "amount": 6,
+                "condition": "win"
+            },
+            {
+                "id": "nodejs",
+                "amount": 6,
+                "condition": "win"
+            },
+            {
+                "id": "python",
+                "amount": 6,
+                "condition": "win"
+            }
+        ]
+    },
+    {
+        "name": "Algorithm Alchemist",
+        "requireItems": [
+            {
+                "id": "java",
+                "amount": 2
+            },
+            {
+                "id": "cpp",
+                "amount": 2
+            },
+            {
+                "id": "rust",
+                "amount": 2
+            }
+        ],
+        "requireBattle": [
+            {
+                "id": "java",
+                "amount": 6,
+                "condition": "win"
+            },
+            {
+                "id": "cpp",
+                "amount": 6,
+                "condition": "win"
+            },
+            {
+                "id": "rust",
+                "amount": 5,
+                "condition": "win"
+            }
+        ]
+    },
+    {
+        "name": "DevOps Dominator",
+        "requireItems": [
+            {
+                "id": "bash",
+                "amount": 3
+            },
+            {
+                "id": "docker",
+                "amount": 2
+            },
+            {
+                "id": "python",
+                "amount": 1
+            }
+        ],
+        "requireBattle": [
+            {
+                "id": "bash",
+                "amount": 7,
+                "condition": "win"
+            },
+            {
+                "id": "docker",
+                "amount": 6,
+                "condition": "win"
+            },
+            {
+                "id": "python",
+                "amount": 5,
+                "condition": "win"
+            }
+        ]
+    },
+    {
+        "name": "Serverless Samurai",
+        "requireItems": [
+            {
+                "id": "nodejs",
+                "amount": 2
+            },
+            {
+                "id": "typescript",
+                "amount": 2
+            },
+            {
+                "id": "go",
+                "amount": 2
+            }
+        ],
+        "requireBattle": [
+            {
+                "id": "nodejs",
+                "amount": 6,
+                "condition": "win"
+            },
+            {
+                "id": "typescript",
+                "amount": 6,
+                "condition": "win"
+            },
+            {
+                "id": "go",
+                "amount": 5,
+                "condition": "win"
+            }
+        ]
+    },
+    {
+        "name": "Security Sage",
+        "requireItems": [
+            {
+                "id": "python",
+                "amount": 2
+            },
+            {
+                "id": "bash",
+                "amount": 3
+            },
+            {
+                "id": "rust",
+                "amount": 1
+            }
+        ],
+        "requireBattle": [
+            {
+                "id": "python",
+                "amount": 7,
+                "condition": "win"
+            },
+            {
+                "id": "bash",
+                "amount": 6,
+                "condition": "win"
+            },
+            {
+                "id": "rust",
+                "amount": 5,
+                "condition": "win"
+            }
+        ]
+    }
+]

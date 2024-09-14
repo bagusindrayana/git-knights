@@ -381,6 +381,29 @@ class Item {
     }
 }
 
+class Tag {
+    public name: string = "";
+    public color: string = "";
+
+    constructor(attributes?:{
+        name:string, color?:string
+    }){
+        if(attributes != null){
+            this.name = attributes.name;
+            this.color = attributes.color || "";
+        }
+    }
+
+    //from json
+    public static fromJson(json: string): Tag {
+        const obj = JSON.parse(json);
+        return new Tag({
+            name: obj.name,
+            color: obj.color
+        });
+    }
+}
+
 class Player {
     //profile
     public id?: string | undefined | null = '';
@@ -407,6 +430,8 @@ class Player {
 
     public score: number = 0;
 
+    public tags: Tag[] = []
+
     constructor(
         attributes?: { hp: number, atk: number, def: number, spd: number, str: number,  exp?: number,profile?: {
             id?: string,
@@ -418,7 +443,8 @@ class Player {
         slots?: string[],
         skillSlots?: string[],
         currentHP?: number,
-        score?: number
+        score?: number,
+        tags?: Tag[]
     },
         
     ) {
@@ -457,6 +483,10 @@ class Player {
             if(attributes.score){
                 this.score = attributes.score;
             }
+
+            if(attributes.tags){
+                this.tags = attributes.tags;
+            }
         }
 
        
@@ -481,7 +511,8 @@ class Player {
                 id: obj.id || '',
                 name: obj.name,
                 email: obj.email
-            }
+            },
+            score: obj.score || 0
             
         });
         if(obj.items){
@@ -504,6 +535,10 @@ class Player {
 
         if(obj.currentHP){
             np.currentHP = obj.currentHP;
+        }
+
+        if(obj.tags){
+            np.tags = obj.tags.map((tag: any) => Tag.fromJson(JSON.stringify(tag)));
         }
 
         return np;
@@ -817,7 +852,8 @@ class Player {
         }
         return availableSkills.filter((skill: any) => this.skillSlots.includes(skill.id));
     }
+
 }
 
 //export class
-export { Player, Item, ItemEffect, ItemType, EffectUnit, ItemSkill,ItemSkillEffect, EffectFor,EffectType };
+export { Player, Item, ItemEffect, ItemType, EffectUnit, ItemSkill,ItemSkillEffect, EffectFor,EffectType,Tag };
