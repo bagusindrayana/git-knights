@@ -2,6 +2,7 @@ import axios from "axios";
 import { Player, Item, ItemSkill } from "./models/player";
 import items from "./data/item.json";
 import skills from "./data/skill.json";
+import { GITHUB_API_TOKEN } from '$env/static/private';
 
 export function findItem(id: string): Item | undefined {
     const find = items.find((item: any) => item.id === id);
@@ -89,8 +90,7 @@ export async function getGithubData(username: string) {
                 }
             }
         }`;
-    const apiToken =
-        "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";
+    const apiToken = GITHUB_API_TOKEN;
     const url = "https://api.github.com/graphql";
 
     const response = await axios.post(
