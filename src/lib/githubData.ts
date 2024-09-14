@@ -36,7 +36,75 @@ export async function getProfil(username: string) {
     }
 }
 
-export async function getGithubData(username: string) {
+async function queryRepository(username: string, after?: string){
+    const query = `
+    {
+  user(login: "${username}") {
+    name
+    repositories(first: 100, ownerAffiliations: OWNER, after: "${after}") {
+      totalCount
+      nodes {
+        stargazerCount
+        forkCount
+        isFork
+        issues(states: CLOSED) {
+          totalCount
+        }
+        pullRequests(states: MERGED,first:100) {
+          totalCount
+          nodes {
+            authorAssociation
+            author {
+              login
+            }
+            closedAt
+            mergedAt
+            createdAt
+          }
+          
+        }
+        languages(first: 100) {
+          edges {
+            size
+            node {
+              name
+            	color
+            }
+          }
+         
+        }
+      }
+      pageInfo {
+        endCursor
+        startCursor
+        hasNextPage
+        hasPreviousPage
+      }
+    }
+    
+  }
+}
+`;
+
+const apiToken = GITHUB_API_TOKEN;
+    const url = "https://api.github.com/graphql";
+
+    const response = await axios.post(
+        url,
+        { query: query },
+        {
+            headers: {
+                Authorization: `Bearer ${apiToken}`,
+            },
+        },
+    );
+
+    const user = response.data.data.user;
+
+    return user.repositories;
+}
+
+async function queryData(username: string) {
     const query = `{
             user(login: "${username}") {
                 name
@@ -50,7 +118,7 @@ export async function getGithubData(username: string) {
                     totalCount
                 }
             
-                repositories(first: 100, ownerAffiliations: OWNER) {
+                repositories(first: 100, ownerAffiliations: OWNER, after: null) {
                     totalCount
                     nodes {
                         stargazerCount
@@ -81,6 +149,12 @@ export async function getGithubData(username: string) {
                             }
                         }
                     }
+                    pageInfo {
+                        endCursor
+                        startCursor
+                        hasNextPage
+                        hasPreviousPage
+                    }
                 }
                 followers {
                     totalCount
@@ -102,7 +176,6 @@ export async function getGithubData(username: string) {
             },
         },
     );
-
     const user = response.data.data.user;
 
     let listLanguages: string[] = [];
@@ -166,10 +239,58 @@ export async function getGithubData(username: string) {
         //total stars
         totalStars += repo.stargazerCount;
 
-
-
-
     });
+
+    let next:boolean = user.repositories.pageInfo.hasNextPage;
+    let after:string = user.repositories.pageInfo.endCursor;
+    while (next) {
+        const repos = await queryRepository(username, after)
+        next = repos.pageInfo.hasNextPage;
+        after = repos.pageInfo.endCursor;
+
+        repos.nodes.forEach((repo: any) => {
+            if (repo.isFork) {
+                totalFork++;
+            } else {
+                totalNotFork++;
+    
+                //languages
+                repo.languages.edges.forEach((lang: any) => {
+                    if (!listLanguages.includes(lang.node.name)) {
+                        listLanguages.push(lang.node.name);
+                        languages.push({
+                            name: lang.node.name.replaceAll("+", "p").replace("#", "sharp").replace(".", "-"),
+                            color: lang.node.color,
+                            size: lang.size,
+                            quantity: 1,
+                        });
+                    } else {
+                        languages = languages.map((l) => {
+                            if (l.name === lang.node.name.replaceAll("+", "p").replace("#", "sharp").replace(".", "-")) {
+                                l.size += lang.size;
+                                l.quantity++;
+                            }
+                            return l;
+                        });
+                    }
+                });
+            }
+    
+            //total accepted PR merge by user
+            totalAcceptedPR += repo.pullRequests.nodes.filter(
+                (pr: any) => pr.authorAssociation === "CONTRIBUTOR",
+            ).length;
+            //total PR
+            totalPR += repo.pullRequests.totalCount;
+    
+            //total issues
+            totalClosedIssues += repo.issues.totalCount;
+    
+            //total stars
+            totalStars += repo.stargazerCount;
+    
+        });
+    }
     totalXP =
         user.contributionsCollection.totalCommitContributions +
         (totalPR * 15) +
@@ -214,4 +335,8 @@ export async function getGithubData(username: string) {
         playerData: playerData,
         languages: languages,
     };
+}
+
+export async function getGithubData(username: string) {
+    return await queryData(username);
 }
