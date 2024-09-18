@@ -79,7 +79,7 @@
                     class="flex justify-between border-b-green-800 border-b-2 py-4"
                 >
                     <div>
-                        <a href="/player" class="retro-btn blue-retro-btn"
+                        <a href="/player?tab=battle" class="retro-btn blue-retro-btn"
                             >Back</a
                         >
                     </div>
@@ -221,7 +221,7 @@
                                                             
                                                         </div>
                                                         <p class="text-red-700">
-                                                            -{battle.score}
+                                                            {battle.score}
                                                         </p>
                                                     {:else}
                                                         <div

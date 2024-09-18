@@ -432,6 +432,30 @@ class Player {
 
     public tags: Tag[] = []
 
+    public characterColor : {
+        helmetTipColor: string,
+        helmetColor: string,
+        visorColor: string,
+        swordColor: string,
+        handColor: string,
+        rightFootColor: string,
+        leftFootColor: string,
+        shieldColor: string,
+        bodyColor: string,
+        skinColor: string
+    } = {
+        helmetTipColor: "#d9d9d9",
+        helmetColor: "#d9d9d9",
+        visorColor: "#d9d9d9",
+        swordColor: "#d9d9d9",
+        handColor: "#d9d9d9",
+        rightFootColor: "#d9d9d9",
+        leftFootColor: "#d9d9d9",
+        shieldColor: "#d9d9d9",
+        bodyColor: "#d9d9d9",
+        skinColor: "#ecc8b6"
+    } 
+
     constructor(
         attributes?: { hp: number, atk: number, def: number, spd: number, str: number,  exp?: number,profile?: {
             id?: string,
@@ -444,7 +468,8 @@ class Player {
         skillSlots?: string[],
         currentHP?: number,
         score?: number,
-        tags?: Tag[]
+        tags?: Tag[],
+        characterColor?: any
     },
         
     ) {
@@ -486,6 +511,10 @@ class Player {
 
             if(attributes.tags){
                 this.tags = attributes.tags;
+            }
+
+            if(attributes.characterColor){
+                this.characterColor = attributes.characterColor;
             }
         }
 
@@ -539,6 +568,10 @@ class Player {
 
         if(obj.tags){
             np.tags = obj.tags.map((tag: any) => Tag.fromJson(JSON.stringify(tag)));
+        }
+
+        if(obj.characterColor){
+            np.characterColor = obj.characterColor;
         }
 
         return np;
@@ -851,6 +884,73 @@ class Player {
             }
         }
         return availableSkills.filter((skill: any) => this.skillSlots.includes(skill.id));
+    }
+
+    public setFillColor(elms: any, color: any) {
+        for (let i = 0; i < elms.length; i++) {
+            const element = elms[i];
+            element?.setAttribute("fill", color);
+        }
+    }
+
+  
+    public selectSkinColor(playerContainer:HTMLElement,e: any) {
+        const paths = playerContainer.children[4]?.children[0].querySelectorAll("path");
+        this.setFillColor(paths, e.target?.value ?? e);
+    }
+
+    public selectHelmetColor(playerContainer:HTMLElement,e: any) {
+        const paths =
+            playerContainer.children[4]?.children[1].children[0].querySelectorAll(
+                "path",
+            );
+        this.setFillColor(paths, e.target?.value ?? e);
+    }
+
+    public selectHelmetTipColor(playerContainer:HTMLElement,e: any) {
+        const paths =
+            playerContainer.children[4]?.children[1].children[1].querySelectorAll(
+                "path",
+            );
+        this.setFillColor(paths, e.target?.value ?? e);
+    }
+
+    public selectVisorColor(playerContainer:HTMLElement,e: any) {
+        const visorPaths =
+            playerContainer.children[4]?.children[2].querySelectorAll("path");
+        this.setFillColor(visorPaths, e.target?.value ?? e);
+    }
+
+    public selectSwordColor(playerContainer:HTMLElement,e: any) {
+        const swordPaths =
+            playerContainer.children[3]?.children[1].querySelectorAll("path");
+            this.setFillColor(swordPaths, e.target?.value ?? e);
+    }
+
+    public seletcHandColor(playerContainer:HTMLElement,e: any) {
+        const handPaths =
+            playerContainer.children[3]?.children[0].querySelectorAll("path");
+            this.setFillColor(handPaths, e.target?.value ?? e);
+    }
+
+    public seletcRightFootColor(playerContainer:HTMLElement,e: any) {
+        const rightFootPaths = playerContainer.children[1]?.querySelectorAll("g path");
+        this.setFillColor(rightFootPaths, e.target?.value ?? e);
+    }
+
+    public seletcLeftFootColor(playerContainer:HTMLElement,e: any) {
+        const leftFootPaths = playerContainer.children[2]?.querySelectorAll("g path");
+        this.setFillColor(leftFootPaths, e.target?.value ?? e);
+    }
+
+    public seletcShieldColor(playerContainer:HTMLElement,e: any) {
+        const shieldPaths = playerContainer.children[5]?.querySelectorAll("g path");
+        this.setFillColor(shieldPaths, e.target?.value ?? e);
+    }
+
+    public seletcBodydColor(playerContainer:HTMLElement,e: any) {
+        const bodyPaths = playerContainer.children[0]?.querySelectorAll("g path");
+        this.setFillColor(bodyPaths, e.target?.value ?? e);
     }
 
 }

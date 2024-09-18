@@ -193,6 +193,10 @@ export const POST: RequestHandler = async (event): Promise<Response> => {
 
     const battleData = Battle.fromJson(JSON.stringify(battleJson));
 
+    if(battleData.status !== "pending") {
+        return json({ error: "Battle is already finish" }, { status: 400 });
+    }
+
     let findAttacker = originalAttacker ? battleData.attacker : battleData.defender;
     if (!findAttacker) {
         return json({ error: "Attacker not found" }, { status: 404 });
@@ -296,15 +300,7 @@ export const POST: RequestHandler = async (event): Promise<Response> => {
         battleData.defender.speed = effectData.newDefender.speed;
         battleData.defender.strength = effectData.newDefender.strength;
 
-        battleData.battleLog.push(new BattleLog({
-            round: battleData.battleLog.length + 1,
-            from: findAttacker.playerId,
-            to: findDefender.playerId,
-            skill: skill,
-            damage: damageResult.finalDamage,
-            isCriticalHit: damageResult.isCriticalHit,
-            description: damageResult.isDodge ? "Dodge" : ""
-        }));
+        
     } else {
         battleData.attacker.currentHp = effectData.newDefender.currentHp;
         battleData.attacker.attack = effectData.newDefender.attack;
@@ -327,19 +323,21 @@ export const POST: RequestHandler = async (event): Promise<Response> => {
             }
         }
 
-        battleData.battleLog.push(new BattleLog({
-            round: battleData.battleLog.length + 1,
-            from: findDefender.playerId,
-            to: findAttacker.playerId,
-            skill: skill,
-            damage: damageResult.finalDamage,
-            isCriticalHit: damageResult.isCriticalHit,
-            description: damageResult.isDodge ? "Dodge" : ""
-        }));
+        
     }
 
+    battleData.battleLog.push(new BattleLog({
+        round: battleData.battleLog.length + 1,
+        from: findAttacker.playerId,
+        to: findDefender.playerId,
+        skill: skill,
+        damage: damageResult.finalDamage,
+        isCriticalHit: damageResult.isCriticalHit,
+        description: damageResult.isDodge ? "Dodge" : ""
+    }));
 
     if(battleData.attacker.currentHp <= 0 && battleData.defender.currentHp <= 0){
+        
         battleData.status = "draw";
         if (battleData.attacker.playerId != battleData.defender.playerId) {
             const player = await getPlayer(battleData.attacker.playerId);
@@ -362,7 +360,7 @@ export const POST: RequestHandler = async (event): Promise<Response> => {
                 battleData.score = -5;
             }
             await insertData(player);
-            
+            console.log(player.score);
         }
     } else if(battleData.defender.currentHp <= 0){
         battleData.status = "win";
@@ -377,7 +375,7 @@ export const POST: RequestHandler = async (event): Promise<Response> => {
                 
             }
             await insertData(player);
-            
+            console.log(player.score);
         }
     } else {
         battleData.status = "pending";

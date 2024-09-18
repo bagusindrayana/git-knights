@@ -9,6 +9,8 @@
     import Shepherd from "shepherd.js";
     import PushNotification from "../../components/PushNotification.svelte";
     import Tooltip from "../../components/Tooltip.svelte";
+    import lottie from "lottie-web";
+    import { goto } from "$app/navigation";
 
     let status = "loading";
 
@@ -29,26 +31,30 @@
 
     let playerDataChart: Chart;
     let availableSkills: ItemSkill[] = [];
-    let activeTab: string = "tab1";
+    let activeTab: string = $page.url.searchParams.get("tab") ?? "char_stats";
     let pushNotificaton: any = null;
 
     let newUser: boolean = true;
     let introTab: boolean[] = [false, false, false];
 
     function setActiveTab(tabId: string) {
+        let query = new URLSearchParams($page.url.searchParams.toString());
+
+        query.set("tab", tabId);
         activeTab = tabId;
 
-        if (tabId === "tab2" && !introTab[1] && newUser) {
+        if (tabId === "inventory" && !introTab[1] && newUser) {
             setTimeout(() => {
                 tourTab2();
                 introTab[1] = true;
             }, 100);
-        } else if (tabId === "tab3" && !introTab[2] && newUser) {
+        } else if (tabId === "skill" && !introTab[2] && newUser) {
             setTimeout(() => {
                 tourTab3();
                 introTab[2] = true;
             }, 100);
         }
+        goto(`?${query.toString()}`);
     }
 
     function tourTab1() {
@@ -64,7 +70,7 @@
             id: "step-1",
             text: "In this section you can see the basic statistics and bonus statistics of the items your character uses. the development of your character's statistics depends on your github profile data.",
             attachTo: {
-                element: "#tab1",
+                element: "#char_stats",
                 on: "top",
             },
             buttons: [
@@ -116,7 +122,7 @@ DEF: accumulation of levels with number of issues`,
             id: "step-2-1",
             text: "You can view items and manage the items you use here.",
             attachTo: {
-                element: "#tab2",
+                element: "#inventory",
                 on: "top",
             },
             buttons: [
@@ -173,7 +179,7 @@ DEF: accumulation of levels with number of issues`,
             id: "step-3-1",
             text: "You can view skills and manage the skills you use here.",
             attachTo: {
-                element: "#tab3",
+                element: "#skill",
                 on: "top",
             },
             buttons: [
@@ -219,7 +225,7 @@ DEF: accumulation of levels with number of issues`,
 
     async function getUserData() {
         try {
-            const apiUrl = `/api/userInfo`;
+            const apiUrl = `/api/player`;
             const response = await axios.post(apiUrl);
             const user = response.data;
             playerData = Player.fromJson(JSON.stringify(user.data.playerData));
@@ -248,11 +254,11 @@ DEF: accumulation of levels with number of issues`,
         tombol.disabled = true;
         tombol.innerHTML = "Syncing...";
         try {
-            const apiUrl = `/api/userInfo?sync=true`;
+            const apiUrl = `/api/player?sync=true`;
             const response = await axios.post(apiUrl);
             const user = response.data;
             playerData = Player.fromJson(JSON.stringify(user.data.playerData));
-          
+
             playerData.applyEquipedEffect();
             updateApplyEquipedEffect();
             getAllSkillFromEquipItem();
@@ -320,7 +326,27 @@ DEF: accumulation of levels with number of issues`,
                 drawChart();
                 updateApplyEquipedEffect();
                 initSlot();
-            }, 500);
+                const animation = lottie.loadAnimation({
+                    container: document.getElementById("player-container")!, // the dom element that will contain the animation
+                    renderer: "svg",
+                    loop: true,
+                    autoplay: true,
+                    path: "./Chibi_Knight_Idle.lottie.json", // the path to the animation json
+                });
+
+                animation.addEventListener('DOMLoaded',function(){
+                    selectHelmetTipColor(playerData.characterColor.helmetTipColor);
+                    selectHelmetColor(playerData.characterColor.helmetColor);
+                    selectVisorColor(playerData.characterColor.visorColor);
+                    selectSwordColor(playerData.characterColor.swordColor);
+                    seletcHandColor(playerData.characterColor.handColor);
+                    seletcRightFootColor(playerData.characterColor.rightFootColor);
+                    seletcLeftFootColor(playerData.characterColor.leftFootColor);
+                    seletcShieldColor(playerData.characterColor.shieldColor);
+                    seletcBodydColor(playerData.characterColor.bodyColor);
+                    selectSkinColor(playerData.characterColor.skinColor);
+                })
+            }, 300);
         } catch (error) {
             console.error(error);
             status = `${error}`;
@@ -555,11 +581,13 @@ DEF: accumulation of levels with number of issues`,
         <div class="break-words">
         <b>Skills:</b>
         <ul class="list-disc">`;
-        let itemSkills = skills.find((skill:any)=>skill.id == item.id)?.skills
+        let itemSkills = skills.find(
+            (skill: any) => skill.id == item.id,
+        )?.skills;
         itemSkills?.forEach((skill: any) => {
-            desc += `<li>${skill.name}</li>`
+            desc += `<li>${skill.name}</li>`;
         });
-        desc += '</ul></div>';
+        desc += "</ul></div>";
 
         tooltipContent = desc;
     }
@@ -645,7 +673,7 @@ DEF: accumulation of levels with number of issues`,
         button.disabled = true;
         button.innerHTML = "Updating...";
         try {
-            const apiUrl = `/api/updateUser`;
+            const apiUrl = `/api/player/updateUser`;
             axios
                 .post(apiUrl, {
                     slots: playerData.slots,
@@ -687,6 +715,52 @@ DEF: accumulation of levels with number of issues`,
             };
             button.disabled = false;
             button.innerHTML = "Update Equipment";
+        }
+    }
+
+    function updateCharacter(e:any){
+        const button = e.currentTarget as HTMLButtonElement;
+        button.disabled = true;
+        button.innerHTML = "Updating...";
+        try {
+            const apiUrl = `/api/player/updateCharacter`;
+            axios
+                .post(apiUrl, {
+                    characterColor:playerData.characterColor
+                })
+                .then((response) => {
+                    pushNotificaton = {
+                        title: "Success",
+                        content: "Character color updated successfully",
+                        type: "success",
+                        show: true,
+                    };
+                    playerData.applyEquipedEffect();
+                    updateApplyEquipedEffect();
+                    getAllSkillFromEquipItem();
+                    button.disabled = false;
+                    button.innerHTML = "Update Character";
+                })
+                .catch((error) => {
+                    pushNotificaton = {
+                        title: "Error",
+                        content: "Failed to update character color",
+                        type: "error",
+                        show: true,
+                    };
+                    console.error(error);
+                    button.disabled = false;
+                    button.innerHTML = "Update Character";
+                });
+        } catch (error) {
+            pushNotificaton = {
+                title: "Error",
+                content: "Failed to update character color",
+                type: "error",
+                show: true,
+            };
+            button.disabled = false;
+            button.innerHTML = "Update Character";
         }
     }
 
@@ -844,6 +918,103 @@ DEF: accumulation of levels with number of issues`,
     function countSkills(id: string) {
         return skills.find((it: any) => it.id == id)?.skills.length ?? 0;
     }
+
+    function setFillColor(elms: any, color: any) {
+        for (let i = 0; i < elms.length; i++) {
+            const element = elms[i];
+            element?.setAttribute("fill", color);
+        }
+    }
+
+  
+    function selectSkinColor(e: any) {
+        const playerContainer = document.querySelector(
+            "#player-container svg g g",
+        )?.children!;
+        const paths = playerContainer[4]?.children[0].querySelectorAll("path");
+        setFillColor(paths, e.target?.value ?? e);
+    }
+
+    function selectHelmetColor(e: any) {
+        const playerContainer = document.querySelector(
+            "#player-container svg g g",
+        )?.children!;
+        const paths =
+            playerContainer[4]?.children[1].children[0].querySelectorAll(
+                "path",
+            );
+        setFillColor(paths, e.target?.value ?? e);
+    }
+
+    function selectHelmetTipColor(e: any) {
+        const playerContainer = document.querySelector(
+            "#player-container svg g g",
+        )?.children!;
+        const paths =
+            playerContainer[4]?.children[1].children[1].querySelectorAll(
+                "path",
+            );
+        setFillColor(paths, e.target?.value ?? e);
+    }
+
+    function selectVisorColor(e: any) {
+        const playerContainer = document.querySelector(
+            "#player-container svg g g",
+        )?.children!;
+        const visorPaths =
+            playerContainer[4]?.children[2].querySelectorAll("path");
+        setFillColor(visorPaths, e.target?.value ?? e);
+    }
+
+    function selectSwordColor(e: any) {
+        const playerContainer = document.querySelector(
+            "#player-container svg g g",
+        )?.children!;
+        const swordPaths =
+            playerContainer[3]?.children[1].querySelectorAll("path");
+        setFillColor(swordPaths, e.target?.value ?? e);
+    }
+
+    function seletcHandColor(e: any) {
+        const playerContainer = document.querySelector(
+            "#player-container svg g g",
+        )?.children!;
+        const handPaths =
+            playerContainer[3]?.children[0].querySelectorAll("path");
+        setFillColor(handPaths, e.target?.value ?? e);
+    }
+
+    function seletcRightFootColor(e: any) {
+        const playerContainer = document.querySelector(
+            "#player-container svg g g",
+        )?.children!;
+        const rightFootPaths = playerContainer[1]?.querySelectorAll("g path");
+        setFillColor(rightFootPaths, e.target?.value ?? e);
+    }
+
+    function seletcLeftFootColor(e: any) {
+        const playerContainer = document.querySelector(
+            "#player-container svg g g",
+        )?.children!;
+        const leftFootPaths = playerContainer[2]?.querySelectorAll("g path");
+        setFillColor(leftFootPaths, e.target?.value ?? e);
+    }
+
+    function seletcShieldColor(e: any) {
+        const playerContainer = document.querySelector(
+            "#player-container svg g g",
+        )?.children!;
+        const shieldPaths = playerContainer[5]?.querySelectorAll("g path");
+        setFillColor(shieldPaths, e.target?.value ?? e);
+    }
+
+    function seletcBodydColor(e: any) {
+        const playerContainer = document.querySelector(
+            "#player-container svg g g",
+        )?.children!;
+        const bodyPaths = playerContainer[0]?.querySelectorAll("g path");
+        setFillColor(bodyPaths, e.target?.value ?? e);
+    }
 </script>
 
 <svelte:head>
@@ -900,13 +1071,18 @@ DEF: accumulation of levels with number of issues`,
                             <div class="ml-4">
                                 {#if playerData != null}
                                     <div class="flex gap-1">
-                                        <h1 class="text-3xl font-bold text-gray-900">
+                                        <h1
+                                            class="text-3xl font-bold text-gray-900"
+                                        >
                                             {$page.data.session?.user?.name}
                                         </h1>
                                         {#each playerData.tags as tag}
-                                                <div class="h-6 flex text-center justify-center items-center text-white font-bold rounded-full px-2 text-xs" style="background-color: {tag.color};">
-                                                    <span>{tag.name}</span>
-                                                </div>
+                                            <div
+                                                class="h-6 flex text-center justify-center items-center text-white font-bold rounded-full px-2 text-xs"
+                                                style="background-color: {tag.color};"
+                                            >
+                                                <span>{tag.name}</span>
+                                            </div>
                                         {/each}
                                     </div>
                                     <p class="text-lg text-gray-600">
@@ -956,52 +1132,65 @@ DEF: accumulation of levels with number of issues`,
                                 <button
                                     type="button"
                                     class={`py-2 px-4 text-sm focus:outline-none  border-solid ${
-                                        activeTab === "tab1"
+                                        activeTab === "char_stats"
                                             ? "border-b-2 border-green-700 text-green-700 font-bold"
                                             : "text-gray-500 hover:text-gray-700 font-medium"
                                     }`}
-                                    on:click={() => setActiveTab("tab1")}
+                                    on:click={() => setActiveTab("char_stats")}
                                 >
-                                    Character Statistics
+                                    Player Statistics
                                 </button>
                                 <button
                                     type="button"
                                     class={`py-2 px-4 text-sm focus:outline-none  border-solid ${
-                                        activeTab === "tab2"
+                                        activeTab === "inventory"
                                             ? "border-b-2 border-green-700 text-green-700 font-bold"
                                             : "text-gray-500 hover:text-gray-700 font-medium"
                                     }`}
-                                    on:click={() => setActiveTab("tab2")}
+                                    on:click={() => setActiveTab("inventory")}
                                 >
                                     Inventory & Equipment
                                 </button>
                                 <button
                                     type="button"
                                     class={`py-2 px-4 text-sm focus:outline-none  border-solid ${
-                                        activeTab === "tab3"
+                                        activeTab === "skill"
                                             ? "border-b-2 border-green-700 text-green-700 font-bold"
                                             : "text-gray-500 hover:text-gray-700 font-medium "
                                     }`}
-                                    on:click={() => setActiveTab("tab3")}
+                                    on:click={() => setActiveTab("skill")}
                                 >
                                     Skills
                                 </button>
                                 <button
                                     type="button"
                                     class={`py-2 px-4 text-sm focus:outline-none  border-solid ${
-                                        activeTab === "tab4"
+                                        activeTab === "character"
                                             ? "border-b-2 border-green-700 text-green-700 font-bold"
                                             : "text-gray-500 hover:text-gray-700 font-medium"
                                     }`}
-                                    on:click={() => setActiveTab("tab4")}
+                                    on:click={() => setActiveTab("character")}
+                                >
+                                    Character
+                                </button>
+                                <button
+                                    type="button"
+                                    class={`py-2 px-4 text-sm focus:outline-none  border-solid ${
+                                        activeTab === "battle"
+                                            ? "border-b-2 border-green-700 text-green-700 font-bold"
+                                            : "text-gray-500 hover:text-gray-700 font-medium"
+                                    }`}
+                                    on:click={() => setActiveTab("battle")}
                                 >
                                     Battle
                                 </button>
                             </div>
                             <div class="mt-4">
                                 <div
-                                    id="tab1"
-                                    class={activeTab !== "tab1" ? "hidden" : ""}
+                                    id="char_stats"
+                                    class={activeTab !== "char_stats"
+                                        ? "hidden"
+                                        : ""}
                                 >
                                     <div
                                         class="grid grid-cols-1 md:grid-cols-2 gap-6"
@@ -1226,6 +1415,7 @@ DEF: accumulation of levels with number of issues`,
                                             </div>
                                         </div>
                                     </div>
+
                                     <div
                                         class="mt-4 flex justify-end space-x-4"
                                     >
@@ -1237,8 +1427,10 @@ DEF: accumulation of levels with number of issues`,
                                     </div>
                                 </div>
                                 <div
-                                    id="tab2"
-                                    class={activeTab !== "tab2" ? "hidden" : ""}
+                                    id="inventory"
+                                    class={activeTab !== "inventory"
+                                        ? "hidden"
+                                        : ""}
                                 >
                                     <div
                                         class="grid grid-cols-1 md:grid-cols-2 gap-6"
@@ -1384,8 +1576,10 @@ DEF: accumulation of levels with number of issues`,
                                     </div>
                                 </div>
                                 <div
-                                    id="tab3"
-                                    class={activeTab !== "tab3" ? "hidden" : ""}
+                                    id="skill"
+                                    class={activeTab !== "skill"
+                                        ? "hidden"
+                                        : ""}
                                 >
                                     <div
                                         class="grid grid-cols-1 md:grid-cols-2 gap-6"
@@ -1514,18 +1708,136 @@ DEF: accumulation of levels with number of issues`,
                                     </div>
                                 </div>
                                 <div
-                                    class={activeTab !== "tab4" ? "hidden" : ""}
+                                    class={activeTab !== "character"
+                                        ? "hidden"
+                                        : ""}
+                                >
+                                    <div
+                                        class="flex flex-row gap-2 w-full justify-evenly"
+                                    >
+                                        <div
+                                            class="flex flex-col gap-2 items-center justify-between"
+                                        >
+                                            <input
+                                                type="color"
+                                                class="h-24 w-24"
+                                                on:change={selectHelmetTipColor}
+                                                on:input={selectHelmetTipColor}
+                                                bind:value={playerData.characterColor.helmetTipColor}
+                                            />
+                                            <input
+                                                type="color"
+                                                class="h-24 w-24"
+                                                on:change={selectHelmetColor}
+                                                on:input={selectHelmetColor}
+                                                bind:value={playerData.characterColor.helmetColor}
+                                            />
+
+                                            <input
+                                                type="color"
+                                                class="h-24 w-24"
+                                                on:change={selectVisorColor}
+                                                on:input={selectVisorColor}
+                                                bind:value={playerData.characterColor.visorColor}
+                                            />
+                                            <input
+                                                type="color"
+                                                class="h-24 w-24"
+                                                on:change={selectSwordColor}
+                                                on:input={selectSwordColor}
+                                                bind:value={playerData.characterColor.swordColor}
+                                            />
+                                            <input
+                                                type="color"
+                                                class="h-24 w-24"
+                                                on:change={seletcHandColor}
+                                                on:input={seletcHandColor}
+                                                bind:value={playerData.characterColor.handColor}
+                                            />
+                                        </div>
+                                        <div
+                                            class="flex flex-col items-center justify-between"
+                                        >
+                                            <div
+                                                id="player-container"
+                                                class="w-full"
+                                            ></div>
+                                        </div>
+                                        <div
+                                            class="flex flex-col gap-2 items-center justify-between"
+                                        >   
+                                        <input
+                                                type="color"
+                                                class="h-24 w-24"
+                                                on:change={selectSkinColor}
+                                                on:input={selectSkinColor}
+                                                bind:value={playerData.characterColor.skinColor}
+                                            />
+                                            <input
+                                                type="color"
+                                                class="h-24 w-24"
+                                                on:change={seletcBodydColor}
+                                                on:input={seletcBodydColor}
+                                                bind:value={playerData.characterColor.bodyColor}
+                                            />
+                                            <input
+                                                type="color"
+                                                class="h-24 w-24"
+                                                on:change={seletcShieldColor}
+                                                on:input={seletcShieldColor}
+                                                bind:value={playerData.characterColor.shieldColor}
+                                            />
+                                            <input
+                                                type="color"
+                                                class="h-24 w-24"
+                                                on:change={seletcRightFootColor}
+                                                on:input={seletcRightFootColor}
+                                                bind:value={playerData.characterColor.rightFootColor}
+                                            />
+                                            <input
+                                                type="color"
+                                                class="h-24 w-24"
+                                                on:change={seletcLeftFootColor}
+                                                on:input={seletcLeftFootColor}
+                                                bind:value={playerData.characterColor.leftFootColor}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div
+                                        class="mt-4 flex justify-end space-x-4"
+                                    >
+                                        <button
+                                            on:click={updateCharacter}
+                                            class="retro-btn blue-retro-btn"
+                                            >Update Character</button
+                                        >
+                                    </div>
+                                </div>
+                                <div
+                                    class={activeTab !== "battle"
+                                        ? "hidden"
+                                        : ""}
                                 >
                                     <div
                                         class="flex justify-center items-center p-4 gap-4"
                                     >
-                                        <a href="/player/duel" class="retro-btn red-retro-btn">
+                                        <a
+                                            href="/player/duel"
+                                            class="retro-btn red-retro-btn"
+                                        >
                                             Duel
                                         </a>
-                                        <a href="/player/history" class="retro-btn red-retro-btn blue-retro-btn">
+                                        <a
+                                            href="/player/history"
+                                            class="retro-btn red-retro-btn blue-retro-btn"
+                                        >
                                             HISTORY
                                         </a>
-                                        <a href="/player/scoreboard" class="retro-btn red-retro-btn green-retro-btn">
+                                        <a
+                                            href="/player/scoreboard"
+                                            class="retro-btn red-retro-btn green-retro-btn"
+                                        >
                                             SCOREBOARD
                                         </a>
                                     </div>

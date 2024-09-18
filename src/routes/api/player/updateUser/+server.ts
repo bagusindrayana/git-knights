@@ -1,7 +1,7 @@
 import { json, type RequestHandler } from "@sveltejs/kit";
-import { getUsername } from "../../../lib/githubData";
-import { insertData } from "../../../lib/mongo";
-import tags from "../../../lib/data/tag.json";
+import { getUsername } from "../../../../lib/githubData";
+import { insertData } from "../../../../lib/mongo";
+import tags from "../../../../lib/data/tag.json";
 import { Tag } from "$lib/models/player";
 
 export const POST: RequestHandler = async (event): Promise<Response> => {

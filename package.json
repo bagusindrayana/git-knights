@@ -26,6 +26,7 @@
 		"@auth/sveltekit": "^1.4.2",
 		"axios": "^1.7.5",
 		"chart.js": "^4.4.4",
+		"lottie-web": "^5.12.2",
 		"mongodb": "^6.8.0",
 		"shepherd.js": "^13.0.3"
 	}

@@ -107,7 +107,9 @@ const apiToken = GITHUB_API_TOKEN;
 async function queryData(username: string) {
     const query = `{
             user(login: "${username}") {
+                login
                 name
+                avatarUrl
                 followers {
                     totalCount
                 }
@@ -180,12 +182,23 @@ async function queryData(username: string) {
 
     let listLanguages: string[] = [];
 
+    const imageUrl = user?.avatarUrl;
+    //get user id from imageUrl
+    const userId = imageUrl
+        ?.split("/")
+    [imageUrl.split("/").length - 1].split("?")[0];
+
+
     let playerData = new Player({
         hp: 100,
         str: 85,
         spd: 60,
         atk: 90,
         def: 75,
+        profile:{
+            name: user.name,
+            id: userId
+        }
     });
     let languages: any[] = [];
     const items: Item[] = [];
@@ -303,11 +316,11 @@ async function queryData(username: string) {
     playerData.exp = totalXP;
 
 
-    playerData.hp = 75 + (user.repositories.totalCount * 10) + ((playerData.currentLevel() - 1) * 15);
-    playerData.strength = 75 + (totalPR * 10) + ((playerData.currentLevel() - 1) * 5);
-    playerData.attack = 75 + (listLanguages.length * 10) + ((playerData.currentLevel() - 1) * 15);
-    playerData.speed = 75 + (totalAcceptedPR * 10) + ((playerData.currentLevel() - 1) * 15);
-    playerData.defense = 75 + (totalClosedIssues * 10) + ((playerData.currentLevel() - 1) * 15);
+    playerData.hp = 75 + (user.repositories.totalCount * 100) + ((playerData.currentLevel() - 1) * 50);
+    playerData.strength = 75 + (totalPR * 25) + ((playerData.currentLevel() - 1) * 5);
+    playerData.attack = 75 + (listLanguages.length * 15) + ((playerData.currentLevel() - 1) * 50);
+    playerData.speed = 75 + (totalAcceptedPR * 50) + ((playerData.currentLevel() - 1) * 50);
+    playerData.defense = 75 + (totalClosedIssues * 35) + ((playerData.currentLevel() - 1) * 50);
 
     for (let i = 0; i < languages.length; i++) {
         let ni = findItem(languages[i].name.toLowerCase().replace(' ', '-'));

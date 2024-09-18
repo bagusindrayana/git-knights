@@ -16,6 +16,7 @@
     import Tooltip from "../../../components/Tooltip.svelte";
     import { Battle } from "$lib/models/battle";
     import PlayerCard from "../../../components/PlayerCard.svelte";
+    import lottie from "lottie-web";
 
     const animations: { [key: string]: any } = {
         hit: {
@@ -127,12 +128,191 @@
         });
     }
 
+    let playerAnimation: any;
+    let enemyAnimation: any;
+
     async function loadSound(src: string) {
         return new Promise((resolve, reject) => {
             const audio = new Audio();
             audio.onload = () => resolve(audio);
             audio.onerror = reject;
             audio.src = src;
+        });
+    }
+
+    function playerAnimationColor() {
+        const playerContainer = document.querySelector(
+            "#player-animation svg g g",
+        ) as HTMLElement;
+        player.selectHelmetTipColor(
+            playerContainer,
+            player.characterColor.helmetTipColor,
+        );
+        player.selectHelmetColor(
+            playerContainer,
+            player.characterColor.helmetColor,
+        );
+        player.selectVisorColor(
+            playerContainer,
+            player.characterColor.visorColor,
+        );
+        player.selectSwordColor(
+            playerContainer,
+            player.characterColor.swordColor,
+        );
+        player.seletcHandColor(
+            playerContainer,
+            player.characterColor.handColor,
+        );
+        player.seletcRightFootColor(
+            playerContainer,
+            player.characterColor.rightFootColor,
+        );
+        player.seletcLeftFootColor(
+            playerContainer,
+            player.characterColor.leftFootColor,
+        );
+        player.seletcShieldColor(
+            playerContainer,
+            player.characterColor.shieldColor,
+        );
+        player.seletcBodydColor(
+            playerContainer,
+            player.characterColor.bodyColor,
+        );
+        player.selectSkinColor(
+            playerContainer,
+            player.characterColor.skinColor,
+        );
+    }
+
+    function enemyAnimationColor() {
+        const enemyContainer = document.querySelector(
+            "#enemy-animation svg g g",
+        ) as HTMLElement;
+        player.selectHelmetTipColor(
+            enemyContainer,
+            enemyPlayer.characterColor.helmetTipColor,
+        );
+        player.selectHelmetColor(
+            enemyContainer,
+            enemyPlayer.characterColor.helmetColor,
+        );
+        player.selectVisorColor(
+            enemyContainer,
+            enemyPlayer.characterColor.visorColor,
+        );
+        player.selectSwordColor(
+            enemyContainer,
+            enemyPlayer.characterColor.swordColor,
+        );
+        player.seletcHandColor(
+            enemyContainer,
+            enemyPlayer.characterColor.handColor,
+        );
+        player.seletcRightFootColor(
+            enemyContainer,
+            enemyPlayer.characterColor.rightFootColor,
+        );
+        player.seletcLeftFootColor(
+            enemyContainer,
+            enemyPlayer.characterColor.leftFootColor,
+        );
+        player.seletcShieldColor(
+            enemyContainer,
+            enemyPlayer.characterColor.shieldColor,
+        );
+        player.seletcBodydColor(
+            enemyContainer,
+            enemyPlayer.characterColor.bodyColor,
+        );
+        player.selectSkinColor(
+            enemyContainer,
+            enemyPlayer.characterColor.skinColor,
+        );
+    }
+
+    function playerIdleAnimation() {
+        if (playerAnimation != null) {
+            playerAnimation.destroy();
+        }
+
+        playerAnimation = lottie.loadAnimation({
+            container: document.getElementById("player-animation")!, // the dom element that will contain the animation
+            renderer: "svg",
+            loop: true,
+            autoplay: true,
+            path:
+                window.location.protocol +
+                "//" +
+                window.location.host +
+                "/Chibi_Knight_Idle.lottie.json", // the path to the animation json
+        });
+
+        playerAnimation.addEventListener("DOMLoaded", function () {
+            playerAnimationColor();
+        });
+    }
+
+    function playerAttackAnimation() {
+        if (playerAnimation != null) {
+            playerAnimation.destroy();
+        }
+        playerAnimation = lottie.loadAnimation({
+            container: document.getElementById("player-animation")!, // the dom element that will contain the animation
+            renderer: "svg",
+            loop: false,
+            autoplay: true,
+            path:
+                window.location.protocol +
+                "//" +
+                window.location.host +
+                "/Chibi_Knight_Attack.lottie.json", // the path to the animation json
+        });
+        playerAnimation.addEventListener("DOMLoaded", function () {
+            playerAnimationColor();
+        });
+    }
+
+    function enemyIdleAnimation() {
+        if (enemyAnimation != null) {
+            enemyAnimation.destroy();
+        }
+
+        enemyAnimation = lottie.loadAnimation({
+            container: document.getElementById("enemy-animation")!, // the dom element that will contain the animation
+            renderer: "svg",
+            loop: true,
+            autoplay: true,
+            path:
+                window.location.protocol +
+                "//" +
+                window.location.host +
+                "/Chibi_Knight_Idle.lottie.json", // the path to the animation json
+        });
+
+        enemyAnimation.addEventListener("DOMLoaded", function () {
+            enemyAnimationColor();
+        });
+    }
+
+    function enemyAttackAnimation() {
+        if (enemyAnimation != null) {
+            enemyAnimation.destroy();
+        }
+        enemyAnimation = lottie.loadAnimation({
+            container: document.getElementById("enemy-animation")!, // the dom element that will contain the animation
+            renderer: "svg",
+            loop: false,
+            autoplay: true,
+            path:
+                window.location.protocol +
+                "//" +
+                window.location.host +
+                "/Chibi_Knight_Attack.lottie.json", // the path to the animation json
+        });
+        enemyAnimation.addEventListener("DOMLoaded", function () {
+            enemyAnimationColor();
         });
     }
 
@@ -144,6 +324,11 @@
 
         battle = Battle.fromJson(JSON.stringify(response.data.data));
         round = battle.round;
+
+        setTimeout(() => {
+            playerIdleAnimation();
+            enemyIdleAnimation();
+        }, 300);
     }
 
     async function loadAllData() {
@@ -201,7 +386,7 @@
     }
 
     async function getUserData() {
-        const apiUrl = `/api/userInfo?sync=false`;
+        const apiUrl = `/api/player?sync=false`;
         const response = await axios.post(apiUrl);
         const user = response.data;
         player = Player.fromJson(JSON.stringify(user.data.playerData));
@@ -334,11 +519,9 @@
             }
             if (skill.doAttack) {
                 if (from == "player") {
-                    document.getElementById("player-character")!.innerHTML =
-                        `<div class="char-attack absolute"></div>`;
+                    playerAttackAnimation();
                     setTimeout(() => {
-                        document.getElementById("player-character")!.innerHTML =
-                            `<div class="char-idle absolute"></div>`;
+                        playerIdleAnimation();
                     }, 1300);
                     await timer(300);
                     if (damageResult.finalDamage > 0) {
@@ -355,11 +538,9 @@
                         enemyAudio!.play();
                     }
                 } else {
-                    document.getElementById("enemy-character")!.innerHTML =
-                        `<div class="char-attack absolute"></div>`;
+                    enemyAttackAnimation();
                     setTimeout(() => {
-                        document.getElementById("enemy-character")!.innerHTML =
-                            `<div class="char-idle absolute"></div>`;
+                        enemyIdleAnimation();
                     }, 1300);
                     await timer(300);
                     if (damageResult.finalDamage > 0) {
@@ -443,11 +624,9 @@
                         res.data.damageResult,
                     );
                 } else {
-                    document.getElementById("player-character")!.innerHTML =
-                        `<div class="char-attack absolute"></div>`;
+                    playerAttackAnimation();
                     setTimeout(() => {
-                        document.getElementById("player-character")!.innerHTML =
-                            `<div class="char-idle absolute"></div>`;
+                        playerIdleAnimation();
                     }, 1300);
                     await timer(300);
 
@@ -537,11 +716,9 @@
                         res.data.damageResult,
                     );
                 } else {
-                    document.getElementById("enemy-character")!.innerHTML =
-                        `<div class="char-attack absolute"></div>`;
+                    enemyAttackAnimation();
                     setTimeout(() => {
-                        document.getElementById("enemy-character")!.innerHTML =
-                            `<div class="char-idle absolute"></div>`;
+                        enemyIdleAnimation();
                     }, 1300);
                     await timer(300);
                     if (res.data.damageResult.finalDamage > 0) {
@@ -580,9 +757,9 @@
                 round = round + 1;
                 status = "idle";
                 playerElm!.innerHTML = "";
-                if (battle.status != "pending") {
-                    alert(battle.status);
-                }
+                // if (battle.status != "pending") {
+                //     alert(battle.status);
+                // }
                 setTimeout(() => {
                     scrollEventLogs();
                 }, 500);
@@ -650,7 +827,7 @@
         }
     }
 
-    function getPlayer(id:string){
+    function getPlayer(id: string) {
         if (id == player.id) {
             return player;
         } else {
@@ -728,6 +905,17 @@
             width: 550px;
             height: 598px;
             animation: char-anim 1s steps(8) infinite;
+        }
+
+        #player-animation {
+            transform: scaleX(-1);
+            height: 500px;
+            width: 500px;
+        }
+
+        #enemy-animation {
+            height: 500px;
+            width: 500px;
         }
 
         #player-character .char-idle {
@@ -815,41 +1003,68 @@
 
 <main class="w-full h-screen flex flex-col justify-between font-mono bg-arena">
     {#if battle.status == "win"}
-        <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-            <div class="bg-yellow-300 border-4 border-orange-500 rounded-lg p-6 max-w-sm w-full text-center relative overflow-hidden">
-            <div class="absolute top-0 left-0 w-full h-2 bg-orange-500" />
-            <div class="absolute bottom-0 left-0 w-full h-2 bg-orange-500" />
-            <div class="absolute top-0 left-0 w-2 h-full bg-orange-500" />
-            <div class="absolute top-0 right-0 w-2 h-full bg-orange-500" />
-            <h2 class="text-4xl font-bold text-red-600 mb-4 pixel-font">YOU WIN!</h2>
-            <p class="text-xl text-green-700 mb-6 pixel-font">Congratulations, knight! You've conquered the arena!</p>
-            <div class="space-y-4">
-                <!-- <button class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded pixel-font">
+        <div
+            class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
+        >
+            <div
+                class="bg-yellow-300 border-4 border-orange-500 rounded-lg p-6 max-w-sm w-full text-center relative overflow-hidden"
+            >
+                <div class="absolute top-0 left-0 w-full h-2 bg-orange-500" />
+                <div
+                    class="absolute bottom-0 left-0 w-full h-2 bg-orange-500"
+                />
+                <div class="absolute top-0 left-0 w-2 h-full bg-orange-500" />
+                <div class="absolute top-0 right-0 w-2 h-full bg-orange-500" />
+                <h2 class="text-4xl font-bold text-red-600 mb-4 pixel-font">
+                    YOU WIN!
+                </h2>
+                <p class="text-xl text-green-700 mb-6 pixel-font">
+                    Congratulations, knight! You've conquered the arena!
+                </p>
+                <div class="space-y-4">
+                    <!-- <button class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded pixel-font">
                     Next Level
                 </button> -->
-                <a  href="/player/duel"  class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded pixel-font">
-                    Main Menu
-                </a>
-            </div>
+                    <a
+                        href="/player/duel"
+                        class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded pixel-font"
+                    >
+                        Main Menu
+                    </a>
+                </div>
             </div>
         </div>
     {:else if battle.status == "lose"}
-        <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
-            <div class="bg-gray-800 border-4 border-red-600 rounded-lg p-6 max-w-sm w-full text-center relative overflow-hidden">
-            <div class="absolute top-0 left-0 w-full h-2 bg-red-600" />
-            <div class="absolute bottom-0 left-0 w-full h-2 bg-red-600" />
-            <div class="absolute top-0 left-0 w-2 h-full bg-red-600" />
-            <div class="absolute top-0 right-0 w-2 h-full bg-red-600" />
-            <h2 class="text-4xl font-bold text-red-500 mb-4 pixel-font">GAME OVER</h2>
-            <p class="text-xl text-yellow-300 mb-6 pixel-font">Don't give up, knight! The duel awaits your return!</p>
-            <div class="space-y-4">
-                <a href="/player/battle?id={battle.defender.playerId}" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded pixel-font">
-                    Try Again
-                </a>
-                <a href="/player/duel" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded pixel-font">
-                    Main Menu
-                </a>
-            </div>
+        <div
+            class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
+        >
+            <div
+                class="bg-gray-800 border-4 border-red-600 rounded-lg p-6 max-w-sm w-full text-center relative overflow-hidden"
+            >
+                <div class="absolute top-0 left-0 w-full h-2 bg-red-600" />
+                <div class="absolute bottom-0 left-0 w-full h-2 bg-red-600" />
+                <div class="absolute top-0 left-0 w-2 h-full bg-red-600" />
+                <div class="absolute top-0 right-0 w-2 h-full bg-red-600" />
+                <h2 class="text-4xl font-bold text-red-500 mb-4 pixel-font">
+                    GAME OVER
+                </h2>
+                <p class="text-xl text-yellow-300 mb-6 pixel-font">
+                    Don't give up, knight! The duel awaits your return!
+                </p>
+                <div class="space-y-4">
+                    <a
+                        href="/player/battle?id={battle.defender.playerId}"
+                        class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded pixel-font"
+                    >
+                        Try Again
+                    </a>
+                    <a
+                        href="/player/duel"
+                        class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded pixel-font"
+                    >
+                        Main Menu
+                    </a>
+                </div>
             </div>
         </div>
     {/if}
@@ -911,7 +1126,7 @@
                     class="h-40 w-40 absolute flex justify-center items-center"
                     id="player-character"
                 >
-                    <div class="char-idle absolute"></div>
+                    <div id="player-animation" class="absolute"></div>
                 </div>
                 <div
                     class="h-40 w-40 relative flex justify-center items-center"
@@ -925,7 +1140,7 @@
                     class="h-40 w-40 absolute flex justify-center items-center"
                     id="enemy-character"
                 >
-                    <div class="char-idle absolute"></div>
+                <div id="enemy-animation" class="absolute"></div>
                 </div>
                 <div
                     class="h-40 w-40 relative flex justify-center items-center"
@@ -969,7 +1184,8 @@
                 <div class="p-4 space-y-4">
                     <div class="absolute -top-11 left-0 right-0 text-center">
                         <button
-                            disabled={status !== "idle"}
+                            disabled={status !== "idle" ||
+                                battle.status !== "pending"}
                             on:click={() => attack()}
                             class="px-8 py-4 bg-red-600 text-white font-bold text-xl uppercase tracking-wide border-b-4 border-red-800 rounded hover:bg-red-500 active:border-b-0 active:border-t-4 transition-all duration-100"
                         >
@@ -1065,7 +1281,8 @@
                                             data-id={log.skill.id}
                                             >{log.skill.name}</b
                                         >
-                                        to <b>{getPlayer(log.to).name}</b> : give
+                                        to <b>{getPlayer(log.to).name}</b> :
+                                        give
                                         <b class="text-red-700">{log.damage}</b>
                                         damage
                                     </p>
