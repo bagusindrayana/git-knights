@@ -523,7 +523,7 @@
                     setTimeout(() => {
                         playerIdleAnimation();
                     }, 1300);
-                    await timer(300);
+                    await timer(500);
                     if (damageResult.finalDamage > 0) {
                         if (damageResult.isCriticalHit) {
                             enemyElm!.innerHTML += `<div class="hit-text bg-red-500">${damageResult.finalDamage}</div>`;
@@ -542,7 +542,7 @@
                     setTimeout(() => {
                         enemyIdleAnimation();
                     }, 1300);
-                    await timer(300);
+                    await timer(500);
                     if (damageResult.finalDamage > 0) {
                         playerAdio!.src = animations[skill.animation!].sound;
                         playerAdio!.play();
@@ -628,7 +628,7 @@
                     setTimeout(() => {
                         playerIdleAnimation();
                     }, 1300);
-                    await timer(300);
+                    await timer(500);
 
                     if (res.data.damageResult.finalDamage > 0) {
                         if (res.data.damageResult.isCriticalHit) {
@@ -720,7 +720,7 @@
                     setTimeout(() => {
                         enemyIdleAnimation();
                     }, 1300);
-                    await timer(300);
+                    await timer(500);
                     if (res.data.damageResult.finalDamage > 0) {
                         if (res.data.damageResult.isCriticalHit) {
                             playerAudio.src = animations["big-hit"].sound;
@@ -1103,7 +1103,7 @@
     {:else}
         <div class="w-full flex justify-between">
             <div
-                class="font-mono flex flex-col justify-start items-center text-center w-60 h-24 m-4 bg-[#d0d058] text-[#0f380f] rounded-lg overflow-hidden border-4 border-[#8bac0f] shadow-[8px_8px_0px_#306230]"
+                class="font-mono flex flex-col justify-start items-center text-center w-60 h-24 m-0 md:m-4 bg-[#d0d058] text-[#0f380f] rounded-lg overflow-hidden border-4 border-[#8bac0f] shadow-[8px_8px_0px_#306230]"
             >
                 <p>Round</p>
                 <p class="font-bold text-2xl">{round}</p>
@@ -1149,7 +1149,7 @@
                 <audio src="" id="enemy-audio" class="hidden"></audio>
             </div>
         </div>
-        <div class="flex justify-between">
+        <div class="flex flex-col md:flex-row justify-between">
             <PlayerCard
                 id={`${player.id}`}
                 name={`${player.name}`}
@@ -1161,7 +1161,7 @@
                 defense={battle.attacker?.defense}
                 speed={battle.attacker?.speed}
             >
-                <div class=" grid grid-cols-2 md:grid-cols-3 gap-2">
+                <div class="  hidden md:grid grid-cols-2 md:grid-cols-3 gap-2">
                     {#each battle.attacker?.items as item}
                         <div
                             class="p-2 rounded-md border-2 border-green-600 text-center min-h-16 flex justify-center items-center"
@@ -1179,10 +1179,10 @@
             </PlayerCard>
 
             <div
-                class="font-mono relative w-2/4 m-4 bg-[#d0d058] text-[#0f380f] rounded-lg border-4 border-[#8bac0f] shadow-[8px_8px_0px_#306230]"
+                class="font-mono relative w-full md:w-2/4 mt-4 md:mt-0 m-0 md:m-4 bg-[#d0d058] text-[#0f380f] rounded-lg border-4 border-[#8bac0f] shadow-[8px_8px_0px_#306230]"
             >
-                <div class="p-4 space-y-4">
-                    <div class="absolute -top-11 left-0 right-0 text-center">
+                <div class="p-1 md:p-4 space-y-1 md:space-y-4">
+                    <div class="absolute -top-6 md:-top-11 left-0 right-0 text-center">
                         <button
                             disabled={status !== "idle" ||
                                 battle.status !== "pending"}
@@ -1260,7 +1260,7 @@
             </div>
 
             <div
-                class="font-mono w-1/4 m-4 bg-[#d0d058] text-[#0f380f] rounded-lg overflow-hidden border-4 border-[#8bac0f] shadow-[8px_8px_0px_#306230]"
+                class="hidden md:block font-mono w-1/4 m-4 bg-[#d0d058] text-[#0f380f] rounded-lg overflow-hidden border-4 border-[#8bac0f] shadow-[8px_8px_0px_#306230]"
             >
                 <div class="p-4 space-y-4">
                     <h1>Event Log</h1>

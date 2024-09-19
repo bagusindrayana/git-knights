@@ -74,16 +74,17 @@
 <svelte:head>
     <title>D-D-D-DUELLLLLL</title>
 </svelte:head>
-<div class="container mx-auto p-8">
+<div class="container mx-auto p-0 md:p-8">
     <div class="flex items-center justify-center mt-4">
         <div class="main-card">
-            <div class="p-8">
+            <div class=" p-2 md:p-8">
                 <div
                     class="flex justify-between border-b-green-800 border-b-2 py-4"
                 >
                     <div>
-                        <a href="/player?tab=battle" class="retro-btn blue-retro-btn"
-                            >Back</a
+                        <a
+                            href="/player?tab=battle"
+                            class="retro-btn blue-retro-btn">Back</a
                         >
                     </div>
                     <div class="flex-1 text-center">
@@ -147,22 +148,26 @@
                                     class="font-mono bg-[#d0d058] text-[#0f380f] rounded-lg overflow-hidden border-4 border-[#8bac0f]"
                                 >
                                     <div class="p-2 space-y-2">
-                                        <div class="flex items-start space-x-2">
-                                            <img
-                                                src="https://avatars.githubusercontent.com/u/{player.id}"
-                                                alt="Pixel art character avatar"
-                                                class="w-16 h-16 border-2 border-[#0f380f]"
-                                            />
-                                            <div>
-                                                <h2
-                                                    class=" font-bold tracking-tight leading-none mb-1 text-shadow-[2px_2px_0px_#306230]"
-                                                >
-                                                    {player.name}
-                                                </h2>
+                                        <div
+                                            class="flex flex-col md:flex-row gap-2 md:gap-0 items-start space-x-2"
+                                        >
+                                            <div class="flex gap-1">
+                                                <img
+                                                    src="https://avatars.githubusercontent.com/u/{player.id}"
+                                                    alt="Pixel art character avatar"
+                                                    class="w-16 h-16 border-2 border-[#0f380f]"
+                                                />
+                                                <div>
+                                                    <h2
+                                                        class=" font-bold tracking-tight leading-none mb-1 text-shadow-[2px_2px_0px_#306230]"
+                                                    >
+                                                        {player.name}
+                                                    </h2>
 
-                                                <p class="text-sm">
-                                                    Level {player.level}
-                                                </p>
+                                                    <p class="text-sm">
+                                                        Level {player.level}
+                                                    </p>
+                                                </div>
                                             </div>
                                             <div class="flex-1">
                                                 {#each player.tags as tag}

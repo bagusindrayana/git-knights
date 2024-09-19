@@ -71,10 +71,10 @@
 <svelte:head>
     <title>My Battle History</title>
 </svelte:head>
-<div class="container mx-auto p-8">
+<div class="container mx-auto p-0 md:p-8">
     <div class="flex items-center justify-center mt-4">
         <div class="main-card">
-            <div class="p-8">
+            <div class=" p-2 md:p-8">
                 <div
                     class="flex justify-between border-b-green-800 border-b-2 py-4"
                 >
@@ -121,25 +121,26 @@
                                     >
                                         <div class="p-2 space-y-2">
                                             <div
-                                                class="flex items-center space-x-2"
-                                            >
+                                            class="flex flex-col md:flex-row gap-2 md:gap-0 items-start space-x-2"
+                                        >
+                                            <div class="flex gap-1">
                                                 <img
-                                                    src="https://avatars.githubusercontent.com/u/{battle
-                                                        .defender.id}"
+                                                    src="https://avatars.githubusercontent.com/u/{battle.defender.id}"
                                                     alt="Pixel art character avatar"
                                                     class="w-16 h-16 border-2 border-[#0f380f]"
                                                 />
-                                                <div class="flex-1">
+                                                <div>
                                                     <h2
                                                         class=" font-bold tracking-tight leading-none mb-1 text-shadow-[2px_2px_0px_#306230]"
                                                     >
                                                         {battle.defender.name}
                                                     </h2>
+
                                                     <p class="text-sm">
-                                                        Level {battle.defender
-                                                            .level}
+                                                        Level {battle.defender.level}
                                                     </p>
                                                 </div>
+                                            </div>
                                                 <div class="flex-1">
                                                     <div
                                                         class="grid grid-cols-3 gap-2 text-sm"

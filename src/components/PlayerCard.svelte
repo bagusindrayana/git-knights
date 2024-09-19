@@ -11,8 +11,8 @@
 </script>
 
 
-<div class="font-mono w-1/4 m-4 bg-[#d0d058] text-[#0f380f] rounded-lg overflow-hidden border-4 border-[#8bac0f] shadow-[8px_8px_0px_#306230]">
-    <div class="p-4 space-y-4">
+<div class="font-mono w-full md:w-1/4 m-0 md:m-4 bg-[#d0d058] text-[#0f380f] rounded-lg overflow-hidden border-4 border-[#8bac0f] shadow-[8px_8px_0px_#306230]">
+    <div class="p-1 md:p-4 space-y-1 md:space-y-4">
         <div class="flex items-center space-x-4">
             <img
                 src="https://avatars.githubusercontent.com/u/{id}"
@@ -39,7 +39,7 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-2 gap-2 text-sm">
+        <div class=" hidden md:grid grid-cols-2 gap-2 text-sm">
             <div
                 class="flex justify-between items-center bg-[#9bbc0f] p-1"
             >

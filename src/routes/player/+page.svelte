@@ -334,18 +334,24 @@ DEF: accumulation of levels with number of issues`,
                     path: "./Chibi_Knight_Idle.lottie.json", // the path to the animation json
                 });
 
-                animation.addEventListener('DOMLoaded',function(){
-                    selectHelmetTipColor(playerData.characterColor.helmetTipColor);
+                animation.addEventListener("DOMLoaded", function () {
+                    selectHelmetTipColor(
+                        playerData.characterColor.helmetTipColor,
+                    );
                     selectHelmetColor(playerData.characterColor.helmetColor);
                     selectVisorColor(playerData.characterColor.visorColor);
                     selectSwordColor(playerData.characterColor.swordColor);
                     seletcHandColor(playerData.characterColor.handColor);
-                    seletcRightFootColor(playerData.characterColor.rightFootColor);
-                    seletcLeftFootColor(playerData.characterColor.leftFootColor);
+                    seletcRightFootColor(
+                        playerData.characterColor.rightFootColor,
+                    );
+                    seletcLeftFootColor(
+                        playerData.characterColor.leftFootColor,
+                    );
                     seletcShieldColor(playerData.characterColor.shieldColor);
                     seletcBodydColor(playerData.characterColor.bodyColor);
                     selectSkinColor(playerData.characterColor.skinColor);
-                })
+                });
             }, 300);
         } catch (error) {
             console.error(error);
@@ -461,6 +467,7 @@ DEF: accumulation of levels with number of issues`,
 
         updateApplyEquipedEffect();
         showTooltip = false;
+        getAllSkillFromEquipItem();
     }
 
     function initSlot() {
@@ -718,7 +725,7 @@ DEF: accumulation of levels with number of issues`,
         }
     }
 
-    function updateCharacter(e:any){
+    function updateCharacter(e: any) {
         const button = e.currentTarget as HTMLButtonElement;
         button.disabled = true;
         button.innerHTML = "Updating...";
@@ -726,7 +733,7 @@ DEF: accumulation of levels with number of issues`,
             const apiUrl = `/api/player/updateCharacter`;
             axios
                 .post(apiUrl, {
-                    characterColor:playerData.characterColor
+                    characterColor: playerData.characterColor,
                 })
                 .then((response) => {
                     pushNotificaton = {
@@ -926,7 +933,6 @@ DEF: accumulation of levels with number of issues`,
         }
     }
 
-  
     function selectSkinColor(e: any) {
         const playerContainer = document.querySelector(
             "#player-container svg g g",
@@ -1054,21 +1060,53 @@ DEF: accumulation of levels with number of issues`,
         {tooltipContent}
     />
 
-    <div class="container mx-auto p-8">
+    <div class="container mx-auto p-0 md:p-8">
         <div class="flex items-center justify-center">
             <div
                 class="w-full max-w-5xl font-mono bg-[#d0d058] text-[#0f380f] rounded-lg overflow-hidden border-4 border-[#8bac0f] shadow-[8px_8px_0px_#306230]"
             >
-                <div class="p-8">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center">
-                            <img
-                                class="w-24 h-24 rounded-full border-4 border-green-700"
-                                src={$page.data.session?.user?.image ??
-                                    "https://via.placeholder.com/150"}
-                                alt="Character Avatar"
-                            />
-                            <div class="ml-4">
+                <div class=" p-2 md:p-8">
+                    <div
+                        class="flex items-center flex-col md:flex-row justify-between"
+                    >
+                        <div class="flex items-center w-full md:w-auto flex-col md:flex-row">
+                            <div
+                                class="flex justify-between w-full items-center flex-row md:flex-col"
+                            >   
+                            <div class="flex flex-col justify-center gap-1">
+                                <img
+                                    class="w-24 h-24 rounded-full border-4 border-green-700"
+                                    src={$page.data.session?.user?.image ??
+                                        "https://via.placeholder.com/150"}
+                                    alt="Character Avatar"
+                                />
+                                <button
+                                    on:click={() => signOut()}
+                                    class=" block md:hidden retro-btn red-retro-btn retro-btn-sm"
+                                    >Logout</button
+                                >
+                            </div>
+                                
+                                <div class="flex md:hidden flex-col">
+                                    <h1
+                                        class="text-3xl font-bold text-gray-900"
+                                    >
+                                        {$page.data.session?.user?.name}
+                                    </h1>
+                                    <div class="flex gap-1">
+                                        {#each playerData.tags as tag}
+                                            <div
+                                                class="text-nowrap h-6 flex text-center justify-center items-center text-white font-bold rounded-full px-2 text-xs"
+                                                style="background-color: {tag.color};"
+                                            >
+                                                <span>{tag.name}</span>
+                                            </div>
+                                        {/each}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ml-4 hidden md:block">
                                 {#if playerData != null}
                                     <div class="flex gap-1">
                                         <h1
@@ -1078,7 +1116,7 @@ DEF: accumulation of levels with number of issues`,
                                         </h1>
                                         {#each playerData.tags as tag}
                                             <div
-                                                class="h-6 flex text-center justify-center items-center text-white font-bold rounded-full px-2 text-xs"
+                                                class="text-nowrap h-6 flex text-center justify-center items-center text-white font-bold rounded-full px-2 text-xs"
                                                 style="background-color: {tag.color};"
                                             >
                                                 <span>{tag.name}</span>
@@ -1094,25 +1132,16 @@ DEF: accumulation of levels with number of issues`,
                                 {/if}
                             </div>
                         </div>
-                        <div class="text-right">
-                            <div class="mt-8 flex justify-end space-x-4">
+                        <div class="text-right hidden md:block">
+                            <div
+                                class="mt-0 md:mt-8 mb-2 md:mb-0 flex justify-end space-x-4"
+                            >
                                 <button
                                     on:click={() => signOut()}
                                     class="retro-btn red-retro-btn"
                                     >Logout</button
                                 >
                             </div>
-                            <!-- <p class="text-sm text-gray-600">
-                                Guild: <span class="font-semibold text-gray-900"
-                                    >Knights of Valor</span
-                                >
-                            </p>
-                            <p class="text-sm text-gray-600">
-                                Location: <span
-                                    class="font-semibold text-gray-900"
-                                    >Valhalla</span
-                                >
-                            </p> -->
                         </div>
                     </div>
 
@@ -1127,7 +1156,7 @@ DEF: accumulation of levels with number of issues`,
                     {:else}
                         <div class="w-full mx-auto">
                             <div
-                                class="flex border-b border-[#9bbc0f] border-solid"
+                                class="flex border-b border-[#9bbc0f] border-solid overflow-x-auto md:overflow-x-hidden"
                             >
                                 <button
                                     type="button"
@@ -1713,24 +1742,27 @@ DEF: accumulation of levels with number of issues`,
                                         : ""}
                                 >
                                     <div
-                                        class="flex flex-row gap-2 w-full justify-evenly"
+                                        class="flex flex-col md:flex-row gap-2 w-full justify-evenly"
                                     >
                                         <div
-                                            class="flex flex-col gap-2 items-center justify-between"
+                                            class="flex flex-row md:flex-col gap-1 md:gap-2 items-center justify-between"
                                         >
                                             <input
                                                 type="color"
                                                 class="h-24 w-24"
                                                 on:change={selectHelmetTipColor}
                                                 on:input={selectHelmetTipColor}
-                                                bind:value={playerData.characterColor.helmetTipColor}
+                                                bind:value={playerData
+                                                    .characterColor
+                                                    .helmetTipColor}
                                             />
                                             <input
                                                 type="color"
                                                 class="h-24 w-24"
                                                 on:change={selectHelmetColor}
                                                 on:input={selectHelmetColor}
-                                                bind:value={playerData.characterColor.helmetColor}
+                                                bind:value={playerData
+                                                    .characterColor.helmetColor}
                                             />
 
                                             <input
@@ -1738,21 +1770,24 @@ DEF: accumulation of levels with number of issues`,
                                                 class="h-24 w-24"
                                                 on:change={selectVisorColor}
                                                 on:input={selectVisorColor}
-                                                bind:value={playerData.characterColor.visorColor}
+                                                bind:value={playerData
+                                                    .characterColor.visorColor}
                                             />
                                             <input
                                                 type="color"
                                                 class="h-24 w-24"
                                                 on:change={selectSwordColor}
                                                 on:input={selectSwordColor}
-                                                bind:value={playerData.characterColor.swordColor}
+                                                bind:value={playerData
+                                                    .characterColor.swordColor}
                                             />
                                             <input
                                                 type="color"
                                                 class="h-24 w-24"
                                                 on:change={seletcHandColor}
                                                 on:input={seletcHandColor}
-                                                bind:value={playerData.characterColor.handColor}
+                                                bind:value={playerData
+                                                    .characterColor.handColor}
                                             />
                                         </div>
                                         <div
@@ -1764,42 +1799,49 @@ DEF: accumulation of levels with number of issues`,
                                             ></div>
                                         </div>
                                         <div
-                                            class="flex flex-col gap-2 items-center justify-between"
-                                        >   
-                                        <input
+                                            class="flex flex-row md:flex-col gap-1 md:gap-2 items-center justify-between"
+                                        >
+                                            <input
                                                 type="color"
                                                 class="h-24 w-24"
                                                 on:change={selectSkinColor}
                                                 on:input={selectSkinColor}
-                                                bind:value={playerData.characterColor.skinColor}
+                                                bind:value={playerData
+                                                    .characterColor.skinColor}
                                             />
                                             <input
                                                 type="color"
                                                 class="h-24 w-24"
                                                 on:change={seletcBodydColor}
                                                 on:input={seletcBodydColor}
-                                                bind:value={playerData.characterColor.bodyColor}
+                                                bind:value={playerData
+                                                    .characterColor.bodyColor}
                                             />
                                             <input
                                                 type="color"
                                                 class="h-24 w-24"
                                                 on:change={seletcShieldColor}
                                                 on:input={seletcShieldColor}
-                                                bind:value={playerData.characterColor.shieldColor}
+                                                bind:value={playerData
+                                                    .characterColor.shieldColor}
                                             />
                                             <input
                                                 type="color"
                                                 class="h-24 w-24"
                                                 on:change={seletcRightFootColor}
                                                 on:input={seletcRightFootColor}
-                                                bind:value={playerData.characterColor.rightFootColor}
+                                                bind:value={playerData
+                                                    .characterColor
+                                                    .rightFootColor}
                                             />
                                             <input
                                                 type="color"
                                                 class="h-24 w-24"
                                                 on:change={seletcLeftFootColor}
                                                 on:input={seletcLeftFootColor}
-                                                bind:value={playerData.characterColor.leftFootColor}
+                                                bind:value={playerData
+                                                    .characterColor
+                                                    .leftFootColor}
                                             />
                                         </div>
                                     </div>
@@ -1820,7 +1862,7 @@ DEF: accumulation of levels with number of issues`,
                                         : ""}
                                 >
                                     <div
-                                        class="flex justify-center items-center p-4 gap-4"
+                                        class="flex flex-col md:flex-row justify-center items-center p-4 gap-4"
                                     >
                                         <a
                                             href="/player/duel"

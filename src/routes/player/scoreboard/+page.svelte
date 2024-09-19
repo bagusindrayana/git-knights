@@ -71,16 +71,17 @@
 <svelte:head>
     <title>TOP PLAYER</title>
 </svelte:head>
-<div class="container mx-auto p-8">
+<div class="container mx-auto p-0 md:p-8">
     <div class="flex items-center justify-center mt-4">
         <div class="main-card">
-            <div class="p-8">
+            <div class=" p-2 md:p-8">
                 <div
                     class="flex justify-between border-b-green-800 border-b-2 py-4"
                 >
                     <div>
-                        <a href="/player?tab=battle" class="retro-btn blue-retro-btn"
-                            >Back</a
+                        <a
+                            href="/player?tab=battle"
+                            class="retro-btn blue-retro-btn">Back</a
                         >
                     </div>
                     <div class="flex-1 text-center">
@@ -119,7 +120,7 @@
                                 >
                                     <div class="p-2 space-y-2">
                                         <div
-                                            class="flex items-start space-x-2 relative"
+                                            class="flex flex-col md:flex-row gap-2 md:gap-0 items-start space-x-2 relative"
                                         >
                                             {#if page == 1 && index == 0}
                                                 <div
@@ -210,24 +211,27 @@
                                                     >
                                                 </div>
                                             {/if}
-                                            <img
-                                                src="https://avatars.githubusercontent.com/u/{player.id}"
-                                                alt="Pixel art character avatar"
-                                                class="w-16 h-16 border-2 border-[#0f380f]"
-                                            />
-                                            <div >
-                                                <h2
-                                                    class=" font-bold tracking-tight leading-none mb-1 text-shadow-[2px_2px_0px_#306230]"
-                                                >
-                                                    {player.name}
-                                                </h2>
-                                                <p class="text-sm">
-                                                    Level {player.level}
-                                                </p>
-                                                <p>
-                                                    Score : {player.score}
-                                                </p>
+                                            <div class="flex gap-1">
+                                                <img
+                                                    src="https://avatars.githubusercontent.com/u/{player.id}"
+                                                    alt="Pixel art character avatar"
+                                                    class="w-16 h-16 border-2 border-[#0f380f]"
+                                                />
+                                                <div>
+                                                    <h2
+                                                        class=" font-bold tracking-tight leading-none mb-1 text-shadow-[2px_2px_0px_#306230]"
+                                                    >
+                                                        {player.name}
+                                                    </h2>
+                                                    <p class="text-sm">
+                                                        Level {player.level}
+                                                    </p>
+                                                    <p>
+                                                        Score : {player.score}
+                                                    </p>
+                                                </div>
                                             </div>
+
                                             <div class="flex-1">
                                                 {#each player.tags as tag}
                                                     <div class="inline-block">
