@@ -31,7 +31,7 @@
 
     let playerDataChart: Chart;
     let availableSkills: ItemSkill[] = [];
-    let activeTab: string = $page.url.searchParams.get("tab") ?? "char_stats";
+    let activeTab: string = $page.url.searchParams ? $page.url.searchParams.get("tab") ?? "char_stats" : "char_stats";
     let pushNotificaton: any = null;
 
     let newUser: boolean = true;
@@ -246,6 +246,7 @@ DEF: accumulation of levels with number of issues`,
                 type: "error",
                 show: true,
             };
+            alert("Failed to get user data");
         }
     }
 
@@ -1063,7 +1064,7 @@ DEF: accumulation of levels with number of issues`,
     <div class="container mx-auto p-0 md:p-8">
         <div class="flex items-center justify-center">
             <div
-                class="w-full max-w-5xl font-mono bg-[#d0d058] text-[#0f380f] rounded-lg overflow-hidden border-4 border-[#8bac0f] shadow-[8px_8px_0px_#306230]"
+                class="w-full max-w-5xl min-h-screen md:min-h-28 font-mono bg-[#d0d058] text-[#0f380f] rounded-lg overflow-hidden border-4 border-[#8bac0f] shadow-[8px_8px_0px_#306230]"
             >
                 <div class=" p-2 md:p-8">
                     <div
@@ -1071,7 +1072,7 @@ DEF: accumulation of levels with number of issues`,
                     >
                         <div class="flex items-center w-full md:w-auto flex-col md:flex-row">
                             <div
-                                class="flex justify-between w-full items-center flex-row md:flex-col"
+                                class="flex justify-between  w-full md:w-24 items-center flex-row md:flex-col"
                             >   
                             <div class="flex flex-col justify-center gap-1">
                                 <img

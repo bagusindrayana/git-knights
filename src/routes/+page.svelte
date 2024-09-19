@@ -14,9 +14,9 @@
         <h1 class="text-3xl font-bold tracking-tight">GitKnights</h1>
         <nav>
             <ul class="flex space-x-4">
-                <li><a href="#" class="hover:text-yellow-300">Home</a></li>
-                <li><a href="#" class="hover:text-yellow-300">About</a></li>
-                <li><a href="/login" class="hover:text-yellow-300">Play</a></li>
+                <li><a href="./" class="hover:text-yellow-300">Home</a></li>
+                <li><a href="./about" class="hover:text-yellow-300">About</a></li>
+                <li><a href="./login" class="hover:text-yellow-300">Play</a></li>
             </ul>
         </nav>
     </div>
