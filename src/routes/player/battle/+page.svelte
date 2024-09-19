@@ -22,62 +22,62 @@
         hit: {
             wait: 1000,
             sound: "/sounds/22_Slash_04.wav",
-            image: "/animations/Hit_512_30720.png",
+            image: "/animations/Hit_512_30720-min.png",
         },
         "big-hit": {
             wait: 1000,
             sound: "/sounds/22_Slash_04.wav",
-            image: "/animations/Big_Hit_758_45480.png",
+            image: "/animations/Big_Hit_758_45480-min.png",
         },
         slash: {
             wait: 1000,
             sound: "/sounds/22_Slash_04.wav",
-            image: "/animations/Slash_512_51200.png",
+            image: "/animations/Slash_512_51200-min.png",
         },
         healing: {
             wait: 1500,
             sound: "/sounds/02_Heal_02.wav",
-            image: "/animations/Healing_512_61440.png",
+            image: "/animations/Healing_512_61440-min.png",
         },
         explosion: {
             wait: 1000,
             sound: "/sounds/04_Fire_explosion_04_medium.wav",
-            image: "/animations/Explosion_sprite_sheet_single.png",
+            image: "/animations/Explosion_sprite_sheet_single-min.png",
         },
         poison: {
             wait: 1500,
             sound: "/sounds/46_Poison_01.wav",
-            image: "/animations/Poison_512_30720.png",
+            image: "/animations/Poison_512_30720-min.png",
         },
         magic: {
             wait: 1500,
             sound: "/sounds/25_Wind_01.wav",
-            image: "/animations/Magic_512_40960.png",
+            image: "/animations/Magic_512_40960-min.png",
         },
         fire: {
             wait: 1500,
             sound: "/sounds/04_Fire_explosion_04_medium.wav",
-            image: "/animations/Fire_512_40960.png",
+            image: "/animations/Fire_512_40960-min.png",
         },
         ice: {
             wait: 1000,
             sound: "/sounds/13_Ice_explosion_01.wav",
-            image: "/animations/Ice_512_40960.png",
+            image: "/animations/Ice_512_40960-min.png",
         },
         thunder: {
             wait: 1000,
             sound: "/sounds/18_Thunder_02.wav",
-            image: "/animations/Thunder_512_40960.png",
+            image: "/animations/Thunder_512_40960-min.png",
         },
         buff: {
             wait: 1500,
             sound: "/sounds/39_Absorb_04.wav",
-            image: "/animations/Buff_512_40960.png",
+            image: "/animations/Buff_512_40960-min.png",
         },
         debuff: {
             wait: 1500,
             sound: "/sounds/21_Debuff_01.wav",
-            image: "/animations/Breakdown_sprite_sheet_single.png",
+            image: "/animations/Breakdown_sprite_sheet_single-min.png",
         },
     };
 
@@ -128,8 +128,10 @@
         });
     }
 
-    let playerAnimation: any;
-    let enemyAnimation: any;
+    let playerAnimationIdle: any;
+    let playerAnimationAttack: any;
+    let enemyAnimationIdle: any;
+    let enemyAnimationAttack: any;
 
     async function loadSound(src: string) {
         return new Promise((resolve, reject) => {
@@ -140,180 +142,109 @@
         });
     }
 
-    function playerAnimationColor() {
-        const playerContainer = document.querySelector(
-            "#player-animation svg g g",
-        ) as HTMLElement;
+    function setAnimationColor(container:any, player:any){
         player.selectHelmetTipColor(
-            playerContainer,
+            container,
             player.characterColor.helmetTipColor,
         );
         player.selectHelmetColor(
-            playerContainer,
+            container,
             player.characterColor.helmetColor,
         );
         player.selectVisorColor(
-            playerContainer,
+            container,
             player.characterColor.visorColor,
         );
         player.selectSwordColor(
-            playerContainer,
+            container,
             player.characterColor.swordColor,
         );
         player.seletcHandColor(
-            playerContainer,
+            container,
             player.characterColor.handColor,
         );
         player.seletcRightFootColor(
-            playerContainer,
+            container,
             player.characterColor.rightFootColor,
         );
         player.seletcLeftFootColor(
-            playerContainer,
+            container,
             player.characterColor.leftFootColor,
         );
         player.seletcShieldColor(
-            playerContainer,
+            container,
             player.characterColor.shieldColor,
         );
         player.seletcBodydColor(
-            playerContainer,
+            container,
             player.characterColor.bodyColor,
         );
         player.selectSkinColor(
-            playerContainer,
+            container,
             player.characterColor.skinColor,
         );
     }
 
+    function playerAnimationColor() {
+        setAnimationColor(document.querySelector(
+            "#player-animation-idle svg g g",
+        ) as HTMLElement,player);
+
+        setAnimationColor(document.querySelector(
+            "#player-animation-attack svg g g",
+        ) as HTMLElement,player);
+    }
+
     function enemyAnimationColor() {
-        const enemyContainer = document.querySelector(
-            "#enemy-animation svg g g",
-        ) as HTMLElement;
-        player.selectHelmetTipColor(
-            enemyContainer,
-            enemyPlayer.characterColor.helmetTipColor,
-        );
-        player.selectHelmetColor(
-            enemyContainer,
-            enemyPlayer.characterColor.helmetColor,
-        );
-        player.selectVisorColor(
-            enemyContainer,
-            enemyPlayer.characterColor.visorColor,
-        );
-        player.selectSwordColor(
-            enemyContainer,
-            enemyPlayer.characterColor.swordColor,
-        );
-        player.seletcHandColor(
-            enemyContainer,
-            enemyPlayer.characterColor.handColor,
-        );
-        player.seletcRightFootColor(
-            enemyContainer,
-            enemyPlayer.characterColor.rightFootColor,
-        );
-        player.seletcLeftFootColor(
-            enemyContainer,
-            enemyPlayer.characterColor.leftFootColor,
-        );
-        player.seletcShieldColor(
-            enemyContainer,
-            enemyPlayer.characterColor.shieldColor,
-        );
-        player.seletcBodydColor(
-            enemyContainer,
-            enemyPlayer.characterColor.bodyColor,
-        );
-        player.selectSkinColor(
-            enemyContainer,
-            enemyPlayer.characterColor.skinColor,
-        );
+        setAnimationColor(document.querySelector(
+            "#enemy-animation-idle svg g g",
+        ) as HTMLElement,player);
+
+        setAnimationColor(document.querySelector(
+            "#enemy-animation-attack svg g g",
+        ) as HTMLElement,player);
     }
 
     function playerIdleAnimation() {
-        if (playerAnimation != null) {
-            playerAnimation.destroy();
-        }
-
-        playerAnimation = lottie.loadAnimation({
-            container: document.getElementById("player-animation")!, // the dom element that will contain the animation
-            renderer: "svg",
-            loop: true,
-            autoplay: true,
-            path:
-                window.location.protocol +
-                "//" +
-                window.location.host +
-                "/Chibi_Knight_Idle.lottie.json", // the path to the animation json
-        });
-
-        playerAnimation.addEventListener("DOMLoaded", function () {
-            playerAnimationColor();
-        });
+        document
+            .getElementById("player-animation-attack")
+            ?.classList.add("hidden");
+        document
+            .getElementById("player-animation-idle")
+            ?.classList.remove("hidden");
     }
 
     function playerAttackAnimation() {
-        if (playerAnimation != null) {
-            playerAnimation.destroy();
-        }
-        playerAnimation = lottie.loadAnimation({
-            container: document.getElementById("player-animation")!, // the dom element that will contain the animation
-            renderer: "svg",
-            loop: false,
-            autoplay: true,
-            path:
-                window.location.protocol +
-                "//" +
-                window.location.host +
-                "/Chibi_Knight_Attack.lottie.json", // the path to the animation json
-        });
-        playerAnimation.addEventListener("DOMLoaded", function () {
-            playerAnimationColor();
-        });
+        document
+            .getElementById("player-animation-attack")
+            ?.classList.remove("hidden");
+        document
+            .getElementById("player-animation-idle")
+            ?.classList.add("hidden");
+
+        playerAnimationAttack.goToAndPlay(0,true);
+        playerAnimationAttack.play();
+      
     }
 
     function enemyIdleAnimation() {
-        if (enemyAnimation != null) {
-            enemyAnimation.destroy();
-        }
-
-        enemyAnimation = lottie.loadAnimation({
-            container: document.getElementById("enemy-animation")!, // the dom element that will contain the animation
-            renderer: "svg",
-            loop: true,
-            autoplay: true,
-            path:
-                window.location.protocol +
-                "//" +
-                window.location.host +
-                "/Chibi_Knight_Idle.lottie.json", // the path to the animation json
-        });
-
-        enemyAnimation.addEventListener("DOMLoaded", function () {
-            enemyAnimationColor();
-        });
+        document
+            .getElementById("enemy-animation-attack")
+            ?.classList.add("hidden");
+        document
+            .getElementById("enemy-animation-idle")
+            ?.classList.remove("hidden");
     }
 
     function enemyAttackAnimation() {
-        if (enemyAnimation != null) {
-            enemyAnimation.destroy();
-        }
-        enemyAnimation = lottie.loadAnimation({
-            container: document.getElementById("enemy-animation")!, // the dom element that will contain the animation
-            renderer: "svg",
-            loop: false,
-            autoplay: true,
-            path:
-                window.location.protocol +
-                "//" +
-                window.location.host +
-                "/Chibi_Knight_Attack.lottie.json", // the path to the animation json
-        });
-        enemyAnimation.addEventListener("DOMLoaded", function () {
-            enemyAnimationColor();
-        });
+        document
+            .getElementById("enemy-animation-attack")
+            ?.classList.remove("hidden");
+        document
+            .getElementById("enemy-animation-idle")
+            ?.classList.add("hidden");
+
+        enemyAnimationAttack.play();
     }
 
     async function startBattle() {
@@ -328,6 +259,70 @@
         setTimeout(() => {
             playerIdleAnimation();
             enemyIdleAnimation();
+
+            playerAnimationIdle = lottie.loadAnimation({
+                container: document.getElementById("player-animation-idle")!, // the dom element that will contain the animation
+                renderer: "svg",
+                loop: true,
+                autoplay: true,
+                path:
+                    window.location.protocol +
+                    "//" +
+                    window.location.host +
+                    "/Chibi_Knight_Idle.lottie.json", // the path to the animation json
+            });
+
+            playerAnimationIdle.addEventListener("DOMLoaded", function () {
+                playerAnimationColor();
+            });
+
+            playerAnimationAttack = lottie.loadAnimation({
+                container: document.getElementById("player-animation-attack")!, // the dom element that will contain the animation
+                renderer: "svg",
+                loop: false,
+                autoplay: false,
+                path:
+                    window.location.protocol +
+                    "//" +
+                    window.location.host +
+                    "/Chibi_Knight_Attack.lottie.json", // the path to the animation json
+            });
+
+            playerAnimationAttack.addEventListener("DOMLoaded", function () {
+                playerAnimationColor();
+            });
+
+            enemyAnimationIdle = lottie.loadAnimation({
+                container: document.getElementById("enemy-animation-idle")!, // the dom element that will contain the animation
+                renderer: "svg",
+                loop: true,
+                autoplay: true,
+                path:
+                    window.location.protocol +
+                    "//" +
+                    window.location.host +
+                    "/Chibi_Knight_Idle.lottie.json", // the path to the animation json
+            });
+
+            enemyAnimationIdle.addEventListener("DOMLoaded", function () {
+                enemyAnimationColor();
+            });
+
+            enemyAnimationAttack = lottie.loadAnimation({
+                container: document.getElementById("enemy-animation-attack")!, // the dom element that will contain the animation
+                renderer: "svg",
+                loop: false,
+                autoplay: false,
+                path:
+                    window.location.protocol +
+                    "//" +
+                    window.location.host +
+                    "/Chibi_Knight_Attack.lottie.json", // the path to the animation json
+            });
+
+            enemyAnimationAttack.addEventListener("DOMLoaded", function () {
+                enemyAnimationColor();
+            });
         }, 300);
     }
 
@@ -397,7 +392,9 @@
 
     function playBgMusic() {
         (document.getElementById("bg-music") as HTMLAudioElement)!.volume = 0.1;
-        (document.getElementById("bg-music") as HTMLAudioElement)!.play();
+        setTimeout(() => {
+            (document.getElementById("bg-music") as HTMLAudioElement)!.play();
+        }, 500);
     }
 
     function scrollEventLogs() {
@@ -907,13 +904,13 @@
             animation: char-anim 1s steps(8) infinite;
         }
 
-        #player-animation {
+        #player-animation-idle, #player-animation-attack {
             transform: scaleX(-1);
             height: 500px;
             width: 500px;
         }
 
-        #enemy-animation {
+        #enemy-animation-idle, #enemy-animation-attack {
             height: 500px;
             width: 500px;
         }
@@ -1053,7 +1050,9 @@
                 </p>
                 <div class="space-y-4">
                     <a
-                        href="/player/battle?id={battle.defender.playerId}"
+                        href="/player/battle?id={battle.defender.playerId}" on:click={()=>{
+                            location.reload();
+                        }}
                         class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded pixel-font"
                     >
                         Try Again
@@ -1071,7 +1070,7 @@
     <audio
         id="bg-music"
         src="/musics/Battle-Conflict.mp3"
-        autoplay={true}
+        autoplay={false}
         loop={true}
         volume="0.1"
     ></audio>
@@ -1126,7 +1125,8 @@
                     class="h-40 w-40 absolute flex justify-center items-center"
                     id="player-character"
                 >
-                    <div id="player-animation" class="absolute"></div>
+                    <div id="player-animation-idle" class="absolute"></div>
+                    <div id="player-animation-attack" class="absolute"></div>
                 </div>
                 <div
                     class="h-40 w-40 relative flex justify-center items-center"
@@ -1140,7 +1140,8 @@
                     class="h-40 w-40 absolute flex justify-center items-center"
                     id="enemy-character"
                 >
-                <div id="enemy-animation" class="absolute"></div>
+                    <div id="enemy-animation-idle" class="absolute"></div>
+                    <div id="enemy-animation-attack" class="absolute"></div>
                 </div>
                 <div
                     class="h-40 w-40 relative flex justify-center items-center"
@@ -1182,7 +1183,9 @@
                 class="font-mono relative w-full md:w-2/4 mt-4 md:mt-0 m-0 md:m-4 bg-[#d0d058] text-[#0f380f] rounded-lg border-4 border-[#8bac0f] shadow-[8px_8px_0px_#306230]"
             >
                 <div class="p-1 md:p-4 space-y-1 md:space-y-4">
-                    <div class="absolute -top-6 md:-top-11 left-0 right-0 text-center">
+                    <div
+                        class="absolute -top-6 md:-top-11 left-0 right-0 text-center"
+                    >
                         <button
                             disabled={status !== "idle" ||
                                 battle.status !== "pending"}

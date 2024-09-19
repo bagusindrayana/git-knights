@@ -28,7 +28,7 @@ export const POST: RequestHandler = async (event): Promise<Response> => {
     const data = await getPlayer(userId!);
     
     data.characterColor = characterColor;
-    insertData(data);
+    await insertData(data);
 
     return json({
         "message":"Ok"

@@ -8,17 +8,24 @@
     let limit = 5;
 
     let search: string = "";
+    let status: string = "loading";
 
     async function loadHistory() {
-        const response = await axios.get("/api/history", {
-            params: {
-                page: page,
-                limit: limit,
-                q: search,
-            },
-        });
+        status = "loading";
+        try {
+            const response = await axios.get("/api/history", {
+                params: {
+                    page: page,
+                    limit: limit,
+                    q: search,
+                },
+            });
 
-        battles = response.data.data;
+            battles = response.data.data;
+            status = "finish";
+        } catch (error) {
+            status = "Error : " + error;
+        }
     }
 
     async function loadMore(e: any) {
@@ -60,7 +67,7 @@
         debounce(() => {
             search = e.target.value;
             loadHistory();
-        },500)();
+        }, 500)();
     };
 
     onMount(() => {
@@ -79,8 +86,9 @@
                     class="flex justify-between border-b-green-800 border-b-2 py-4"
                 >
                     <div>
-                        <a href="/player?tab=battle" class="retro-btn blue-retro-btn"
-                            >Back</a
+                        <a
+                            href="/player?tab=battle"
+                            class="retro-btn blue-retro-btn">Back</a
                         >
                     </div>
                     <div class="flex-1 text-center">
@@ -108,12 +116,25 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="w-full mt-4 overflow-y-auto" style="height: max(500px, 60vh);">
-                            <div class="flex flex-col gap-4 " >
+                        <div
+                            class="w-full mt-4 overflow-y-auto"
+                            style="height: max(500px, 60vh);"
+                        >
+                            <div class="flex flex-col gap-4">
                                 {#if battles.length == 0}
-                                    <p class="text-center text-red-900">
-                                        No battle yet
-                                    </p>
+                                    {#if status == "loading"}
+                                        <p class="text-center text-green-900">
+                                            Loading...
+                                        </p>
+                                    {:else if status != "finish"}
+                                        <p class="text-center text-red-900">
+                                            {status}
+                                        </p>
+                                    {:else}
+                                        <p class="text-center text-red-900">
+                                            No battle yet
+                                        </p>
+                                    {/if}
                                 {/if}
                                 {#each battles as battle}
                                     <div
@@ -121,26 +142,29 @@
                                     >
                                         <div class="p-2 space-y-2">
                                             <div
-                                            class="flex flex-col md:flex-row gap-2 md:gap-0 items-start space-x-2"
-                                        >
-                                            <div class="flex gap-1">
-                                                <img
-                                                    src="https://avatars.githubusercontent.com/u/{battle.defender.id}"
-                                                    alt="Pixel art character avatar"
-                                                    class="w-16 h-16 border-2 border-[#0f380f]"
-                                                />
-                                                <div>
-                                                    <h2
-                                                        class=" font-bold tracking-tight leading-none mb-1 text-shadow-[2px_2px_0px_#306230]"
-                                                    >
-                                                        {battle.defender.name}
-                                                    </h2>
+                                                class="flex flex-col md:flex-row gap-2 md:gap-0 items-start space-x-2"
+                                            >
+                                                <div class="flex gap-1">
+                                                    <img
+                                                        src="https://avatars.githubusercontent.com/u/{battle
+                                                            .defender.id}"
+                                                        alt="Pixel art character avatar"
+                                                        class="w-16 h-16 border-2 border-[#0f380f]"
+                                                    />
+                                                    <div>
+                                                        <h2
+                                                            class=" font-bold tracking-tight leading-none mb-1 text-shadow-[2px_2px_0px_#306230]"
+                                                        >
+                                                            {battle.defender
+                                                                .name}
+                                                        </h2>
 
-                                                    <p class="text-sm">
-                                                        Level {battle.defender.level}
-                                                    </p>
+                                                        <p class="text-sm">
+                                                            Level {battle
+                                                                .defender.level}
+                                                        </p>
+                                                    </div>
                                                 </div>
-                                            </div>
                                                 <div class="flex-1">
                                                     <div
                                                         class="grid grid-cols-3 gap-2 text-sm"
@@ -150,8 +174,10 @@
                                                         >
                                                             <span>HP</span>
                                                             <span
-                                                                >{battle.defender
-                                                                    .stats.hp}</span
+                                                                >{battle
+                                                                    .defender
+                                                                    .stats
+                                                                    .hp}</span
                                                             >
                                                         </div>
                                                         <div
@@ -159,7 +185,8 @@
                                                         >
                                                             <span>ATK</span>
                                                             <span
-                                                                >{battle.defender
+                                                                >{battle
+                                                                    .defender
                                                                     .stats
                                                                     .attack}</span
                                                             >
@@ -169,7 +196,8 @@
                                                         >
                                                             <span>STR</span>
                                                             <span
-                                                                >{battle.defender
+                                                                >{battle
+                                                                    .defender
                                                                     .stats
                                                                     .strength}</span
                                                             >
@@ -179,7 +207,8 @@
                                                         >
                                                             <span>DEF</span>
                                                             <span
-                                                                >{battle.defender
+                                                                >{battle
+                                                                    .defender
                                                                     .stats
                                                                     .defense}</span
                                                             >
@@ -189,14 +218,17 @@
                                                         >
                                                             <span>SPD</span>
                                                             <span
-                                                                >{battle.defender
+                                                                >{battle
+                                                                    .defender
                                                                     .stats
                                                                     .speed}</span
                                                             >
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="flex flex-col gap-1">
+                                                <div
+                                                    class="flex flex-col gap-1"
+                                                >
                                                     {#if battle.status == "win"}
                                                         <div
                                                             class="py-1 px-2 bg-green-700 rounded-md"
@@ -207,7 +239,9 @@
                                                                 WIN
                                                             </p>
                                                         </div>
-                                                        <p class="text-green-700">
+                                                        <p
+                                                            class="text-green-700"
+                                                        >
                                                             +{battle.score}
                                                         </p>
                                                     {:else if battle.status == "lose"}
@@ -215,11 +249,10 @@
                                                             class="py-1 px-2 bg-red-700 rounded-md"
                                                         >
                                                             <p
-                                                                class="text-red-300 font-bold "
+                                                                class="text-red-300 font-bold"
                                                             >
                                                                 LOSE
                                                             </p>
-                                                            
                                                         </div>
                                                         <p class="text-red-700">
                                                             {battle.score}
@@ -243,7 +276,7 @@
                                         </div>
                                     </div>
                                 {/each}
-    
+
                                 {#if battles.length == 5}
                                     <div class="flex justify-center">
                                         <button
@@ -258,7 +291,6 @@
                                 {/if}
                             </div>
                         </div>
-                        
                     </div>
                 </div>
             </div>

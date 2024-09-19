@@ -349,9 +349,11 @@ export const POST: RequestHandler = async (event): Promise<Response> => {
             
         }
     } else if(battleData.attacker.currentHp <= 0){
+        
         battleData.status = "lose";
         if (battleData.attacker.playerId != battleData.defender.playerId) {
             const player = await getPlayer(battleData.attacker.playerId);
+            console.log("prev score : ",player.score);
             if(battleData.defender.playerLevel < battleData.attacker.playerLevel){
                 player.score -= 5 * (battleData.attacker.playerLevel-battleData.defender.playerLevel);
                 battleData.score = -5 * (battleData.attacker.playerLevel-battleData.defender.playerLevel);
@@ -359,13 +361,17 @@ export const POST: RequestHandler = async (event): Promise<Response> => {
                 player.score -= 5;
                 battleData.score = -5;
             }
+            if(player.score < 0){
+                player.score = 0;
+            }
             await insertData(player);
-            console.log(player.score);
+            console.log("new score : ",player.score);
         }
     } else if(battleData.defender.currentHp <= 0){
         battleData.status = "win";
         if (battleData.attacker.playerId != battleData.defender.playerId) {
             const player = await getPlayer(battleData.attacker.playerId);
+            console.log("prev score : ",player.score);
             if(battleData.defender.playerLevel > battleData.attacker.playerLevel){
                 player.score += 5 * (battleData.defender.playerLevel-battleData.attacker.playerLevel);
                 battleData.score = 5 * (battleData.defender.playerLevel-battleData.attacker.playerLevel);
@@ -375,7 +381,7 @@ export const POST: RequestHandler = async (event): Promise<Response> => {
                 
             }
             await insertData(player);
-            console.log(player.score);
+            console.log("new score : ",player.score);
         }
     } else {
         battleData.status = "pending";

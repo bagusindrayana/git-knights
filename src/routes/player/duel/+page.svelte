@@ -9,18 +9,24 @@
     let filter = "recomended";
 
     let search: string = "";
+    let status: string = "loading";
 
     async function loadPlayers() {
-        const response = await axios.get("/api/players", {
-            params: {
-                page: page,
-                limit: limit,
-                recomended: filter === "recomended" ? true : false,
-                q: search,
-            },
-        });
-
-        players = response.data.data;
+        status = "loading";
+        try {
+            const response = await axios.get("/api/players", {
+                params: {
+                    page: page,
+                    limit: limit,
+                    recomended: filter === "recomended" ? true : false,
+                    q: search,
+                },
+            });
+            players = response.data.data;
+            status = "finish";
+        } catch (error) {
+            status = "Error : " + error;
+        }
     }
 
     async function loadMore(e: any) {
@@ -61,6 +67,7 @@
     const doSearch = (e: any) => {
         page = 1;
         debounce(() => {
+            players = [];
             search = e.target.value;
             loadPlayers();
         }, 500)();
@@ -115,6 +122,7 @@
                             <button
                                 on:click={() => {
                                     filter = "recomended";
+                                    players = [];
                                     loadPlayers();
                                 }}
                                 class="rounded-md px-2 py-1 text-sm border-green-900 border-2 hover:bg-green-700 hover:text-white {filter ==
@@ -127,6 +135,7 @@
                             <button
                                 on:click={() => {
                                     filter = "all";
+                                    players = [];
                                     loadPlayers();
                                 }}
                                 class="rounded-md px-2 py-1 text-sm border-green-900 border-2 hover:bg-green-700 hover:text-white {filter ==
@@ -139,9 +148,19 @@
                         </div>
                         <div class="flex flex-col gap-4 w-full mt-4">
                             {#if players.length == 0}
-                                <p class="text-center text-red-900">
-                                    Not find player
-                                </p>
+                                {#if status == "loading"}
+                                    <p class="text-center text-green-900">
+                                        Loading...
+                                    </p>
+                                {:else if status != "finish"}
+                                    <p class="text-center text-red-900">
+                                        {status}
+                                    </p>
+                                {:else}
+                                    <p class="text-center text-red-900">
+                                        Not find player
+                                    </p>
+                                {/if}
                             {/if}
                             {#each players as player}
                                 <div

@@ -240,6 +240,7 @@ DEF: accumulation of levels with number of issues`,
             }
         } catch (error) {
             console.error(error);
+            pushNotificaton = null;
             pushNotificaton = {
                 title: "Error",
                 content: "Failed to get user data",
@@ -263,6 +264,7 @@ DEF: accumulation of levels with number of issues`,
             playerData.applyEquipedEffect();
             updateApplyEquipedEffect();
             getAllSkillFromEquipItem();
+            pushNotificaton = null;
             pushNotificaton = {
                 title: "Success",
                 content: "User data synced successfully",
@@ -270,6 +272,7 @@ DEF: accumulation of levels with number of issues`,
                 show: true,
             };
         } catch (error) {
+            pushNotificaton = null;
             pushNotificaton = {
                 title: "Error",
                 content: "Failed to sync user data",
@@ -688,15 +691,16 @@ DEF: accumulation of levels with number of issues`,
                     skillSlots: playerData.skillSlots,
                 })
                 .then((response) => {
+                    pushNotificaton = null;
                     pushNotificaton = {
                         title: "Success",
                         content: "User data updated successfully",
                         type: "success",
                         show: true,
                     };
-                    playerData.slots = response.data.playerData.slots;
-                    playerData.skillSlots = response.data.playerData.skillSlots;
-                    playerData.tags = response.data.playerData.tags;
+                    playerData.slots = response.data.slots;
+                    playerData.skillSlots = response.data.skillSlots;
+                    playerData.tags = response.data.tags;
                     playerData.applyEquipedEffect();
                     updateApplyEquipedEffect();
                     getAllSkillFromEquipItem();
@@ -704,6 +708,7 @@ DEF: accumulation of levels with number of issues`,
                     button.innerHTML = "Update Equipment";
                 })
                 .catch((error) => {
+                    pushNotificaton = null;
                     pushNotificaton = {
                         title: "Error",
                         content: "Failed to update user data",
@@ -715,6 +720,7 @@ DEF: accumulation of levels with number of issues`,
                     button.innerHTML = "Update Equipment";
                 });
         } catch (error) {
+            pushNotificaton = null;
             pushNotificaton = {
                 title: "Error",
                 content: "Failed to update user data",
@@ -737,6 +743,7 @@ DEF: accumulation of levels with number of issues`,
                     characterColor: playerData.characterColor,
                 })
                 .then((response) => {
+                    pushNotificaton = null;
                     pushNotificaton = {
                         title: "Success",
                         content: "Character color updated successfully",
@@ -750,6 +757,7 @@ DEF: accumulation of levels with number of issues`,
                     button.innerHTML = "Update Character";
                 })
                 .catch((error) => {
+                    pushNotificaton = null;
                     pushNotificaton = {
                         title: "Error",
                         content: "Failed to update character color",
@@ -761,6 +769,7 @@ DEF: accumulation of levels with number of issues`,
                     button.innerHTML = "Update Character";
                 });
         } catch (error) {
+            pushNotificaton = null;
             pushNotificaton = {
                 title: "Error",
                 content: "Failed to update character color",
