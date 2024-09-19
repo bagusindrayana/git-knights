@@ -434,8 +434,9 @@
                 </div>`;
         }
 
-        await timer(1500);
-
+        await timer(1600);
+        playerElm!.innerHTML = "";
+        enemyElm!.innerHTML = "";
         const elm = from == "player" ? enemyElm : playerElm;
 
        
