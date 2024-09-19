@@ -87,6 +87,7 @@
     let round = 1;
     let status = "idle";
     let dataStatus = "loading";
+    let enemyTurn = false;
 
     let player: Player = new Player({
         hp: 1690,
@@ -142,27 +143,15 @@
         });
     }
 
-    function setAnimationColor(container:any, player:any){
+    function setAnimationColor(container: any, player: any) {
         player.selectHelmetTipColor(
             container,
             player.characterColor.helmetTipColor,
         );
-        player.selectHelmetColor(
-            container,
-            player.characterColor.helmetColor,
-        );
-        player.selectVisorColor(
-            container,
-            player.characterColor.visorColor,
-        );
-        player.selectSwordColor(
-            container,
-            player.characterColor.swordColor,
-        );
-        player.seletcHandColor(
-            container,
-            player.characterColor.handColor,
-        );
+        player.selectHelmetColor(container, player.characterColor.helmetColor);
+        player.selectVisorColor(container, player.characterColor.visorColor);
+        player.selectSwordColor(container, player.characterColor.swordColor);
+        player.seletcHandColor(container, player.characterColor.handColor);
         player.seletcRightFootColor(
             container,
             player.characterColor.rightFootColor,
@@ -171,38 +160,41 @@
             container,
             player.characterColor.leftFootColor,
         );
-        player.seletcShieldColor(
-            container,
-            player.characterColor.shieldColor,
-        );
-        player.seletcBodydColor(
-            container,
-            player.characterColor.bodyColor,
-        );
-        player.selectSkinColor(
-            container,
-            player.characterColor.skinColor,
-        );
+        player.seletcShieldColor(container, player.characterColor.shieldColor);
+        player.seletcBodydColor(container, player.characterColor.bodyColor);
+        player.selectSkinColor(container, player.characterColor.skinColor);
     }
 
     function playerAnimationColor() {
-        setAnimationColor(document.querySelector(
-            "#player-animation-idle svg g g",
-        ) as HTMLElement,player);
+        setAnimationColor(
+            document.querySelector(
+                "#player-animation-idle svg g g",
+            ) as HTMLElement,
+            player,
+        );
 
-        setAnimationColor(document.querySelector(
-            "#player-animation-attack svg g g",
-        ) as HTMLElement,player);
+        setAnimationColor(
+            document.querySelector(
+                "#player-animation-attack svg g g",
+            ) as HTMLElement,
+            player,
+        );
     }
 
     function enemyAnimationColor() {
-        setAnimationColor(document.querySelector(
-            "#enemy-animation-idle svg g g",
-        ) as HTMLElement,player);
+        setAnimationColor(
+            document.querySelector(
+                "#enemy-animation-idle svg g g",
+            ) as HTMLElement,
+            player,
+        );
 
-        setAnimationColor(document.querySelector(
-            "#enemy-animation-attack svg g g",
-        ) as HTMLElement,player);
+        setAnimationColor(
+            document.querySelector(
+                "#enemy-animation-attack svg g g",
+            ) as HTMLElement,
+            player,
+        );
     }
 
     function playerIdleAnimation() {
@@ -222,9 +214,8 @@
             .getElementById("player-animation-idle")
             ?.classList.add("hidden");
 
-        playerAnimationAttack.goToAndPlay(0,true);
+        playerAnimationAttack.goToAndPlay(0, true);
         playerAnimationAttack.play();
-      
     }
 
     function enemyIdleAnimation() {
@@ -244,6 +235,7 @@
             .getElementById("enemy-animation-idle")
             ?.classList.add("hidden");
 
+        enemyAnimationAttack.goToAndPlay(0, true);
         enemyAnimationAttack.play();
     }
 
@@ -418,6 +410,7 @@
         damageResult: any = null,
     ) {
         const playerElm = document.getElementById("player-effect");
+        
         const playerAdio = document.getElementById(
             "player-audio",
         ) as HTMLAudioElement;
@@ -430,14 +423,22 @@
         if (from == "player") {
             arenaElm.classList.remove("move-right");
             arenaElm.classList.add("move-left");
+            playerElm!.innerHTML = `<div class="skill-text bg-[#9bbc0f] border-2 border-green-900 rounded-md p-1 flex flex-col items-center justify-center text-sm">
+                    ${skill.name}
+                </div>`;
         } else {
             arenaElm.classList.remove("move-left");
             arenaElm.classList.add("move-right");
+            enemyElm!.innerHTML = `<div class="skill-text bg-[#9bbc0f] border-2 border-green-900 rounded-md p-1 flex flex-col items-center justify-center text-sm">
+                    ${skill.name}
+                </div>`;
         }
 
         await timer(1500);
 
         const elm = from == "player" ? enemyElm : playerElm;
+
+       
 
         for (let i = 0; i < skill.effects.length; i++) {
             const effect = skill.effects[i];
@@ -668,6 +669,7 @@
     }
 
     function enemyAttack() {
+        enemyTurn = true;
         const isPrimeRound = round % 2 == 0;
 
         let randomSkill: ItemSkill | undefined;
@@ -759,11 +761,13 @@
                 // }
                 setTimeout(() => {
                     scrollEventLogs();
+                    enemyTurn = false;
                 }, 500);
             })
             .catch((err) => {
                 status = "error : " + err;
                 console.log(err);
+                enemyTurn = false;
             });
     }
 
@@ -904,13 +908,15 @@
             animation: char-anim 1s steps(8) infinite;
         }
 
-        #player-animation-idle, #player-animation-attack {
+        #player-animation-idle,
+        #player-animation-attack {
             transform: scaleX(-1);
             height: 500px;
             width: 500px;
         }
 
-        #enemy-animation-idle, #enemy-animation-attack {
+        #enemy-animation-idle,
+        #enemy-animation-attack {
             height: 500px;
             width: 500px;
         }
@@ -973,6 +979,36 @@
             }
         }
 
+        .skill-text {
+            position: absolute;
+            opacity: 0;
+            animation: skill-text 1.5s ease;
+            font-weight: bold;
+            top: 0;
+            right: 0;
+            padding: 4px;
+        }
+
+        @keyframes skill-text {
+            0% {
+                transform: translateY(0);
+            }
+            30% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-10px);
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(0);
+            }
+        }
+
         #arena {
             transition: all 0.5s;
             zoom: 1;
@@ -995,10 +1031,22 @@
             background-repeat: no-repeat;
             background-position: 0px -200px;
         }
+
+        button:disabled,
+        button[disabled] {
+            cursor: no-drop;
+        }
     </style>
 </svelte:head>
 
 <main class="w-full h-screen flex flex-col justify-between font-mono bg-arena">
+    {#if enemyTurn}
+        <div
+            class="text-center absolute bg-[#d05858] text-[#380f0f] rounded-lg overflow-hidden border-4 border-[#ac0f0f] shadow-[8px_8px_0px_#380f0f] m-4 p-4 w-1/3 mx-auto left-0 right-0"
+        >
+            <h2 class="font-bold text-white text-2xl">ENEMY TURN</h2>
+        </div>
+    {/if}
     {#if battle.status == "win"}
         <div
             class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
@@ -1050,7 +1098,8 @@
                 </p>
                 <div class="space-y-4">
                     <a
-                        href="/player/battle?id={battle.defender.playerId}" on:click={()=>{
+                        href="/player/battle?id={battle.defender.playerId}"
+                        on:click={() => {
                             location.reload();
                         }}
                         class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded pixel-font"
@@ -1131,7 +1180,8 @@
                 <div
                     class="h-40 w-40 relative flex justify-center items-center"
                     id="player-effect"
-                ></div>
+                >
+            </div>
                 <audio src="" id="player-audio" class="hidden"></audio>
             </div>
 
@@ -1181,7 +1231,8 @@
 
             <div
                 class="font-mono relative w-full md:w-2/4 mt-4 md:mt-0 m-0 md:m-4 bg-[#d0d058] text-[#0f380f] rounded-lg border-4 border-[#8bac0f] shadow-[8px_8px_0px_#306230]"
-            >
+            >   
+
                 <div class="p-1 md:p-4 space-y-1 md:space-y-4">
                     <div
                         class="absolute -top-6 md:-top-11 left-0 right-0 text-center"
@@ -1260,6 +1311,9 @@
                         </div>
                     </div>
                 </div>
+                {#if status == "attacking"}
+                <div class="absolute bg-black bg-opacity-50 top-0 left-0 bottom-0 right-0 pointer-events-none"></div>
+                {/if}
             </div>
 
             <div
