@@ -134,7 +134,7 @@
     let enemyAnimationIdle: any;
     let enemyAnimationAttack: any;
 
-    let useSkillAttack: any = null
+    let useSkillAttack: any = null;
 
     async function loadSound(src: string) {
         return new Promise((resolve, reject) => {
@@ -586,25 +586,24 @@
         elm.parentElement!.classList.remove("shake");
         elm!.innerHTML = "";
     }
-    
-    function cancelUseSkill(){
+
+    function cancelUseSkill() {
         useSkillAttack = null;
         // const useSkillElm = document.getElementById("use-skill") as HTMLElement;
         // useSkillElm.innerHTML = "";
     }
 
     function useSkill(skill: ItemSkill) {
-        if(skill.currentCooldown <= 0){
+        if (skill.currentCooldown <= 0) {
             useSkillAttack = skill;
         }
-        
+
         // const useSkillElm = document.getElementById("use-skill") as HTMLElement;
         // useSkillElm.innerHTML = ``;
     }
 
     function attack(skill?: ItemSkill) {
-
-        if(useSkillAttack && skill == null){
+        if (useSkillAttack && skill == null) {
             skill = useSkillAttack;
         }
         playBgMusic();
@@ -676,7 +675,9 @@
                 } else {
                     setTimeout(() => {
                         if (battle.status == "pending") {
-                            const useSkillElm = document.getElementById("use-skill") as HTMLElement;
+                            const useSkillElm = document.getElementById(
+                                "use-skill",
+                            ) as HTMLElement;
                             useSkillElm.innerHTML = "";
                             useSkillAttack = null;
                             enemyAttack();
@@ -1077,6 +1078,12 @@
         </div>
     {/if}
     {#if battle.status == "win"}
+        <audio
+            src="/sounds/success-fanfare-trumpets-6185.mp3"
+            autoplay={true}
+            loop={false}
+            volume="0.5"
+        ></audio>
         <div
             class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
         >
@@ -1109,6 +1116,12 @@
             </div>
         </div>
     {:else if battle.status == "lose"}
+        <audio
+            src="/sounds/game-over-39-199830.mp3"
+            autoplay={true}
+            loop={false}
+            volume="0.5"
+        ></audio>
         <div
             class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"
         >
@@ -1221,7 +1234,9 @@
             </div>
         </div>
 
-        <div class="flex absolute h-screen w-full justify-between flex-col top-0 bottom-0">
+        <div
+            class="flex absolute h-screen w-full justify-between flex-col top-0 bottom-0"
+        >
             <div class="w-full flex justify-between">
                 <div
                     class="font-mono flex flex-col justify-start items-center text-center w-60 h-24 m-0 md:m-4 bg-[#d0d058] text-[#0f380f] rounded-lg overflow-hidden border-4 border-[#8bac0f] shadow-[8px_8px_0px_#306230]"
@@ -1247,52 +1262,42 @@
                     class="flex w-full justify-center mb-1 md:mb-6"
                     id="use-skill"
                 >
-                {#if useSkillAttack}
-                <button
-                                            type="button"
-                                            on:click={cancelUseSkill}
-                                            class=" w-28 animate-pulse relative skill-{useSkillAttack.id} h-20 cursor-pointer bg-[#9bbc0f] border-2 border-green-900 rounded-md p-1 flex flex-col items-center justify-center transition-all duration-200 hover:bg-gray-400"
-                                        >
-                                            <span
-                                                class="text-xs text-center h-8 flex items-center"
-                                                >{useSkillAttack.name}</span
-                                            >
-                                            <small
-                                                class="absolute text-xs top-0 left-0 bg-green-700 rounded-md p-1 text-white"
-                                                style="background-color: {
-                                                    battle.attacker.items.find(
-                                                        (item) => {
-                                                            return (
-                                                                item.id ===
-                                                                useSkillAttack.id.split(
-                                                                    "_",
-                                                                )[1]
-                                                            );
-                                                        },
-                                                    )?.color
-                                                };"
-                                                >{
-                                                    battle.attacker.items.find(
-                                                        (item) => {
-                                                            return (
-                                                                item.id ===
-                                                                useSkillAttack.id.split(
-                                                                    "_",
-                                                                )[1]
-                                                            );
-                                                        },
-                                                    )?.name
-                                                }</small
-                                            >
-                                            {#if useSkillAttack.doAttack}
-                                                    <small
-                                                        class="absolute text-xs bottom-0 left-0 bg-red-700 rounded-md p-1 text-white"
-                                                        >A</small
-                                                    >
-                                                {/if}
-                                        </button>
-                                    {/if}
-            </div>
+                    {#if useSkillAttack}
+                        <button
+                            type="button"
+                            on:click={cancelUseSkill}
+                            class=" w-28 animate-pulse relative skill-{useSkillAttack.id} h-20 cursor-pointer bg-[#9bbc0f] border-2 border-green-900 rounded-md p-1 flex flex-col items-center justify-center transition-all duration-200 hover:bg-gray-400"
+                        >
+                            <span
+                                class="text-xs text-center h-8 flex items-center"
+                                >{useSkillAttack.name}</span
+                            >
+                            <small
+                                class="absolute text-xs top-0 left-0 bg-green-700 rounded-md p-1 text-white"
+                                style="background-color: {battle.attacker.items.find(
+                                    (item) => {
+                                        return (
+                                            item.id ===
+                                            useSkillAttack.id.split('_')[1]
+                                        );
+                                    },
+                                )?.color};"
+                                >{battle.attacker.items.find((item) => {
+                                    return (
+                                        item.id ===
+                                        useSkillAttack.id.split("_")[1]
+                                    );
+                                })?.name}</small
+                            >
+                            {#if useSkillAttack.doAttack}
+                                <small
+                                    class="absolute text-xs bottom-0 left-0 bg-red-700 rounded-md p-1 text-white"
+                                    >A</small
+                                >
+                            {/if}
+                        </button>
+                    {/if}
+                </div>
                 <div class="flex flex-col md:flex-row justify-between w-full">
                     <PlayerCard
                         id={`${player.id}`}
@@ -1335,7 +1340,9 @@
                                     disabled={status !== "idle" ||
                                         battle.status !== "pending"}
                                     on:click={() => attack()}
-                                    title="{(useSkillAttack != null)?useSkillAttack.name:'normal attack'}"
+                                    title={useSkillAttack != null
+                                        ? useSkillAttack.name
+                                        : "normal attack"}
                                     class="retro-btn red-retro-btn"
                                 >
                                     Attack
@@ -1357,8 +1364,10 @@
                                             class="skill-slot-{index} p-1 rounded-md border-2 min-h-20 border-green-700 text-center text-xs flex justify-center items-center"
                                         >
                                             <button
-                                            disabled={status !== "idle" ||
-                                                battle.status !== "pending" || skill.currentCooldown > 0}
+                                                disabled={status !== "idle" ||
+                                                    battle.status !==
+                                                        "pending" ||
+                                                    skill.currentCooldown > 0}
                                                 type="button"
                                                 data-skill={JSON.stringify(
                                                     skill,
