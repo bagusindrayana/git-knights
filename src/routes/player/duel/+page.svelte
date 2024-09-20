@@ -10,6 +10,7 @@
 
     let search: string = "";
     let status: string = "loading";
+    let canLoadMore:boolean = false;
 
     async function loadPlayers() {
         status = "loading";
@@ -22,6 +23,11 @@
                     q: search,
                 },
             });
+            if(response.data.data != null && response.data.data.length == 5){
+                canLoadMore = true
+            } else {
+                canLoadMore = false;
+            }
             players = response.data.data;
             status = "finish";
         } catch (error) {
@@ -43,6 +49,12 @@
                     q: search,
                 },
             });
+
+            if(response.data.data != null && response.data.data.length == 5){
+                canLoadMore = true
+            } else {
+                canLoadMore = false;
+            }
 
             players = [...players, ...response.data.data];
             _myButton.disabled = false;
@@ -277,7 +289,7 @@
                                     </div>
                                 </div>
                             {/each}
-                            {#if players.length == 5}
+                            {#if canLoadMore}
                                 <div class="flex justify-center">
                                     <button
                                         class="retro-btn blue-retro-btn"

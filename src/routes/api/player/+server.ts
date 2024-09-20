@@ -65,6 +65,7 @@ export const POST: RequestHandler = async (event): Promise<Response> => {
             data.playerData.slots = findPlayer.slots;
             data.playerData.skillSlots = findPlayer.skillSlots;
             data.playerData.characterColor = findPlayer.characterColor;
+            data.playerData.score = findPlayer.score;
         }
         let playerTags: Tag[] = [];
         for (let i = 0; i < tags.length; i++) {

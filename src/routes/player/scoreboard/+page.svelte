@@ -9,6 +9,7 @@
 
     let search: string = "";
     let status: string = "loading";
+    let canLoadMore:boolean = false;
 
     async function loadPlayers() {
         status = "loading";
@@ -20,6 +21,12 @@
                     q: search,
                 },
             });
+
+            if(response.data.data != null && response.data.data.length == 5){
+                canLoadMore = true
+            } else {
+                canLoadMore = false;
+            }
 
             players = response.data.data;
             status = "finish";
@@ -42,6 +49,11 @@
                 },
             });
 
+            if(response.data.data != null && response.data.data.length == 5){
+                canLoadMore = true
+            } else {
+                canLoadMore = false;
+            }
             players = [...players, ...response.data.data];
             _myButton.disabled = false;
             _myButton.textContent = "Load More";
@@ -140,7 +152,7 @@
                                         <div
                                             class="flex flex-col md:flex-row gap-2 md:gap-0 items-start space-x-2 relative"
                                         >
-                                            {#if page == 1 && index == 0}
+                                            {#if index == 0}
                                                 <div
                                                     class="absolute -top-8 -rotate-12 -left-2"
                                                 >
@@ -339,7 +351,7 @@
                                     </div>
                                 </div>
                             {/each}
-                            {#if players.length == 5}
+                            {#if canLoadMore}
                                 <div class="flex justify-center">
                                     <button
                                         class="retro-btn blue-retro-btn"

@@ -9,6 +9,7 @@
 
     let search: string = "";
     let status: string = "loading";
+    let canLoadMore:boolean = false;
 
     async function loadHistory() {
         status = "loading";
@@ -20,7 +21,11 @@
                     q: search,
                 },
             });
-
+            if(response.data.data != null && response.data.data.length == 5){
+                canLoadMore = true
+            } else {
+                canLoadMore = false;
+            }
             battles = response.data.data;
             status = "finish";
         } catch (error) {
@@ -41,7 +46,11 @@
                     q: search,
                 },
             });
-
+            if(response.data.data != null && response.data.data.length == 5){
+                canLoadMore = true
+            } else {
+                canLoadMore = false;
+            }
             battles = [...battles, ...response.data.data];
             _myButton.disabled = false;
             _myButton.textContent = "Load More";
@@ -144,7 +153,7 @@
                                             <div
                                                 class="flex flex-col md:flex-row gap-2 md:gap-0 items-start space-x-2"
                                             >
-                                                <div class="flex gap-1">
+                                                <div class="flex gap-1 w-52">
                                                     <img
                                                         src="https://avatars.githubusercontent.com/u/{battle
                                                             .defender.id}"
@@ -277,7 +286,7 @@
                                     </div>
                                 {/each}
 
-                                {#if battles.length == 5}
+                                {#if canLoadMore}
                                     <div class="flex justify-center">
                                         <button
                                             class="retro-btn blue-retro-btn"
