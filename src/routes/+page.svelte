@@ -8,6 +8,7 @@
 
 <svelte:head>
     <title>GitKnight</title>
+    <meta name="description" content="Battle with your GitHub stats in epic 1v1 turn-based combat!">
 </svelte:head>
 <header class="bg-red-500 text-white p-4 border-b-4 border-red-700">
     <div class="container mx-auto flex justify-between items-center">
