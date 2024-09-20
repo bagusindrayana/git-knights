@@ -188,14 +188,14 @@
             document.querySelector(
                 "#enemy-animation-idle svg g g",
             ) as HTMLElement,
-            player,
+            enemyPlayer,
         );
 
         setAnimationColor(
             document.querySelector(
                 "#enemy-animation-attack svg g g",
             ) as HTMLElement,
-            player,
+            enemyPlayer,
         );
     }
 

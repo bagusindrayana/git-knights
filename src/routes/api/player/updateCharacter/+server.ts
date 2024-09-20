@@ -1,8 +1,6 @@
 import { json, type RequestHandler } from "@sveltejs/kit";
-import { getUsername } from "../../../../lib/githubData";
 import { insertData, getPlayer } from "../../../../lib/mongo";
-import tags from "../../../../lib/data/tag.json";
-import { Tag } from "$lib/models/player";
+import { logger } from '$lib/stores/logger';
 
 export const POST: RequestHandler = async (event): Promise<Response> => {
     const session = await event.locals.auth();
@@ -16,23 +14,33 @@ export const POST: RequestHandler = async (event): Promise<Response> => {
         });
     }
 
-    //slots
+    try {
+        //slots
 
-    const {characterColor} = await event.request.json();
+        const { characterColor } = await event.request.json();
 
-    const imageUrl = session?.user?.image;
-    //get user id from imageUrl
-    const userId = imageUrl
-        ?.split("/")
-    [imageUrl.split("/").length - 1].split("?")[0];
-    const data = await getPlayer(userId!);
-    
-    data.characterColor = characterColor;
-    await insertData(data);
+        const imageUrl = session?.user?.image;
+        //get user id from imageUrl
+        const userId = imageUrl
+            ?.split("/")
+        [imageUrl.split("/").length - 1].split("?")[0];
+        const data = await getPlayer(userId!);
 
-    return json({
-        "message":"Ok"
-    },{
-        status:200
-    })
+        data.characterColor = characterColor;
+        await insertData(data);
+
+        return json({
+            "message": "Ok"
+        }, {
+            status: 200
+        })
+    } catch (error) {
+        logger.error(error);
+        return json({
+            data: error,
+
+        }, {
+            status: 500
+        });
+    }
 };

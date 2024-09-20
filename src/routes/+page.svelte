@@ -37,11 +37,11 @@
             >
                 Play Now
             </a>
-            <button
+            <a href="./about"
                 class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 border-b-4 border-blue-700 hover:border-blue-800 rounded text-lg"
             >
                 Learn More
-            </button>
+        </a>
         </div>
     </section>
 

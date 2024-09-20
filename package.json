@@ -24,10 +24,13 @@
 	"type": "module",
 	"dependencies": {
 		"@auth/sveltekit": "^1.4.2",
+		"@sveltejs/adapter-node": "^5.2.3",
 		"axios": "^1.7.5",
 		"chart.js": "^4.4.4",
 		"lottie-web": "^5.12.2",
 		"mongodb": "^6.8.0",
-		"shepherd.js": "^13.0.3"
+		"pino": "^9.4.0",
+		"shepherd.js": "^13.0.3",
+		"winston": "^3.14.2"
 	}
 }
