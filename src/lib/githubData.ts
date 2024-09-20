@@ -13,9 +13,13 @@ export function findItem(id: string): Item | undefined {
 }
 
 export async function getUsername(userId: any) {
-
+    const apiToken = GITHUB_API_TOKEN;
     const apiUrl = `https://api.github.com/user/${userId}`;
-    const response = await axios.get(apiUrl);
+    const response = await axios.get(apiUrl,{
+        headers: {
+            Authorization: `Bearer ${apiToken}`,
+        },
+    });
     const user = response.data;
 
     const data = await getGithubData(user.login);
@@ -25,15 +29,16 @@ export async function getUsername(userId: any) {
 }
 
 export async function getProfil(username: string) {
-    try {
-        const apiUrl = `https://api.github.com/users/${username}`;
-        const response = await axios.get(apiUrl);
-        const user = response.data;
+    const apiToken = GITHUB_API_TOKEN;
+    const apiUrl = `https://api.github.com/users/${username}`;
+    const response = await axios.get(apiUrl,{
+        headers: {
+            Authorization: `Bearer ${apiToken}`,
+        },
+    });
+    const user = response.data;
 
-        return user;
-    } catch (error) {
-        return null;
-    }
+    return user;
 }
 
 async function queryRepository(username: string, after?: string){
