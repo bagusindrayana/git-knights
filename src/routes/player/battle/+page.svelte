@@ -134,6 +134,8 @@
     let enemyAnimationIdle: any;
     let enemyAnimationAttack: any;
 
+    let useSkillAttack: any = null
+
     async function loadSound(src: string) {
         return new Promise((resolve, reject) => {
             const audio = new Audio();
@@ -410,7 +412,7 @@
         damageResult: any = null,
     ) {
         const playerElm = document.getElementById("player-effect");
-        
+
         const playerAdio = document.getElementById(
             "player-audio",
         ) as HTMLAudioElement;
@@ -438,8 +440,6 @@
         playerElm!.innerHTML = "";
         enemyElm!.innerHTML = "";
         const elm = from == "player" ? enemyElm : playerElm;
-
-       
 
         for (let i = 0; i < skill.effects.length; i++) {
             const effect = skill.effects[i];
@@ -586,8 +586,27 @@
         elm.parentElement!.classList.remove("shake");
         elm!.innerHTML = "";
     }
+    
+    function cancelUseSkill(){
+        useSkillAttack = null;
+        // const useSkillElm = document.getElementById("use-skill") as HTMLElement;
+        // useSkillElm.innerHTML = "";
+    }
+
+    function useSkill(skill: ItemSkill) {
+        if(skill.currentCooldown <= 0){
+            useSkillAttack = skill;
+        }
+        
+        // const useSkillElm = document.getElementById("use-skill") as HTMLElement;
+        // useSkillElm.innerHTML = ``;
+    }
 
     function attack(skill?: ItemSkill) {
+
+        if(useSkillAttack && skill == null){
+            skill = useSkillAttack;
+        }
         playBgMusic();
         if (status != "idle") {
             return;
@@ -657,6 +676,9 @@
                 } else {
                     setTimeout(() => {
                         if (battle.status == "pending") {
+                            const useSkillElm = document.getElementById("use-skill") as HTMLElement;
+                            useSkillElm.innerHTML = "";
+                            useSkillAttack = null;
                             enemyAttack();
                         }
                         enemyElm!.innerHTML = "";
@@ -1030,7 +1052,13 @@
             background-image: url("/images/4455.jpg");
             background-size: cover;
             background-repeat: no-repeat;
-            background-position: 0px -200px;
+            background-position: 0px -100px;
+        }
+
+        @media (min-width: 768px) {
+            .bg-arena {
+                background-position: 0px -200px !important;
+            }
         }
 
         button:disabled,
@@ -1040,10 +1068,10 @@
     </style>
 </svelte:head>
 
-<main class="w-full h-screen flex flex-col justify-between font-mono bg-arena">
+<main class="w-full h-screen font-mono bg-arena overflow-hidden">
     {#if enemyTurn}
         <div
-            class="text-center absolute bg-[#d05858] text-[#380f0f] rounded-lg overflow-hidden border-4 border-[#ac0f0f] shadow-[8px_8px_0px_#380f0f] m-4 p-4 w-1/3 mx-auto left-0 right-0"
+            class="text-center absolute bg-[#d05858] text-[#380f0f] rounded-lg overflow-hidden border-4 border-[#ac0f0f] shadow-[8px_8px_0px_#380f0f] m-4 mt-20 md:mt-4 p-4 w-full md:w-1/3 mx-auto left-0 right-0"
         >
             <h2 class="font-bold text-white text-2xl">ENEMY TURN</h2>
         </div>
@@ -1150,232 +1178,327 @@
             <p class="text-lg mt-4">{dataStatus}</p>
         </div>
     {:else}
-        <div class="w-full flex justify-between">
-            <div
-                class="font-mono flex flex-col justify-start items-center text-center w-60 h-24 m-0 md:m-4 bg-[#d0d058] text-[#0f380f] rounded-lg overflow-hidden border-4 border-[#8bac0f] shadow-[8px_8px_0px_#306230]"
-            >
-                <p>Round</p>
-                <p class="font-bold text-2xl">{round}</p>
-            </div>
-            <PlayerCard
-                id={`${battle?.defender.playerId}`}
-                name={`${enemyPlayer.name}`}
-                level={enemyPlayer.currentLevel()}
-                hp={battle?.defender.hp}
-                currentHp={battle?.defender.currentHp}
-                attack={battle?.defender.attack}
-                strength={battle?.defender.strength}
-                defense={battle?.defender.defense}
-                speed={battle?.defender.speed}
-            />
-        </div>
-        <div class="w-full flex justify-around" id="arena">
-            <div class="h-40 w-40 relative flex justify-center items-center">
-                <div
-                    class="h-40 w-40 absolute flex justify-center items-center"
-                    id="player-character"
-                >
-                    <div id="player-animation-idle" class="absolute"></div>
-                    <div id="player-animation-attack" class="absolute"></div>
-                </div>
+        <div
+            class="w-full h-screen flex flex-col justify-center font-mono bg-arena overflow-hidden"
+        >
+            <div class="w-full flex justify-around" id="arena">
                 <div
                     class="h-40 w-40 relative flex justify-center items-center"
-                    id="player-effect"
                 >
-            </div>
-                <audio src="" id="player-audio" class="hidden"></audio>
-            </div>
-
-            <div class="h-40 w-40 relative flex justify-center items-center">
-                <div
-                    class="h-40 w-40 absolute flex justify-center items-center"
-                    id="enemy-character"
-                >
-                    <div id="enemy-animation-idle" class="absolute"></div>
-                    <div id="enemy-animation-attack" class="absolute"></div>
-                </div>
-                <div
-                    class="h-40 w-40 relative flex justify-center items-center"
-                    id="enemy-effect"
-                ></div>
-                <audio src="" id="enemy-audio" class="hidden"></audio>
-            </div>
-        </div>
-        <div class="flex flex-col md:flex-row justify-between">
-            <PlayerCard
-                id={`${player.id}`}
-                name={`${player.name}`}
-                level={player.currentLevel()}
-                hp={battle.attacker?.hp}
-                currentHp={battle.attacker?.currentHp}
-                attack={battle.attacker?.attack}
-                strength={battle.attacker?.strength}
-                defense={battle.attacker?.defense}
-                speed={battle.attacker?.speed}
-            >
-                <div class="  hidden md:grid grid-cols-2 md:grid-cols-3 gap-2">
-                    {#each battle.attacker?.items as item}
-                        <div
-                            class="p-2 rounded-md border-2 border-green-600 text-center min-h-16 flex justify-center items-center"
-                        >
-                            <small>
-                                {#if item != null}
-                                    {item?.name}
-                                {:else}
-                                    0
-                                {/if}
-                            </small>
-                        </div>
-                    {/each}
-                </div>
-            </PlayerCard>
-
-            <div
-                class="font-mono relative w-full md:w-2/4 mt-4 md:mt-0 m-0 md:m-4 bg-[#d0d058] text-[#0f380f] rounded-lg border-4 border-[#8bac0f] shadow-[8px_8px_0px_#306230]"
-            >   
-
-                <div class="p-1 md:p-4 space-y-1 md:space-y-4">
                     <div
-                        class="absolute -top-6 md:-top-11 left-0 right-0 text-center"
+                        class="h-40 w-40 absolute flex justify-center items-center"
+                        id="player-character"
                     >
-                        <button
-                            disabled={status !== "idle" ||
-                                battle.status !== "pending"}
-                            on:click={() => attack()}
-                            class="px-8 py-4 bg-red-600 text-white font-bold text-xl uppercase tracking-wide border-b-4 border-red-800 rounded hover:bg-red-500 active:border-b-0 active:border-t-4 transition-all duration-100"
-                        >
-                            Attack
-                        </button>
+                        <div id="player-animation-idle" class="absolute"></div>
+                        <div
+                            id="player-animation-attack"
+                            class="absolute"
+                        ></div>
                     </div>
+                    <div
+                        class="h-40 w-40 relative flex justify-center items-center"
+                        id="player-effect"
+                    ></div>
+                    <audio src="" id="player-audio" class="hidden"></audio>
+                </div>
 
-                    <div>
-                        <p class="text-2xl font-bold text-gray-800 mb-4">
-                            Skill
-                        </p>
-                        <div class="mt-4 grid grid-cols-4 md:grid-cols-6 gap-2">
-                            {#each battle.attacker?.skills as skill, index}
+                <div
+                    class="h-40 w-40 relative flex justify-center items-center"
+                >
+                    <div
+                        class="h-40 w-40 absolute flex justify-center items-center"
+                        id="enemy-character"
+                    >
+                        <div id="enemy-animation-idle" class="absolute"></div>
+                        <div id="enemy-animation-attack" class="absolute"></div>
+                    </div>
+                    <div
+                        class="h-40 w-40 relative flex justify-center items-center"
+                        id="enemy-effect"
+                    ></div>
+                    <audio src="" id="enemy-audio" class="hidden"></audio>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex absolute h-screen w-full justify-between flex-col top-0 bottom-0">
+            <div class="w-full flex justify-between">
+                <div
+                    class="font-mono flex flex-col justify-start items-center text-center w-60 h-24 m-0 md:m-4 bg-[#d0d058] text-[#0f380f] rounded-lg overflow-hidden border-4 border-[#8bac0f] shadow-[8px_8px_0px_#306230]"
+                >
+                    <p>Round</p>
+                    <p class="font-bold text-2xl">{round}</p>
+                </div>
+                <PlayerCard
+                    id={`${battle?.defender.playerId}`}
+                    name={`${enemyPlayer.name}`}
+                    level={enemyPlayer.currentLevel()}
+                    hp={battle?.defender.hp}
+                    currentHp={battle?.defender.currentHp}
+                    attack={battle?.defender.attack}
+                    strength={battle?.defender.strength}
+                    defense={battle?.defender.defense}
+                    speed={battle?.defender.speed}
+                />
+            </div>
+
+            <div class="flex flex-col justify-center">
+                <div
+                    class="flex w-full justify-center mb-1 md:mb-6"
+                    id="use-skill"
+                >
+                {#if useSkillAttack}
+                <button
+                                            type="button"
+                                            on:click={cancelUseSkill}
+                                            class=" w-28 animate-pulse relative skill-{useSkillAttack.id} h-20 cursor-pointer bg-[#9bbc0f] border-2 border-green-900 rounded-md p-1 flex flex-col items-center justify-center transition-all duration-200 hover:bg-gray-400"
+                                        >
+                                            <span
+                                                class="text-xs text-center h-8 flex items-center"
+                                                >{useSkillAttack.name}</span
+                                            >
+                                            <small
+                                                class="absolute text-xs top-0 left-0 bg-green-700 rounded-md p-1 text-white"
+                                                style="background-color: {
+                                                    battle.attacker.items.find(
+                                                        (item) => {
+                                                            return (
+                                                                item.id ===
+                                                                useSkillAttack.id.split(
+                                                                    "_",
+                                                                )[1]
+                                                            );
+                                                        },
+                                                    )?.color
+                                                };"
+                                                >{
+                                                    battle.attacker.items.find(
+                                                        (item) => {
+                                                            return (
+                                                                item.id ===
+                                                                useSkillAttack.id.split(
+                                                                    "_",
+                                                                )[1]
+                                                            );
+                                                        },
+                                                    )?.name
+                                                }</small
+                                            >
+                                            {#if useSkillAttack.doAttack}
+                                                    <small
+                                                        class="absolute text-xs bottom-0 left-0 bg-red-700 rounded-md p-1 text-white"
+                                                        >A</small
+                                                    >
+                                                {/if}
+                                        </button>
+                                    {/if}
+            </div>
+                <div class="flex flex-col md:flex-row justify-between w-full">
+                    <PlayerCard
+                        id={`${player.id}`}
+                        name={`${player.name}`}
+                        level={player.currentLevel()}
+                        hp={battle.attacker?.hp}
+                        currentHp={battle.attacker?.currentHp}
+                        attack={battle.attacker?.attack}
+                        strength={battle.attacker?.strength}
+                        defense={battle.attacker?.defense}
+                        speed={battle.attacker?.speed}
+                    >
+                        <div
+                            class="  hidden md:grid grid-cols-2 md:grid-cols-3 gap-2"
+                        >
+                            {#each battle.attacker?.items as item}
                                 <div
-                                    data-slot={index}
-                                    class="skill-slot-{index} p-1 rounded-md border-2 min-h-20 border-green-700 text-center text-xs flex justify-center items-center"
+                                    class="p-2 rounded-md border-2 border-green-600 text-center min-h-16 flex justify-center items-center"
                                 >
-                                    <button
-                                        type="button"
-                                        data-skill={JSON.stringify(skill)}
-                                        on:click={() => attack(skill)}
-                                        on:mouseenter={handleMouseEnterSkill}
-                                        on:mouseleave={handleMouseLeave}
-                                        on:mousemove={handleMouseMove}
-                                        data-id={`${skill.id}`}
-                                        draggable="true"
-                                        class="relative w-full skill-{skill.id} h-20 cursor-pointer bg-[#9bbc0f] border-2 border-green-900 rounded-md p-1 flex flex-col items-center justify-center transition-all duration-200 hover:bg-gray-400"
-                                    >
-                                        <span
-                                            class="text-xs text-center h-8 flex items-center"
-                                            >{skill.name}</span
-                                        >
-                                        <small
-                                            class="absolute text-xs top-0 left-0 bg-green-700 rounded-md p-1 text-white"
-                                            style="background-color: {battle.attacker.items.find(
-                                                (item) => {
-                                                    return (
-                                                        item.id ===
-                                                        skill.id.split('_')[1]
-                                                    );
-                                                },
-                                            )?.color};"
-                                            >{battle.attacker.items.find(
-                                                (item) => {
-                                                    return (
-                                                        item.id ===
-                                                        skill.id.split("_")[1]
-                                                    );
-                                                },
-                                            )?.name}</small
-                                        >
-                                        {#if skill.doAttack}
-                                            <small
-                                                class="absolute text-xs bottom-0 left-0 bg-red-700 rounded-md p-1 text-white"
-                                                >A</small
-                                            >
+                                    <small>
+                                        {#if item != null}
+                                            {item?.name}
+                                        {:else}
+                                            0
                                         {/if}
-
-                                        {#if skill.currentCooldown > 0}
-                                            <small
-                                                class="absolute text-xs bottom-0 right-0 bg-red-700 rounded-md p-1 text-white"
-                                            >
-                                                {skill.currentCooldown}</small
-                                            >
-                                        {/if}
-                                    </button>
+                                    </small>
                                 </div>
                             {/each}
                         </div>
-                    </div>
-                </div>
-                {#if status == "attacking"}
-                <div class="absolute bg-black bg-opacity-50 top-0 left-0 bottom-0 right-0 pointer-events-none"></div>
-                {/if}
-            </div>
+                    </PlayerCard>
 
-            <div
-                class="hidden md:block font-mono w-1/4 m-4 bg-[#d0d058] text-[#0f380f] rounded-lg overflow-hidden border-4 border-[#8bac0f] shadow-[8px_8px_0px_#306230]"
-            >
-                <div class="p-4 space-y-4">
-                    <h1>Event Log</h1>
-                    <div class="h-52 overflow-y-auto" id="event-logs">
-                        {#each battle.battleLog as log}
-                            {#if log.skill}
-                                {#if log.skill.doAttack}
-                                    <p>
-                                        <b>{getPlayer(log.from).name}</b> use
-                                        <b
-                                            class="text-blue-700"
-                                            data-skill={JSON.stringify(
-                                                log.skill,
-                                            )}
-                                            on:mouseenter={handleMouseEnterSkill}
-                                            on:mouseleave={handleMouseLeave}
-                                            on:mousemove={handleMouseMove}
-                                            data-id={log.skill.id}
-                                            >{log.skill.name}</b
-                                        >
-                                        to <b>{getPlayer(log.to).name}</b> :
-                                        give
-                                        <b class="text-red-700">{log.damage}</b>
-                                        damage
-                                    </p>
-                                {:else}
-                                    <p>
-                                        <b>{getPlayer(log.from).name}</b> using
-                                        <b
-                                            class="text-blue-700"
-                                            data-skill={JSON.stringify(
-                                                log.skill,
-                                            )}
-                                            on:mouseenter={handleMouseEnterSkill}
-                                            on:mouseleave={handleMouseLeave}
-                                            on:mousemove={handleMouseMove}
-                                            data-id={log.skill.id}
-                                            >{log.skill.name}</b
-                                        >
-                                    </p>
-                                {/if}
-                            {:else if log.isCriticalHit}
-                                <p>
-                                    <b>{getPlayer(log.from).name}</b> attack
-                                    <b>{getPlayer(log.to).name}</b>
-                                    with critical hit : give
-                                    <b class="text-red-700">{log.damage}</b> damage
+                    <div
+                        class="font-mono relative w-full md:w-2/4 mt-4 md:mt-0 m-0 md:m-4 bg-[#d0d058] text-[#0f380f] rounded-lg border-4 border-[#8bac0f] shadow-[8px_8px_0px_#306230]"
+                    >
+                        <div class="p-1 md:p-4 space-y-1 md:space-y-4">
+                            <div
+                                class="absolute -top-6 left-0 right-0 text-center"
+                            >
+                                <button
+                                    disabled={status !== "idle" ||
+                                        battle.status !== "pending"}
+                                    on:click={() => attack()}
+                                    title="{(useSkillAttack != null)?useSkillAttack.name:'normal attack'}"
+                                    class="retro-btn red-retro-btn"
+                                >
+                                    Attack
+                                </button>
+                            </div>
+
+                            <div>
+                                <p
+                                    class="text-2xl font-bold text-gray-800 mb-4"
+                                >
+                                    Skill
                                 </p>
-                            {:else}
-                                <p>
-                                    <b>{getPlayer(log.from).name}</b> attack
-                                    <b>{getPlayer(log.to).name}</b>
-                                    with normal attack : give
-                                    <b class="text-red-700">{log.damage}</b> damage
-                                </p>
-                            {/if}
-                        {/each}
+                                <div
+                                    class="mt-4 flex md:grid grid-cols-0 md:grid-cols-6 gap-2 overflow-x-auto"
+                                >
+                                    {#each battle.attacker?.skills as skill, index}
+                                        <div
+                                            data-slot={index}
+                                            class="skill-slot-{index} p-1 rounded-md border-2 min-h-20 border-green-700 text-center text-xs flex justify-center items-center"
+                                        >
+                                            <button
+                                            disabled={status !== "idle" ||
+                                                battle.status !== "pending" || skill.currentCooldown > 0}
+                                                type="button"
+                                                data-skill={JSON.stringify(
+                                                    skill,
+                                                )}
+                                                on:click={() => useSkill(skill)}
+                                                on:mouseenter={handleMouseEnterSkill}
+                                                on:mouseleave={handleMouseLeave}
+                                                on:mousemove={handleMouseMove}
+                                                data-id={`${skill.id}`}
+                                                draggable="true"
+                                                class=" w-28 md:w-full relative skill-{skill.id} h-20 cursor-pointer bg-[#9bbc0f] border-2 border-green-900 rounded-md p-1 flex flex-col items-center justify-center transition-all duration-200 hover:bg-gray-400"
+                                            >
+                                                <span
+                                                    class="text-xs text-center h-8 flex items-center"
+                                                    >{skill.name}</span
+                                                >
+                                                <small
+                                                    class="absolute text-xs top-0 left-0 bg-green-700 rounded-md p-1 text-white"
+                                                    style="background-color: {battle.attacker.items.find(
+                                                        (item) => {
+                                                            return (
+                                                                item.id ===
+                                                                skill.id.split(
+                                                                    '_',
+                                                                )[1]
+                                                            );
+                                                        },
+                                                    )?.color};"
+                                                    >{battle.attacker.items.find(
+                                                        (item) => {
+                                                            return (
+                                                                item.id ===
+                                                                skill.id.split(
+                                                                    "_",
+                                                                )[1]
+                                                            );
+                                                        },
+                                                    )?.name}</small
+                                                >
+                                                {#if skill.doAttack}
+                                                    <small
+                                                        class="absolute text-xs bottom-0 left-0 bg-red-700 rounded-md p-1 text-white"
+                                                        >A</small
+                                                    >
+                                                {/if}
+
+                                                {#if skill.currentCooldown > 0}
+                                                    <small
+                                                        class="absolute text-xs bottom-0 right-0 bg-red-700 rounded-md p-1 text-white"
+                                                    >
+                                                        {skill.currentCooldown}</small
+                                                    >
+                                                {/if}
+                                            </button>
+                                        </div>
+                                    {/each}
+                                </div>
+                            </div>
+                        </div>
+                        {#if status == "attacking"}
+                            <div
+                                class="absolute bg-black bg-opacity-50 top-0 left-0 bottom-0 right-0 pointer-events-none"
+                            ></div>
+                        {/if}
+                    </div>
+
+                    <div
+                        class="hidden md:block font-mono w-1/4 m-4 bg-[#d0d058] text-[#0f380f] rounded-lg overflow-hidden border-4 border-[#8bac0f] shadow-[8px_8px_0px_#306230]"
+                    >
+                        <div class="p-4 space-y-4">
+                            <h1>Event Log</h1>
+                            <div class="h-52 overflow-y-auto" id="event-logs">
+                                {#each battle.battleLog as log}
+                                    {#if log.skill}
+                                        {#if log.skill.doAttack}
+                                            <p>
+                                                <b>{getPlayer(log.from).name}</b
+                                                >
+                                                use
+                                                <b
+                                                    class="text-blue-700"
+                                                    data-skill={JSON.stringify(
+                                                        log.skill,
+                                                    )}
+                                                    on:mouseenter={handleMouseEnterSkill}
+                                                    on:mouseleave={handleMouseLeave}
+                                                    on:mousemove={handleMouseMove}
+                                                    data-id={log.skill.id}
+                                                    >{log.skill.name}</b
+                                                >
+                                                to
+                                                <b>{getPlayer(log.to).name}</b>
+                                                : give
+                                                <b class="text-red-700"
+                                                    >{log.damage}</b
+                                                >
+                                                damage
+                                            </p>
+                                        {:else}
+                                            <p>
+                                                <b>{getPlayer(log.from).name}</b
+                                                >
+                                                using
+                                                <b
+                                                    class="text-blue-700"
+                                                    data-skill={JSON.stringify(
+                                                        log.skill,
+                                                    )}
+                                                    on:mouseenter={handleMouseEnterSkill}
+                                                    on:mouseleave={handleMouseLeave}
+                                                    on:mousemove={handleMouseMove}
+                                                    data-id={log.skill.id}
+                                                    >{log.skill.name}</b
+                                                >
+                                            </p>
+                                        {/if}
+                                    {:else if log.isCriticalHit}
+                                        <p>
+                                            <b>{getPlayer(log.from).name}</b>
+                                            attack
+                                            <b>{getPlayer(log.to).name}</b>
+                                            with critical hit : give
+                                            <b class="text-red-700"
+                                                >{log.damage}</b
+                                            > damage
+                                        </p>
+                                    {:else}
+                                        <p>
+                                            <b>{getPlayer(log.from).name}</b>
+                                            attack
+                                            <b>{getPlayer(log.to).name}</b>
+                                            with normal attack : give
+                                            <b class="text-red-700"
+                                                >{log.damage}</b
+                                            > damage
+                                        </p>
+                                    {/if}
+                                {/each}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
