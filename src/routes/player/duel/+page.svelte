@@ -10,7 +10,7 @@
 
     let search: string = "";
     let status: string = "loading";
-    let canLoadMore:boolean = false;
+    let canLoadMore: boolean = false;
 
     async function loadPlayers() {
         status = "loading";
@@ -23,8 +23,8 @@
                     q: search,
                 },
             });
-            if(response.data.data != null && response.data.data.length == 5){
-                canLoadMore = true
+            if (response.data.data != null && response.data.data.length == 5) {
+                canLoadMore = true;
             } else {
                 canLoadMore = false;
             }
@@ -50,8 +50,8 @@
                 },
             });
 
-            if(response.data.data != null && response.data.data.length == 5){
-                canLoadMore = true
+            if (response.data.data != null && response.data.data.length == 5) {
+                canLoadMore = true;
             } else {
                 canLoadMore = false;
             }
@@ -182,7 +182,7 @@
                                         <div
                                             class="flex flex-col md:flex-row gap-2 md:gap-0 items-start space-x-2"
                                         >
-                                            <div class="flex gap-1">
+                                            <div class="flex gap-1 w-56 items-center">
                                                 <img
                                                     src="https://avatars.githubusercontent.com/u/{player.id}"
                                                     alt="Pixel art character avatar"
@@ -198,28 +198,32 @@
                                                     <p class="text-sm">
                                                         Level {player.level}
                                                     </p>
+                                                    <div>
+                                                        {#each player.tags as tag}
+                                                            <div
+                                                                class="inline-block"
+                                                            >
+                                                                <div
+                                                                    class="h-6 flex ml-1 mb-1 text-center justify-center items-center text-white font-bold rounded-full px-2 text-xs"
+                                                                    style="background-color: {tag.color};"
+                                                                >
+                                                                    <span
+                                                                        >{tag.name}</span
+                                                                    >
+                                                                </div>
+                                                            </div>
+                                                           
+                                                        {/each}
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="flex-1">
-                                                {#each player.tags as tag}
-                                                    <div class="inline-block">
-                                                        <div
-                                                            class="h-6 flex ml-1 mb-1 text-center justify-center items-center text-white font-bold rounded-full px-2 text-xs"
-                                                            style="background-color: {tag.color};"
-                                                        >
-                                                            <span
-                                                                >{tag.name}</span
-                                                            >
-                                                        </div>
-                                                    </div>
-                                                {/each}
-                                            </div>
+
                                             <div class="flex-1">
                                                 <div
                                                     class="grid grid-cols-3 gap-2 text-sm"
                                                 >
                                                     <div
-                                                        class="flex justify-between items-center bg-[#9bbc0f] p-1"
+                                                        class="flex justify-between items-center bg-[#9bbc0f] p-1 gap-1"
                                                     >
                                                         <span>HP</span>
                                                         <span
@@ -230,7 +234,7 @@
                                                         >
                                                     </div>
                                                     <div
-                                                        class="flex justify-between items-center bg-[#9bbc0f] p-1"
+                                                        class="flex justify-between items-center bg-[#9bbc0f] p-1 gap-1"
                                                     >
                                                         <span>ATK</span>
                                                         <span
@@ -241,7 +245,7 @@
                                                         >
                                                     </div>
                                                     <div
-                                                        class="flex justify-between items-center bg-[#9bbc0f] p-1"
+                                                        class="flex justify-between items-center bg-[#9bbc0f] p-1 gap-1"
                                                     >
                                                         <span>STR</span>
                                                         <span
@@ -252,7 +256,7 @@
                                                         >
                                                     </div>
                                                     <div
-                                                        class="flex justify-between items-center bg-[#9bbc0f] p-1"
+                                                        class="flex justify-between items-center bg-[#9bbc0f] p-1 gap-1"
                                                     >
                                                         <span>DEF</span>
                                                         <span
@@ -263,7 +267,7 @@
                                                         >
                                                     </div>
                                                     <div
-                                                        class="flex justify-between items-center bg-[#9bbc0f] p-1"
+                                                        class="flex justify-between items-center bg-[#9bbc0f] p-1 gap-1"
                                                     >
                                                         <span>SPD</span>
                                                         <span

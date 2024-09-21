@@ -1530,5 +1530,425 @@
              ]
           }
        ]
-    }
+    },
+    {
+      "id":"typescript",
+      "name":"Arcane Codex",
+      "description":"A tome bound in ancient leather, its pages filled with intricate code that whispers secrets of combat prowess. It grants the wielder a mastery of strategy and precision, boosting their strength and defense.",
+      "type":"Weapon",
+      "effects":[
+         {
+            "name":"Codex of Strength",
+            "description":"The arcane knowledge within the codex imbues the wielder with increased physical might.",
+            "value":10,
+            "unit":"Percent",
+            "for":"Player",
+            "type":"Increase",
+            "attrTarget":"str",
+            "bonusEffects":[
+               {
+                  "sameItem":2,
+                  "bonus":5
+               },
+               {
+                  "sameItem":3,
+                  "bonus":10
+               }
+            ]
+         },
+         {
+            "name":"Defensive Script",
+            "description":"The codex's intricate scripts weave a protective aura around the wielder, bolstering their defenses.",
+            "value":15,
+            "unit":"Percent",
+            "for":"Player",
+            "type":"Increase",
+            "attrTarget":"def",
+            "bonusEffects":[
+               {
+                  "sameItem":2,
+                  "bonus":5
+               },
+               {
+                  "sameItem":3,
+                  "bonus":10
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "id":"gdscript",
+      "name":"Arcane Scriptorium",
+      "description":"A mystical tome inscribed with ancient GDScript code, granting the wielder unparalleled control over the flow of battle. Its pages hum with arcane energy, empowering the user with tactical finesse.",
+      "type":"Weapon",
+      "effects":[
+         {
+            "name":"Codex of Might",
+            "description":"Imbues the wielder with a surge of raw strength, bolstering their physical prowess.",
+            "value":120,
+            "unit":"Number",
+            "for":"Player",
+            "type":"Increase",
+            "attrTarget":"str",
+            "bonusEffects":[
+               {
+                  "sameItem":2,
+                  "bonus":10
+               },
+               {
+                  "sameItem":3,
+                  "bonus":25
+               }
+            ]
+         },
+         {
+            "name":"Swift Execution",
+            "description":"Accelerates the wielder's actions, enabling them to strike with lightning speed.",
+            "value":10,
+            "unit":"Percent",
+            "for":"Player",
+            "type":"Increase",
+            "attrTarget":"spd",
+            "bonusEffects":[
+               {
+                  "sameItem":2,
+                  "bonus":5
+               },
+               {
+                  "sameItem":3,
+                  "bonus":10
+               }
+            ]
+         },
+         {
+            "name":"Arcane Defense",
+            "description":"Enhances the wielder's defenses, creating a shimmering shield of magical energy.",
+            "value":15,
+            "unit":"Percent",
+            "for":"Player",
+            "type":"Increase",
+            "attrTarget":"def",
+            "bonusEffects":[
+               {
+                  "sameItem":2,
+                  "bonus":5
+               },
+               {
+                  "sameItem":3,
+                  "bonus":15
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "id":"mako",
+      "name":"The Serpent's Kiss",
+      "description":"A wickedly elegant dagger crafted from the fangs of a slumbering serpent, imbued with an otherworldly venom. Its touch leaves a trail of tingling energy, amplifying its wielder's power.",
+      "type":"Weapon",
+      "effects":[
+         {
+            "name":"Venomous Strike",
+            "description":"Each strike injects a potent venom that strengthens the wielder, increasing their attack power.",
+            "value":12,
+            "unit":"Percent",
+            "for":"Player",
+            "type":"Increase",
+            "attrTarget":"atk",
+            "bonusEffects":[
+               {
+                  "sameItem":2,
+                  "bonus":5
+               },
+               {
+                  "sameItem":3,
+                  "bonus":10
+               }
+            ]
+         },
+         {
+            "name":"Swiftness of the Serpent",
+            "description":"The serpent's venom quickens the wielder's reflexes, boosting their speed.",
+            "value":10,
+            "unit":"Percent",
+            "for":"Player",
+            "type":"Increase",
+            "attrTarget":"spd",
+            "bonusEffects":[
+               {
+                  "sameItem":2,
+                  "bonus":3
+               },
+               {
+                  "sameItem":3,
+                  "bonus":7
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "id":"procfile",
+      "name":"Arcane Conduit",
+      "description":"A shimmering staff imbued with ancient power, capable of channeling potent magical energies to bolster the wielder's vitality.",
+      "type":"Weapon",
+      "effects":[
+         {
+            "name":"Vitality Surge",
+            "description":"Infuses the wielder with a surge of vitality, granting them increased health.",
+            "value":10,
+            "unit":"Percent",
+            "for":"Player",
+            "type":"Increase",
+            "attrTarget":"hp",
+            "bonusEffects":[
+               {
+                  "sameItem":2,
+                  "bonus":5
+               }
+            ]
+         },
+         {
+            "name":"Forceful Strike",
+            "description":"Empowers the wielder's attacks, delivering more potent blows.",
+            "value":12,
+            "unit":"Percent",
+            "for":"Player",
+            "type":"Increase",
+            "attrTarget":"atk",
+            "bonusEffects":[
+               {
+                  "sameItem":2,
+                  "bonus":3
+               }
+            ]
+         },
+         {
+            "name":"Swiftness",
+            "description":"Increases the wielder's speed, enabling quicker attacks and dodges.",
+            "value":15,
+            "unit":"Percent",
+            "for":"Player",
+            "type":"Increase",
+            "attrTarget":"spd",
+            "bonusEffects":[
+               {
+                  "sameItem":2,
+                  "bonus":5
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "id":"nix",
+      "name":"The Shadow Weaver",
+      "description":"A dark and ancient staff forged from the very essence of shadow. It grants its wielder the ability to manipulate the shadows, both to enhance their own strength and weaken their enemies.",
+      "type":"Weapon",
+      "effects":[
+         {
+            "name":"Shadow Embrace",
+            "description":"Embrace the power of the shadows, granting a temporary boost to your physical might.",
+            "value":12,
+            "unit":"Percent",
+            "for":"Player",
+            "type":"Increase",
+            "attrTarget":"atk",
+            "bonusEffects":[
+               {
+                  "sameItem":2,
+                  "bonus":5
+               }
+            ]
+         },
+         {
+            "name":"Shadow Weave",
+            "description":"Weave shadows into a protective barrier, increasing your resilience to attacks.",
+            "value":10,
+            "unit":"Percent",
+            "for":"Player",
+            "type":"Increase",
+            "attrTarget":"def",
+            "bonusEffects":[
+               {
+                  "sameItem":2,
+                  "bonus":3
+               }
+            ]
+         },
+         {
+            "name":"Shadow Drain",
+            "description":"Drain the life force of your opponent, weakening their resolve.",
+            "value":8,
+            "unit":"Percent",
+            "for":"Enemy",
+            "type":"Decrease",
+            "attrTarget":"hp",
+            "bonusEffects":[
+               {
+                  "sameItem":2,
+                  "bonus":2
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "id":"cmake",
+      "name":"The Builder's Staff",
+      "description":"A staff crafted from ancient, enchanted wood, imbued with the power to construct and manipulate code. Its user can command the very essence of the game, shaping its flow and structure with ease.",
+      "type":"Weapon",
+      "effects":[
+         {
+            "name":"Code Optimization",
+            "description":"Enhances the wielder's computational prowess, bolstering their speed and attack strength.",
+            "value":15,
+            "unit":"Percent",
+            "for":"Player",
+            "type":"Increase",
+            "attrTarget":"spd",
+            "bonusEffects":[
+               {
+                  "sameItem":2,
+                  "bonus":5
+               },
+               {
+                  "sameItem":3,
+                  "bonus":10
+               }
+            ]
+         },
+         {
+            "name":"Structural Integrity",
+            "description":"Augments the wielder's resilience, making them more resistant to attacks and fortifying their defense.",
+            "value":15,
+            "unit":"Percent",
+            "for":"Player",
+            "type":"Increase",
+            "attrTarget":"def",
+            "bonusEffects":[
+               {
+                  "sameItem":2,
+                  "bonus":3
+               },
+               {
+                  "sameItem":3,
+                  "bonus":6
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "id":"visual-basic-6-0",
+      "name":"The Codeweaver's Staff",
+      "description":"A staff imbued with the power of Visual Basic 6.0, this artifact allows its wielder to manipulate the very fabric of reality through code. It grants a mastery over the elements, capable of summoning potent spells and enhancing their abilities.",
+      "type":"Weapon",
+      "effects":[
+         {
+            "name":"Code-Weaving",
+            "description":"A surge of energy flows through the wielder, boosting their power. This power scales with the complexity of their code.",
+            "value":10,
+            "unit":"Percent",
+            "for":"Player",
+            "type":"Increase",
+            "attrTarget":"atk",
+            "bonusEffects":[
+               {
+                  "sameItem":2,
+                  "bonus":5
+               },
+               {
+                  "sameItem":3,
+                  "bonus":10
+               }
+            ]
+         },
+         {
+            "name":"Logic of the Ancients",
+            "description":"The staff resonates with the ancient wisdom of programming, imbuing the wielder with a deep understanding of the world. This understanding grants them increased resilience and tactical advantage.",
+            "value":15,
+            "unit":"Percent",
+            "for":"Player",
+            "type":"Increase",
+            "attrTarget":"def",
+            "bonusEffects":[
+               {
+                  "sameItem":2,
+                  "bonus":3
+               },
+               {
+                  "sameItem":3,
+                  "bonus":6
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "id":"ejs",
+      "name":"Emerald Whispers",
+      "description":"A slender wand crafted from an ancient emerald, it hums with a mystical energy that enhances the wielder's vitality.  Its touch is said to invigorate the spirit and grant strength.",
+      "type":"Weapon",
+      "effects":[
+         {
+            "name":"Vital Spark",
+            "description":"Infuses the wielder with a burst of restorative energy, bolstering their health.",
+            "value":12,
+            "unit":"Percent",
+            "for":"Player",
+            "type":"Increase",
+            "attrTarget":"hp",
+            "bonusEffects":[
+               {
+                  "sameItem":2,
+                  "bonus":5
+               },
+               {
+                  "sameItem":3,
+                  "bonus":10
+               }
+            ]
+         },
+         {
+            "name":"Emerald Vigor",
+            "description":"Empowers the wielder with a surge of vitality, increasing their strength and attack power.",
+            "value":10,
+            "unit":"Percent",
+            "for":"Player",
+            "type":"Increase",
+            "attrTarget":"str",
+            "bonusEffects":[
+               {
+                  "sameItem":2,
+                  "bonus":3
+               },
+               {
+                  "sameItem":3,
+                  "bonus":6
+               }
+            ]
+         },
+         {
+            "name":"Swiftness of the Green",
+            "description":"Enhances the wielder's agility, granting them swiftness and a boost to their speed.",
+            "value":8,
+            "unit":"Percent",
+            "for":"Player",
+            "type":"Increase",
+            "attrTarget":"spd",
+            "bonusEffects":[
+               {
+                  "sameItem":2,
+                  "bonus":2
+               },
+               {
+                  "sameItem":3,
+                  "bonus":4
+               }
+            ]
+         }
+      ]
+   }
  ]

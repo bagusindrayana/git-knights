@@ -1,4 +1,4 @@
-import { MONGO_URL } from '$env/static/private';
+import { MONGO_URL,MONGO_DATABASE } from '$env/static/private';
 import { MongoClient } from 'mongodb';
 import type { Battle } from './models/battle';
 
@@ -7,7 +7,7 @@ const client = new MongoClient(MONGO_URL);
 // connect to the database
 export async function connect(): Promise<{ client: MongoClient, db: any }> {
     await client.connect();
-    const db = client.db('git-knights');
+    const db = client.db(MONGO_DATABASE);
     return { client, db };
 }
 

@@ -46,6 +46,7 @@ export const POST: RequestHandler = async (event): Promise<Response> => {
                         itemData.name = item.name;
                         itemData.quantity = item.quantity;
                         itemData.color = item.color;
+                        itemData.exp = item.exp;
 
                     }
                     return itemData;

@@ -310,7 +310,7 @@ class Item {
     public skills: ItemSkill[] = [];
 
     constructor(
-        attributes?: { id: string, name: string, description: string, quantity: number, type?: ItemType, effects?: ItemEffect[], color?: string }
+        attributes?: { id: string, name: string, description: string, quantity: number, type?: ItemType, effects?: ItemEffect[], color?: string, exp?: number }
     ) {
         if (attributes) {
             this.id = attributes.id.toLowerCase().replace(' ', '-');
@@ -320,6 +320,7 @@ class Item {
             this.type = attributes.type || ItemType.Weapon;
             this.effects = attributes.effects || [];
             this.color = attributes.color || '';
+            this.exp = attributes.exp || 0;
         }
     }
 
@@ -332,7 +333,8 @@ class Item {
             description: obj.description,
             quantity: obj.quantity,
             type: ItemType[obj.type as keyof typeof ItemType],
-            color: obj.color
+            color: obj.color,
+            exp: obj.exp || 0
         });
 
         if (obj.effects) {
@@ -350,19 +352,49 @@ class Item {
         return ni;
     }
 
+    public currentItemEffect(effect: ItemEffect){
+        const itemLevel = this.currentLevel();
+        let result = 0;
+        if(effect.unit == EffectUnit.Percent){
+            result = effect.value * Math.pow(1+0.03,itemLevel-1);
+        } else {
+            result = effect.value + (itemLevel*itemLevel) * 0.3;
+        }
+        return Math.round(result);
+       
+    }
+
+    public currentItemSkillEffect(effect: ItemSkillEffect){
+        const itemLevel = this.currentLevel();
+
+        let result = 0;
+        if(effect.unit == EffectUnit.Percent){
+            result = effect.value * Math.pow(1+0.03,itemLevel-1);
+        } else {
+            result = effect.value + (itemLevel*itemLevel) * 0.5;
+        }
+        return Math.round(result);
+    }
+
+    public currentItemSkillDamage(skill: ItemSkill){
+        const itemLevel = this.currentLevel();
+        return Math.round(skill.baseDamage + (itemLevel*itemLevel) * 0.2) + Math.round((skill.ultimateDamage || 0) + (itemLevel*itemLevel) * 0.2)
+       
+    }
+
     public currentLevel(){
-        let baseXP = 1000;
+        let baseXP = 500000;
         let level = 1;
-        while (this.exp >= baseXP * level * (1 + level / 1000)) {
+        while (this.exp >= baseXP * level * (1 + level / baseXP)) {
             level++;
         }
         return level;
     }
 
     public nextExp(){
-        let baseXP = 1000;
+        let baseXP = 500000;
         let level = this.currentLevel();
-        return baseXP * level * (1 + level / 1000);
+        return baseXP * level * (1 + level / baseXP);
     }
 
     //to json
@@ -734,7 +766,7 @@ class Player {
                             }
                         });
                     }
-                    let nilaiBonus:number = effect.value;
+                    let nilaiBonus:number = item.currentItemEffect(effect);
                     if (effect.unit == "Percent") {
                         if (effect.type == "Increase") {
                             val +=

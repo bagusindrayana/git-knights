@@ -262,7 +262,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="flex-1">
+                                            <div class="flex w-48">
                                                 {#each player.tags as tag}
                                                     <div class="inline-block">
                                                         <div

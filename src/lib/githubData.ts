@@ -201,7 +201,7 @@ async function queryData(username: string) {
         atk: 90,
         def: 75,
         profile:{
-            name: user.name,
+            name: user.name ?? username,
             id: userId
         }
     });
@@ -216,6 +216,7 @@ async function queryData(username: string) {
     let totalClosedIssues = 0;
     let totalStars = 0;
     let totalXP = 0;
+    let totalSize = 0;
     user.repositories.nodes.forEach((repo: any) => {
         if (repo.isFork) {
             totalFork++;
@@ -224,6 +225,7 @@ async function queryData(username: string) {
 
             //languages
             repo.languages.edges.forEach((lang: any) => {
+                totalSize += lang.size;
                 if (!listLanguages.includes(lang.node.name)) {
                     listLanguages.push(lang.node.name);
                     languages.push({
@@ -274,6 +276,7 @@ async function queryData(username: string) {
     
                 //languages
                 repo.languages.edges.forEach((lang: any) => {
+                    totalSize += lang.size;
                     if (!listLanguages.includes(lang.node.name)) {
                         listLanguages.push(lang.node.name);
                         languages.push({
@@ -317,11 +320,12 @@ async function queryData(username: string) {
         (totalClosedIssues * 5) +
         (user.followers.totalCount * 5) +
         (listLanguages.length * 5) +
-        (user.repositories.totalCount * 2);
+        (totalNotFork * 2) +
+        Math.round((totalSize/100000));
     playerData.exp = totalXP;
 
 
-    playerData.hp = 75 + (user.repositories.totalCount * 100) + ((playerData.currentLevel() - 1) * 50);
+    playerData.hp = 75 + (totalNotFork * 100) + ((playerData.currentLevel() - 1) * 50);
     playerData.strength = 75 + (totalPR * 25) + ((playerData.currentLevel() - 1) * 5);
     playerData.attack = 75 + (listLanguages.length * 15) + ((playerData.currentLevel() - 1) * 50);
     playerData.speed = 75 + (totalAcceptedPR * 50) + ((playerData.currentLevel() - 1) * 50);
@@ -334,6 +338,7 @@ async function queryData(username: string) {
             ni.name = languages[i].name;
             ni.quantity = languages[i].quantity;
             ni.color = languages[i].color;
+            ni.exp = languages[i].size;
             const listSkill = skills.find((skill: any) => skill.id === ni.id)?.skills || [];
             ni.skills = listSkill.map((skill: any) => { return ItemSkill.fromJson(JSON.stringify(skill)) });
             items.push(ni);

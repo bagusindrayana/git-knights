@@ -3,9 +3,10 @@
     import Chart from "chart.js/auto";
     import { onMount } from "svelte";
     import axios from "axios";
-    import { ItemSkill, Player } from "../../lib/models/player";
+    import { Item, ItemSkill, Player } from "../../lib/models/player";
     import { signOut } from "@auth/sveltekit/client";
     import skills from "../../lib/data/skill.json";
+    import announcement from "../../lib/data/announcement.json";
     import Shepherd from "shepherd.js";
     import PushNotification from "../../components/PushNotification.svelte";
     import Tooltip from "../../components/Tooltip.svelte";
@@ -31,11 +32,16 @@
 
     let playerDataChart: Chart;
     let availableSkills: ItemSkill[] = [];
-    let activeTab: string = $page.url.searchParams ? $page.url.searchParams.get("tab") ?? "char_stats" : "char_stats";
+    let activeTab: string = $page.url.searchParams
+        ? ($page.url.searchParams.get("tab") ?? "char_stats")
+        : "char_stats";
     let pushNotificaton: any = null;
 
     let newUser: boolean = true;
     let introTab: boolean[] = [false, false, false];
+
+    let progressAnnouncement = 0;
+    let showAnnouncement = true;
 
     function setActiveTab(tabId: string) {
         let query = new URLSearchParams($page.url.searchParams.toString());
@@ -321,6 +327,18 @@ DEF: accumulation of levels with number of issues`,
     }
 
     onMount(async () => {
+        const d1 = Date.now();
+        const d2 = Date.parse(announcement.date);
+        if(d1 >= d2){
+            showAnnouncement = false;
+        }
+        let interval = setInterval(() => {
+            progressAnnouncement += 1;
+            if (progressAnnouncement >= 105) {
+                clearInterval(interval);
+                showAnnouncement = false;
+            }
+        }, 100);
         status = "loading";
         try {
             await getUserData();
@@ -556,8 +574,8 @@ DEF: accumulation of levels with number of issues`,
 
     function handleMouseEnterItem(e: any) {
         showTooltip = true;
-        const item = JSON.parse(e.currentTarget.getAttribute("data-item"));
-        tooltipTitle = item.name;
+        const item = Item.fromJson(e.currentTarget.getAttribute("data-item"));
+        tooltipTitle = `${item.name} Lvl.${item.currentLevel()}`;
         let desc = item.description;
         desc += `<hr>
         <div class="w-full grid grid-cols-2 gap-1">
@@ -566,7 +584,7 @@ DEF: accumulation of levels with number of issues`,
         <ul class="list-disc">`;
         item.effects.forEach((effect: any) => {
             desc += `<li class="break-words">
-                <span class="break-words">${effect.name}: ${effect.type} ${effect.value}${effect.unit == "Percent" ? "%" : ""} ${effect.for} ${effect.attrTarget.toUpperCase()}</span>
+                <span class="break-words">${effect.name}: ${effect.type} ${item.currentItemEffect(effect)}${effect.unit == "Percent" ? "%" : ""} ${effect.for} ${effect.attrTarget.toUpperCase()}</span>
                
             `;
 
@@ -589,7 +607,7 @@ DEF: accumulation of levels with number of issues`,
             desc += `</li>`;
         });
         desc += `</ul></div>
-        <div class="break-words">
+        <div class="break-words ml-4">
         <b>Skills:</b>
         <ul class="list-disc">`;
         let itemSkills = skills.find(
@@ -608,6 +626,16 @@ DEF: accumulation of levels with number of issues`,
         const skill = ItemSkill.fromJson(
             e.currentTarget.getAttribute("data-skill"),
         );
+        const splitId = skill.id.split("_");
+        // console.log(splitId[splitId.length-1]);
+
+        // let itemSkill = skills.find(
+        //     (s: any) => s.skills.find((sk:any)=>sk.id == skill.id) != null,
+        // );
+        // console.log(itemSkill);
+
+        let item: Item = playerData.getItem(splitId[1])!;
+
         tooltipTitle = skill.name;
         let desc = skill.description;
 
@@ -624,13 +652,13 @@ DEF: accumulation of levels with number of issues`,
         <b class="text-green-800"> Cooldown : ${skill.cooldownRound} turns</b>`;
         if (skill.doAttack == true) {
             desc += `<br>
-                    <b class="text-green-800"> Base Damage : ${skill.baseDamage + (skill.ultimateDamage ?? 0)}</b> `;
+                    <b class="text-green-800"> Base Damage : ${item.currentItemSkillDamage(skill)}</b> `;
         }
         if (skill.effects.length > 0) {
             desc += `<hr><b>Effects:</b><ul class="list-disc">`;
             skill.effects.forEach((effect: any) => {
                 desc += `<li>
-                    ${effect.name}: ${effect.type} ${effect.value}${effect.unit == "Percent" ? "%" : ""} ${effect.for} ${effect.attrTarget.toUpperCase()}
+                    ${effect.name}: ${effect.type} ${item.currentItemSkillEffect(effect)}${effect.unit == "Percent" ? "%" : ""} ${effect.for} ${effect.attrTarget.toUpperCase()}
                     </li>
                 `;
             });
@@ -1070,6 +1098,21 @@ DEF: accumulation of levels with number of issues`,
         {tooltipContent}
     />
 
+    {#if showAnnouncement}
+        <div
+            class="fixed top-0 left-0 w-full bg-white border border-black p-4 z-50 text-center"
+        >
+            <p class="mb-2">
+                {announcement.text}
+            </p>
+            <div class="relative w-full h-1 bg-gray-200 overflow-hidden">
+                <div
+                    class="absolute top-0 left-0 h-full bg-red-500"
+                    style="width: {progressAnnouncement}%; transition:all 0.5s ease-out;"
+                ></div>
+            </div>
+        </div>
+    {/if}
     <div class="container mx-auto p-0 md:p-8">
         <div class="flex items-center justify-center">
             <div
@@ -1079,24 +1122,26 @@ DEF: accumulation of levels with number of issues`,
                     <div
                         class="flex items-center flex-col md:flex-row justify-between"
                     >
-                        <div class="flex items-center w-full md:w-auto flex-col md:flex-row">
+                        <div
+                            class="flex items-center w-full md:w-auto flex-col md:flex-row"
+                        >
                             <div
-                                class="flex justify-between  w-full md:w-24 items-center flex-row md:flex-col"
-                            >   
-                            <div class="flex flex-col justify-center gap-1">
-                                <img
-                                    class="w-24 h-24 rounded-full border-4 border-green-700"
-                                    src={$page.data.session?.user?.image ??
-                                        "https://via.placeholder.com/150"}
-                                    alt="Character Avatar"
-                                />
-                                <button
-                                    on:click={() => signOut()}
-                                    class=" block md:hidden retro-btn red-retro-btn retro-btn-sm"
-                                    >Logout</button
-                                >
-                            </div>
-                                
+                                class="flex justify-between w-full md:w-24 items-center flex-row md:flex-col"
+                            >
+                                <div class="flex flex-col justify-center gap-1">
+                                    <img
+                                        class="w-24 h-24 rounded-full border-4 border-green-700"
+                                        src={$page.data.session?.user?.image ??
+                                            "https://via.placeholder.com/150"}
+                                        alt="Character Avatar"
+                                    />
+                                    <button
+                                        on:click={() => signOut()}
+                                        class=" block md:hidden retro-btn red-retro-btn retro-btn-sm"
+                                        >Logout</button
+                                    >
+                                </div>
+
                                 <div class="flex md:hidden flex-col">
                                     <h1
                                         class="text-3xl font-bold text-gray-900"
@@ -1647,9 +1692,11 @@ DEF: accumulation of levels with number of issues`,
                                                             {#if slot != null}
                                                                 {playerData.getItem(
                                                                     slot,
-                                                                )?.name} ({countSkills(
-                                                                    slot,
-                                                                )} Skill)
+                                                                )?.name} Lvl.{playerData
+                                                                    .getItem(
+                                                                        slot,
+                                                                    )
+                                                                    ?.currentLevel()}
                                                             {:else}
                                                                 0
                                                             {/if}
@@ -1675,9 +1722,6 @@ DEF: accumulation of levels with number of issues`,
                                                             on:mousemove={handleMouseMove}
                                                             on:dragstart={dragStart}
                                                             data-id={`${skill.id}`}
-                                                            data-item={JSON.stringify(
-                                                                skill,
-                                                            )}
                                                             draggable="true"
                                                             class="relative w-full skill-{skill.id} h-20 cursor-pointer bg-[#9bbc0f] border-2 border-green-900 rounded-md p-1 flex flex-col items-center justify-center transition-all duration-200 hover:bg-gray-400"
                                                         >

@@ -8,6 +8,7 @@
         EffectUnit,
         ItemEffect,
         ItemSkillEffect,
+        Item,
     } from "$lib/models/player";
     import { onMount } from "svelte";
     import axios from "axios";
@@ -436,6 +437,15 @@
                 </div>`;
         }
 
+        const splitId = skill.id.split("_");
+        console.log(splitId);
+        let item = null;
+        if (from == "player"){
+            item = player.getItem(splitId[1])!
+        } else {
+            item = enemyPlayer.getItem(splitId[1])!
+        }
+
         await timer(1600);
         playerElm!.innerHTML = "";
         enemyElm!.innerHTML = "";
@@ -456,7 +466,7 @@
                                     : "buff"
                             ].sound;
                         playerAdio!.play();
-                        playerElm!.innerHTML += `<div class="hit-text bg-${effect.type == EffectType.Decrease ? "red" : "green"}-500">${effect.type == EffectType.Decrease ? "-" : "+"}${effect.value}${effect.unit == EffectUnit.Percent ? "%" : ""} ${effect.attrTarget}</div>`;
+                        playerElm!.innerHTML += `<div class="hit-text bg-${effect.type == EffectType.Decrease ? "red" : "green"}-500">${effect.type == EffectType.Decrease ? "-" : "+"}${item.currentItemSkillEffect(effect)}${effect.unit == EffectUnit.Percent ? "%" : ""} ${effect.attrTarget}</div>`;
                         playerElm!.innerHTML += `<div class="animation-effect ${effect.type == EffectType.Decrease ? "debuff" : "buff"}-animation"/>`;
                     } else {
                         arenaElm.classList.remove("move-left");
@@ -469,7 +479,7 @@
                                     : "buff"
                             ].sound;
                         enemyAudio!.play();
-                        enemyElm!.innerHTML += `<div class="hit-text bg-${effect.type == EffectType.Decrease ? "red" : "green"}-500">${effect.type == EffectType.Decrease ? "-" : "+"}${effect.value}${effect.unit == EffectUnit.Percent ? "%" : ""} ${effect.attrTarget}</div>`;
+                        enemyElm!.innerHTML += `<div class="hit-text bg-${effect.type == EffectType.Decrease ? "red" : "green"}-500">${effect.type == EffectType.Decrease ? "-" : "+"}${item.currentItemSkillEffect(effect)}${effect.unit == EffectUnit.Percent ? "%" : ""} ${effect.attrTarget}</div>`;
                         enemyElm!.innerHTML += `<div class="animation-effect ${effect.type == EffectType.Decrease ? "debuff" : "buff"}-animation"/>`;
                     }
                 } else {
@@ -484,7 +494,7 @@
                                     : "buff"
                             ].sound;
                         playerAdio!.play();
-                        enemyElm!.innerHTML += `<div class="hit-text bg-${effect.type == EffectType.Decrease ? "red" : "green"}-500">${effect.type == EffectType.Decrease ? "-" : "+"}${effect.value}${effect.unit == EffectUnit.Percent ? "%" : ""} ${effect.attrTarget}</div>`;
+                        enemyElm!.innerHTML += `<div class="hit-text bg-${effect.type == EffectType.Decrease ? "red" : "green"}-500">${effect.type == EffectType.Decrease ? "-" : "+"}${item.currentItemSkillEffect(effect)}${effect.unit == EffectUnit.Percent ? "%" : ""} ${effect.attrTarget}</div>`;
                         enemyElm!.innerHTML += `<div class="animation-effect ${effect.type == EffectType.Decrease ? "debuff" : "buff"}-animation"/>`;
                     } else {
                         arenaElm.classList.remove("move-right");
@@ -497,7 +507,7 @@
                                     : "buff"
                             ].sound;
                         enemyAudio!.play();
-                        playerElm!.innerHTML += `<div class="hit-text bg-${effect.type == EffectType.Decrease ? "red" : "green"}-500">${effect.type == EffectType.Decrease ? "-" : "+"}${effect.value}${effect.unit == EffectUnit.Percent ? "%" : ""} ${effect.attrTarget}</div>`;
+                        playerElm!.innerHTML += `<div class="hit-text bg-${effect.type == EffectType.Decrease ? "red" : "green"}-500">${effect.type == EffectType.Decrease ? "-" : "+"}${item.currentItemSkillEffect(effect)}${effect.unit == EffectUnit.Percent ? "%" : ""} ${effect.attrTarget}</div>`;
                         playerElm!.innerHTML += `<div class="animation-effect ${effect.type == EffectType.Decrease ? "debuff" : "buff"}-animation"/>`;
                     }
                 }
@@ -651,16 +661,16 @@
                         if (res.data.damageResult.isCriticalHit) {
                             enemyAudio.src = animations["big-hit"].sound;
                             enemyAudio.play();
-                            enemyElm!.innerHTML += `<div class="hit-text text-red-700">${res.data.damageResult.finalDamage}</div>`;
+                            enemyElm!.innerHTML += `<div class="hit-text text-red-700 bg-red-500">${res.data.damageResult.finalDamage}</div>`;
                             await addEffectAnimation(enemyElm!, "big-hit");
                         } else {
                             enemyAudio.src = animations["hit"].sound;
                             enemyAudio.play();
-                            enemyElm!.innerHTML += `<div class="hit-text text-yellow-700">${res.data.damageResult.finalDamage}</div>`;
+                            enemyElm!.innerHTML += `<div class="hit-text text-yellow-700 bg-yellow-500">${res.data.damageResult.finalDamage}</div>`;
                             await addEffectAnimation(enemyElm!, "hit");
                         }
                     } else {
-                        enemyElm!.innerHTML += `<div class="hit-text text-gray-700">Miss</div>`;
+                        enemyElm!.innerHTML += `<div class="hit-text text-gray-700  bg-gray-500">Miss</div>`;
                         enemyAudio!.src = "/sounds/35_Miss_Evade_02.wav";
                         enemyAudio!.play();
                     }
@@ -687,8 +697,11 @@
                 }
             })
             .catch((err) => {
-                status = "error : " + err;
+                // status = "error : " + err;
+                alert("Error : "+err)
                 console.log(err);
+                status = "idle";
+                enemyTurn = false;
             });
     }
 
@@ -789,17 +802,29 @@
                 }, 500);
             })
             .catch((err) => {
-                status = "error : " + err;
+                alert("Error : "+err)
                 console.log(err);
+                status = "idle";
                 enemyTurn = false;
             });
     }
 
+  
     function handleMouseEnterSkill(e: any) {
         showTooltip = true;
         const skill = ItemSkill.fromJson(
             e.currentTarget.getAttribute("data-skill"),
         );
+        const splitId = skill.id.split("_");
+        let item:Item = player.getItem(splitId[1])!;
+
+          // console.log(splitId[splitId.length-1]);
+
+        // let itemSkill = skills.find(
+        //     (s: any) => s.skills.find((sk:any)=>sk.id == skill.id) != null,
+        // );
+        // console.log(itemSkill);
+
         tooltipTitle = skill.name;
         let desc = skill.description;
 
@@ -807,26 +832,38 @@
             desc += `<br>
             <b class="text-red-600"> Attack Skill </b>`;
         }
-
+        // if (skill.isUltimate === true) {
+        //     desc += `<br>
+        //     <b class="text-red-800"> Ultimate Skill </b>`;
+        // }
         desc += `
         <br>
         <b class="text-green-800"> Cooldown : ${skill.cooldownRound} turns</b>`;
         if (skill.doAttack == true) {
             desc += `<br>
-                    <b class="text-green-800"> Base Damage : ${skill.baseDamage + (skill.ultimateDamage ?? 0)}</b> `;
+                    <b class="text-green-800"> Base Damage : ${item.currentItemSkillDamage(skill)}</b> `;
         }
-
         if (skill.effects.length > 0) {
             desc += `<hr><b>Effects:</b><ul class="list-disc">`;
             skill.effects.forEach((effect: any) => {
                 desc += `<li>
-                    ${effect.name}: ${effect.type} ${effect.value}${effect.unit == "Percent" ? "%" : ""} ${effect.for} ${effect.attrTarget.toUpperCase()}
+                    ${effect.name}: ${effect.type} ${item.currentItemSkillEffect(effect)}${effect.unit == "Percent" ? "%" : ""} ${effect.for} ${effect.attrTarget.toUpperCase()}
                     </li>
                 `;
             });
             desc += `</ul>`;
         }
 
+        // if (skill.isUltimate) {
+        //     desc += `<hr><b>Activate:</b><ul class="list-disc">`;
+        //     skill.ultimateRequires?.forEach((require: any) => {
+        //         desc += `<li>
+        //         Need use ${require.skillLanguageAmmount} ${require.skillLanguage} type skill in battle
+        //         </li>
+        //     `;
+        //     });
+        //     desc += `</ul>`;
+        // }
         tooltipContent = desc;
     }
 
@@ -1304,11 +1341,11 @@
                         name={`${player.name}`}
                         level={player.currentLevel()}
                         hp={battle.attacker?.hp}
-                        currentHp={battle.attacker?.currentHp}
-                        attack={battle.attacker?.attack}
-                        strength={battle.attacker?.strength}
-                        defense={battle.attacker?.defense}
-                        speed={battle.attacker?.speed}
+                        currentHp={battle.attacker?.currentHp || 0}
+                        attack={battle.attacker?.attack || 0}
+                        strength={battle.attacker?.strength || 0}
+                        defense={battle.attacker?.defense || 0}
+                        speed={battle.attacker?.speed || 0}
                     >
                         <div
                             class="  hidden md:grid grid-cols-2 md:grid-cols-3 gap-2"

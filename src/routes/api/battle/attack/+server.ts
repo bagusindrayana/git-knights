@@ -1,5 +1,5 @@
 import { BasePlayer, Battle, BattleLog } from "$lib/models/battle";
-import { ItemSkill } from "$lib/models/player";
+import { Item, ItemSkill, Player } from "$lib/models/player";
 import { getBattleData, insertBattleData, getPlayer, insertData } from "$lib/mongo";
 import { json, type RequestHandler } from "@sveltejs/kit";
 
@@ -32,10 +32,10 @@ function getSkillEffect(attacker: {
     defense: number,
     speed: number,
     strength: number
-}, skill?: ItemSkill) {
+},player:Player, skill?: ItemSkill) {
     if (!skill) return { attacker, defender, newAttacker: attacker, newDefender: defender };
-
-
+    const splitId = skill.id.split("_");
+    let item:Item = player.getItem(splitId[1])!;
     const newAttacker = { ...attacker };
     const newDefender = { ...defender };
 
@@ -54,7 +54,7 @@ function getSkillEffect(attacker: {
             if (attr == "hp") {
                 attrVal = attacker.currentHp;
             }
-            let nilaiBonus: number = effect.value;
+            let nilaiBonus: number = item.currentItemSkillEffect(effect);
             if (effect.unit == "Percent") {
                 if (effect.type == "Increase") {
                     effectPlayer +=
@@ -71,7 +71,7 @@ function getSkillEffect(attacker: {
                 }
             }
         } else {
-            let nilaiBonus: number = effect.value;
+            let nilaiBonus: number = item.currentItemSkillEffect(effect);
             let attrVal = newDefender[attr as DefenderKey];
             if (attr == "hp") {
                 attrVal = defender.currentHp;
@@ -141,44 +141,76 @@ function calculateDamage(skillDamage:number,attacker: {
     strength: number
 }): any {
 
-    const defenderDamageReduction = (defender.defense) / ((defender.defense) + 50); // Mengurangi damage berdasarkan DEF musuh
+    // const defenderDamageReduction = defender.defense > 0 ? (defender.defense) / ((defender.defense) + 50) : 50; // Mengurangi damage berdasarkan DEF musuh
 
-    // Penggunaan STR penyerang untuk meningkatkan damage
-    let baseDamage = skillDamage+(((attacker.strength) + (attacker.strength) * 0.3) * (1 - defenderDamageReduction));
+    // // Penggunaan STR penyerang untuk meningkatkan damage
+    // let baseDamage = (((skillDamage + attacker.attack) + (attacker.strength * 2)) * (attacker.strength/(defender.strength > 0 ? defender.strength : attacker.strength))) * (1 - defenderDamageReduction);
 
-    // Pengurangan tambahan oleh STR musuh
-    const strengthReduction = (defender.strength) * 0.1; // STR musuh mengurangi damage lebih lanjut
-    if (strengthReduction > baseDamage) {
-        baseDamage = baseDamage - (strengthReduction / 2);
-    } else {
-        baseDamage = baseDamage - strengthReduction;
-    }
+    // // Pengurangan tambahan oleh STR musuh
+    // const strengthReduction = (defender.strength) * 0.1; // STR musuh mengurangi damage lebih lanjut
+    // if (strengthReduction > baseDamage) {
+    //     baseDamage = baseDamage - (strengthReduction / 2);
+    // } else {
+    //     baseDamage = baseDamage - strengthReduction;
+    // }
 
-    baseDamage = Math.max(1, baseDamage);
+    // baseDamage = Math.max(1, baseDamage);
 
-    // Menggunakan HP musuh sebagai faktor random untuk damage
-    const randomFactor = 1 + (Math.random() * 0.1) * ((defender.hp) / 100); // Random 0-10% tergantung HP musuh
-    let totalDamage = baseDamage * randomFactor;
+    // // Menggunakan HP musuh sebagai faktor random untuk damage
+    // const randomFactor = 1 + (Math.random() * 0.1) * ((defender.hp) / 100); // Random 0-10% tergantung HP musuh
+    // let totalDamage = baseDamage * randomFactor;
 
-    totalDamage = Math.max(0, Math.round(totalDamage));
+    // totalDamage = Math.max(0, Math.round(totalDamage));
 
 
+    // const criticalHitChance = (attacker.strength) / ((attacker.strength) + (defender.speed));
+    // const isCriticalHit = Math.random() < criticalHitChance;
+
+    // if (isCriticalHit) {
+    //     totalDamage *= 2;
+    // }
+
+    // const evasionChance = calculateEvasionChance(attacker.speed, defender.speed);
+    // const rnd = Math.random();
+    // const isDodge = rnd < evasionChance;
+    // if (isDodge) {
+    //     totalDamage = 0;
+    // }
+
+    // return {
+    //     finalDamage: totalDamage,
+    //     isCriticalHit: isCriticalHit,
+    //     isDodge: isDodge,
+    // };
+
+    const atkMod = attacker.attack + attacker.strength;
+    const defMod = defender.defense + defender.strength / 2;
+
+
+    
+
+    // Chance for critical hit (maximum 50%)
     const criticalHitChance = (attacker.strength) / ((attacker.strength) + (defender.speed));
     const isCriticalHit = Math.random() < criticalHitChance;
 
+    // Base damage
+    let damage = Math.max(0, (skillDamage + atkMod) - defMod);
+
+    // Apply critical multiplier if critical hit
     if (isCriticalHit) {
-        totalDamage *= 2;
+        damage *= 2;
     }
+
 
     const evasionChance = calculateEvasionChance(attacker.speed, defender.speed);
     const rnd = Math.random();
     const isDodge = rnd < evasionChance;
     if (isDodge) {
-        totalDamage = 0;
+        damage = 0;
     }
 
     return {
-        finalDamage: totalDamage,
+        finalDamage: Math.max(0,damage),
         isCriticalHit: isCriticalHit,
         isDodge: isDodge,
     };
@@ -219,6 +251,8 @@ export const POST: RequestHandler = async (event): Promise<Response> => {
         }
     });
 
+    let player: Player = Player.fromJson(JSON.stringify(await getPlayer(findAttacker.playerId)));
+    let skilDamage = 0;
     const effectData = (skill && skill.currentCooldown == 0) ? getSkillEffect({
         hp: findAttacker.hp,
         currentHp: findAttacker.currentHp,
@@ -233,7 +267,7 @@ export const POST: RequestHandler = async (event): Promise<Response> => {
         defense: findDefender.defense,
         speed: findDefender.speed,
         strength: findDefender.strength
-    }, ItemSkill.fromJson(JSON.stringify(skill))) : getSkillEffect({
+    },player, ItemSkill.fromJson(JSON.stringify(skill))) : getSkillEffect({
         hp: findAttacker.hp,
         currentHp: findAttacker.currentHp,
         attack: findAttacker.attack,
@@ -247,10 +281,15 @@ export const POST: RequestHandler = async (event): Promise<Response> => {
         defense: findDefender.defense,
         speed: findDefender.speed,
         strength: findDefender.strength
-    });
-    let skilDamage = 0;
+    },player);
     if(skill){
-        skilDamage = skill.baseDamage+skill.ultimateDamage
+        const splitId = skill.id.split("_");
+
+        
+        let item:Item = player.getItem(splitId[1])!;
+        skilDamage = item.currentItemSkillDamage(skill) + (findAttacker.strength/2);
+
+        
     }
     const damageResult = calculateDamage(skilDamage,{
         hp: findAttacker.hp,
