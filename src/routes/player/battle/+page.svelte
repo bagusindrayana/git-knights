@@ -147,25 +147,39 @@
     }
 
     function setAnimationColor(container: any, player: any) {
-        player.selectHelmetTipColor(
-            container,
-            player.characterColor.helmetTipColor,
-        );
-        player.selectHelmetColor(container, player.characterColor.helmetColor);
-        player.selectVisorColor(container, player.characterColor.visorColor);
-        player.selectSwordColor(container, player.characterColor.swordColor);
-        player.seletcHandColor(container, player.characterColor.handColor);
-        player.seletcRightFootColor(
-            container,
-            player.characterColor.rightFootColor,
-        );
-        player.seletcLeftFootColor(
-            container,
-            player.characterColor.leftFootColor,
-        );
-        player.seletcShieldColor(container, player.characterColor.shieldColor);
-        player.seletcBodydColor(container, player.characterColor.bodyColor);
-        player.selectSkinColor(container, player.characterColor.skinColor);
+        try {
+            player.selectHelmetTipColor(
+                container,
+                player.characterColor.helmetTipColor,
+            );
+            player.selectHelmetColor(
+                container,
+                player.characterColor.helmetColor,
+            );
+            player.selectVisorColor(
+                container,
+                player.characterColor.visorColor,
+            );
+            player.selectSwordColor(
+                container,
+                player.characterColor.swordColor,
+            );
+            player.seletcHandColor(container, player.characterColor.handColor);
+            player.seletcRightFootColor(
+                container,
+                player.characterColor.rightFootColor,
+            );
+            player.seletcLeftFootColor(
+                container,
+                player.characterColor.leftFootColor,
+            );
+            player.seletcShieldColor(
+                container,
+                player.characterColor.shieldColor,
+            );
+            player.seletcBodydColor(container, player.characterColor.bodyColor);
+            player.selectSkinColor(container, player.characterColor.skinColor);
+        } catch (error) {}
     }
 
     function playerAnimationColor() {
@@ -243,82 +257,103 @@
     }
 
     async function startBattle() {
-        const response = await axios.post("/api/battle/init", {
-            attackerId: player.id,
-            defenderId: enemyPlayer.id,
-        });
-
-        battle = Battle.fromJson(JSON.stringify(response.data.data));
-        round = battle.round;
-
-        setTimeout(() => {
-            playerIdleAnimation();
-            enemyIdleAnimation();
-
-            playerAnimationIdle = lottie.loadAnimation({
-                container: document.getElementById("player-animation-idle")!, // the dom element that will contain the animation
-                renderer: "svg",
-                loop: true,
-                autoplay: true,
-                path:
-                    window.location.protocol +
-                    "//" +
-                    window.location.host +
-                    "/Chibi_Knight_Idle.lottie.json", // the path to the animation json
+        try {
+            const response = await axios.post("/api/battle/init", {
+                attackerId: player.id,
+                defenderId: enemyPlayer.id,
             });
 
-            playerAnimationIdle.addEventListener("DOMLoaded", function () {
-                playerAnimationColor();
-            });
+            
 
-            playerAnimationAttack = lottie.loadAnimation({
-                container: document.getElementById("player-animation-attack")!, // the dom element that will contain the animation
-                renderer: "svg",
-                loop: false,
-                autoplay: false,
-                path:
-                    window.location.protocol +
-                    "//" +
-                    window.location.host +
-                    "/Chibi_Knight_Attack.lottie.json", // the path to the animation json
-            });
+            battle = Battle.fromJson(JSON.stringify(response.data.data));
+            round = battle.round;
+            dataStatus = "done";
+            setTimeout(() => {
+                playerIdleAnimation();
+                enemyIdleAnimation();
 
-            playerAnimationAttack.addEventListener("DOMLoaded", function () {
-                playerAnimationColor();
-            });
+                playerAnimationIdle = lottie.loadAnimation({
+                    container: document.getElementById(
+                        "player-animation-idle",
+                    )!, // the dom element that will contain the animation
+                    renderer: "svg",
+                    loop: true,
+                    autoplay: true,
+                    path:
+                        window.location.protocol +
+                        "//" +
+                        window.location.host +
+                        "/Chibi_Knight_Idle.lottie.json", // the path to the animation json
+                });
 
-            enemyAnimationIdle = lottie.loadAnimation({
-                container: document.getElementById("enemy-animation-idle")!, // the dom element that will contain the animation
-                renderer: "svg",
-                loop: true,
-                autoplay: true,
-                path:
-                    window.location.protocol +
-                    "//" +
-                    window.location.host +
-                    "/Chibi_Knight_Idle.lottie.json", // the path to the animation json
-            });
+                playerAnimationIdle.addEventListener("DOMLoaded", function () {
+                    playerAnimationColor();
+                });
 
-            enemyAnimationIdle.addEventListener("DOMLoaded", function () {
-                enemyAnimationColor();
-            });
+                playerAnimationAttack = lottie.loadAnimation({
+                    container: document.getElementById(
+                        "player-animation-attack",
+                    )!, // the dom element that will contain the animation
+                    renderer: "svg",
+                    loop: false,
+                    autoplay: false,
+                    path:
+                        window.location.protocol +
+                        "//" +
+                        window.location.host +
+                        "/Chibi_Knight_Attack.lottie.json", // the path to the animation json
+                });
 
-            enemyAnimationAttack = lottie.loadAnimation({
-                container: document.getElementById("enemy-animation-attack")!, // the dom element that will contain the animation
-                renderer: "svg",
-                loop: false,
-                autoplay: false,
-                path:
-                    window.location.protocol +
-                    "//" +
-                    window.location.host +
-                    "/Chibi_Knight_Attack.lottie.json", // the path to the animation json
-            });
+                playerAnimationAttack.addEventListener(
+                    "DOMLoaded",
+                    function () {
+                        playerAnimationColor();
+                    },
+                );
 
-            enemyAnimationAttack.addEventListener("DOMLoaded", function () {
-                enemyAnimationColor();
-            });
-        }, 300);
+                enemyAnimationIdle = lottie.loadAnimation({
+                    container: document.getElementById("enemy-animation-idle")!, // the dom element that will contain the animation
+                    renderer: "svg",
+                    loop: true,
+                    autoplay: true,
+                    path:
+                        window.location.protocol +
+                        "//" +
+                        window.location.host +
+                        "/Chibi_Knight_Idle.lottie.json", // the path to the animation json
+                });
+
+                enemyAnimationIdle.addEventListener("DOMLoaded", function () {
+                    enemyAnimationColor();
+                });
+
+                enemyAnimationAttack = lottie.loadAnimation({
+                    container: document.getElementById(
+                        "enemy-animation-attack",
+                    )!, // the dom element that will contain the animation
+                    renderer: "svg",
+                    loop: false,
+                    autoplay: false,
+                    path:
+                        window.location.protocol +
+                        "//" +
+                        window.location.host +
+                        "/Chibi_Knight_Attack.lottie.json", // the path to the animation json
+                });
+
+                enemyAnimationAttack.addEventListener("DOMLoaded", function () {
+                    enemyAnimationColor();
+                });
+            }, 300);
+        } catch (error:any) {
+            
+            if (error.response != undefined && error.status != 200) {
+                dataStatus = "Ops : " + error.response.data.message;
+            } else {
+                dataStatus = "Error : " + error;
+            }
+            status = "error";
+        }
     }
 
     async function loadAllData() {
@@ -337,7 +372,7 @@
             dataStatus = "starting battle...";
             await startBattle();
 
-            dataStatus = "done";
+            
         } catch (error: any) {
             console.log(error);
             dataStatus = "error : " + error.message;
@@ -438,12 +473,11 @@
         }
 
         const splitId = skill.id.split("_");
-        console.log(splitId);
         let item = null;
-        if (from == "player"){
-            item = player.getItem(splitId[1])!
+        if (from == "player") {
+            item = player.getItem(splitId[1])!;
         } else {
-            item = enemyPlayer.getItem(splitId[1])!
+            item = enemyPlayer.getItem(splitId[1])!;
         }
 
         await timer(1600);
@@ -698,7 +732,7 @@
             })
             .catch((err) => {
                 // status = "error : " + err;
-                alert("Error : "+err)
+                alert("Error : " + err);
                 console.log(err);
                 status = "idle";
                 enemyTurn = false;
@@ -802,23 +836,22 @@
                 }, 500);
             })
             .catch((err) => {
-                alert("Error : "+err)
+                alert("Error : " + err);
                 console.log(err);
                 status = "idle";
                 enemyTurn = false;
             });
     }
 
-  
     function handleMouseEnterSkill(e: any) {
         showTooltip = true;
         const skill = ItemSkill.fromJson(
             e.currentTarget.getAttribute("data-skill"),
         );
         const splitId = skill.id.split("_");
-        let item:Item = player.getItem(splitId[1])!;
+        let item: Item = player.getItem(splitId[1])!;
 
-          // console.log(splitId[splitId.length-1]);
+        // console.log(splitId[splitId.length-1]);
 
         // let itemSkill = skills.find(
         //     (s: any) => s.skills.find((sk:any)=>sk.id == skill.id) != null,
@@ -1210,14 +1243,14 @@
         {tooltipContent}
     />
 
-    {#if dataStatus.includes("error")}
+    {#if dataStatus.includes("error") || dataStatus.includes("Ops") || dataStatus.includes("Error")}
         <div class="w-full flex flex-col items-center justify-center p-4 h-lvh">
-            <p class="text-lg mt-4">{dataStatus}</p>
+            <p class="text-lg mt-4 bg-red-600 text-white p-2">{dataStatus}</p>
             <div class="flex flex-col mt-2 gap-2">
                 <button class="retro-btn blue-retro-btn" on:click={loadAllData}>
                     Retry...
                 </button>
-                <a class="retro-btn yellow-retro-btn" href="/player"> Back </a>
+                <a class="retro-btn yellow-retro-btn" href="/player?tab=battle"> Back </a>
             </div>
         </div>
     {:else if dataStatus != "done"}

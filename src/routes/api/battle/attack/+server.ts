@@ -408,7 +408,6 @@ export const POST: RequestHandler = async (event): Promise<Response> => {
         battleData.status = "win";
         if (battleData.attacker.playerId != battleData.defender.playerId) {
             const player = await getPlayer(battleData.attacker.playerId);
-            console.log("prev score : ",player.score);
             if(battleData.defender.playerLevel > battleData.attacker.playerLevel){
                 player.score += 5 * (battleData.defender.playerLevel-battleData.attacker.playerLevel);
                 battleData.score = 5 * (battleData.defender.playerLevel-battleData.attacker.playerLevel);

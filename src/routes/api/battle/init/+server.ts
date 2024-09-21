@@ -1,6 +1,6 @@
 import { Battle, Attacker, Defender } from "$lib/models/battle";
 import { Item, ItemSkill, Player } from "$lib/models/player";
-import { getPlayer, insertBattleData, getBattleData } from "$lib/mongo";
+import { getPlayer, insertBattleData, getBattleData,countBattleToday } from "$lib/mongo";
 import { json, type RequestHandler } from "@sveltejs/kit";
 import skills from "$lib/data/skill.json";
 
@@ -9,10 +9,29 @@ export const POST: RequestHandler = async (event): Promise<Response> => {
 
     const attackerJson = await getPlayer(attackerId.toString());
     const defenderJson = await getPlayer(defenderId.toString());
+    if(!attackerJson || !defenderJson){
+        return json({
+            message:"player not found"
+        },{
+            status:404
+        });
+    }
+
+    
+    
     const attackerPlayer: Player = Player.fromJson(JSON.stringify(attackerJson));
     attackerPlayer.applyEquipedEffect();
     const defenderPlayer: Player = Player.fromJson(JSON.stringify(defenderJson));
     defenderPlayer.applyEquipedEffect();
+
+    const countToday = await countBattleToday(attackerPlayer.id!,defenderPlayer.id!);
+    if(countToday >= 5){
+        return json({
+            message:"Enough, you already beat this player to many times today, try duel with other player"
+        },{
+            status:405
+        });
+    }
 
     const attackerEquipedItems:Item[] = attackerPlayer.getEquipedItems();
     const defenderEquipedItems:Item[] = defenderPlayer.getEquipedItems();
