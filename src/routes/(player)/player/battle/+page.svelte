@@ -1,5 +1,5 @@
 <script lang="ts">
-    import "../../../skill.css";
+    import "../../../../skill.css";
     import {
         ItemSkill,
         Player,
