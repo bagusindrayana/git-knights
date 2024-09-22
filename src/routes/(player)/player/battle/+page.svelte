@@ -13,10 +13,10 @@
     import { onMount } from "svelte";
     import axios from "axios";
     import { page } from "$app/stores";
-    import skills from "../../../lib/data/skill.json";
-    import Tooltip from "../../../components/Tooltip.svelte";
+    import skills from "../../../../lib/data/skill.json";
+    import Tooltip from "../../../../components/Tooltip.svelte";
     import { Battle } from "$lib/models/battle";
-    import PlayerCard from "../../../components/PlayerCard.svelte";
+    import PlayerCard from "../../../../components/PlayerCard.svelte";
     import lottie from "lottie-web";
 
     const animations: { [key: string]: any } = {

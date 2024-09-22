@@ -3,13 +3,13 @@
     import Chart from "chart.js/auto";
     import { onMount } from "svelte";
     import axios from "axios";
-    import { Item, ItemSkill, Player } from "../../lib/models/player";
+    import { Item, ItemSkill, Player } from "../../../lib/models/player";
     import { signOut } from "@auth/sveltekit/client";
-    import skills from "../../lib/data/skill.json";
-    import announcement from "../../lib/data/announcement.json";
+    import skills from "../../../lib/data/skill.json";
+    import announcement from "../../../lib/data/announcement.json";
     import Shepherd from "shepherd.js";
-    import PushNotification from "../../components/PushNotification.svelte";
-    import Tooltip from "../../components/Tooltip.svelte";
+    import PushNotification from "../../../components/PushNotification.svelte";
+    import Tooltip from "../../../components/Tooltip.svelte";
     import lottie from "lottie-web";
     import { goto } from "$app/navigation";
 
