@@ -9,7 +9,7 @@
 
     let search: string = "";
     let status: string = "loading";
-    let canLoadMore:boolean = false;
+    let canLoadMore: boolean = false;
 
     async function loadPlayers() {
         status = "loading";
@@ -22,8 +22,8 @@
                 },
             });
 
-            if(response.data.data != null && response.data.data.length == 5){
-                canLoadMore = true
+            if (response.data.data != null && response.data.data.length == 5) {
+                canLoadMore = true;
             } else {
                 canLoadMore = false;
             }
@@ -49,8 +49,8 @@
                 },
             });
 
-            if(response.data.data != null && response.data.data.length == 5){
-                canLoadMore = true
+            if (response.data.data != null && response.data.data.length == 5) {
+                canLoadMore = true;
             } else {
                 canLoadMore = false;
             }
@@ -92,7 +92,7 @@
     <title>TOP PLAYER</title>
 </svelte:head>
 <div class="container mx-auto p-0 md:p-8">
-    <div class="flex items-center justify-center mt-4">
+    <div class="flex items-center justify-center mt-0 md:mt-4">
         <div class="main-card">
             <div class=" p-2 md:p-8">
                 <div
@@ -150,7 +150,7 @@
                                 >
                                     <div class="p-2 space-y-2">
                                         <div
-                                            class="flex flex-col md:flex-row gap-2 md:gap-0 items-start space-x-2 relative"
+                                            class="flex flex-col md:flex-row gap-2 items-start relative"
                                         >
                                             {#if index == 0}
                                                 <div
@@ -241,28 +241,34 @@
                                                     >
                                                 </div>
                                             {/if}
-                                            <div class="flex gap-1">
-                                                <img
-                                                    src="https://avatars.githubusercontent.com/u/{player.id}"
-                                                    alt="Pixel art character avatar"
-                                                    class="w-16 h-16 border-2 border-[#0f380f]"
-                                                />
-                                                <div>
-                                                    <h2
-                                                        class=" font-bold tracking-tight leading-none mb-1 text-shadow-[2px_2px_0px_#306230]"
-                                                    >
-                                                        {player.name}
-                                                    </h2>
-                                                    <p class="text-sm">
-                                                        Level {player.level}
-                                                    </p>
-                                                    <p>
-                                                        Score : {player.score}
-                                                    </p>
+                                            <div class="flex flex-col  w-full md:w-3/12">
+                                                <div class="flex gap-1 ">
+                                                    <div class="w-16">
+                                                        <img
+                                                            src="https://avatars.githubusercontent.com/u/{player.id}"
+                                                            alt="Pixel art character avatar"
+                                                            class="w-16 h-16 border-2 border-[#0f380f]"
+                                                        />
+                                                        
+                                                    </div>
+                                                    <div>
+                                                        <h2
+                                                            class=" font-bold tracking-tight leading-none mb-1 text-shadow-[2px_2px_0px_#306230]"
+                                                        >
+                                                            {player.name}
+                                                        </h2>
+                                                        <p class="text-sm">
+                                                            Level {player.level}
+                                                        </p>
+                                                    </div>
                                                 </div>
+                                                <p>
+                                                    Score : {player.score}
+                                                </p>
+                                                
                                             </div>
 
-                                            <div class="flex w-48">
+                                            <div class="flex  w-full md:w-2/12">
                                                 {#each player.tags as tag}
                                                     <div class="inline-block">
                                                         <div
@@ -276,7 +282,7 @@
                                                     </div>
                                                 {/each}
                                             </div>
-                                            <div class="flex-1">
+                                            <div class=" w-full md:w-6/12">
                                                 <div
                                                     class="grid grid-cols-3 gap-2 text-sm"
                                                 >
@@ -337,9 +343,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div
-                                                class="flex flex-col gap-1 justify-center"
-                                            >
+                                            <div class="flex flex-col gap-1 justify-center w-full md:w-1/12" >
                                                 <a
                                                     href="/player/battle?id={player.id}"
                                                     class="retro-btn red-retro-btn retro-btn-sm"

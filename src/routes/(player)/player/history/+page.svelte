@@ -88,7 +88,7 @@
     <title>My Battle History</title>
 </svelte:head>
 <div class="container mx-auto p-0 md:p-8">
-    <div class="flex items-center justify-center mt-4">
+    <div class="flex items-center justify-center  mt-0 md:mt-4">
         <div class="main-card">
             <div class=" p-2 md:p-8">
                 <div
@@ -151,9 +151,9 @@
                                     >
                                         <div class="p-2 space-y-2">
                                             <div
-                                                class="flex flex-col md:flex-row gap-2 md:gap-0 items-start space-x-2"
+                                                class="flex flex-col md:flex-row gap-2 items-start"
                                             >
-                                                <div class="flex gap-1 w-52">
+                                                <div class="flex gap-1 w-full md:w-2/6">
                                                     <img
                                                         src="https://avatars.githubusercontent.com/u/{battle
                                                             .defender.id}"
@@ -174,7 +174,7 @@
                                                         </p>
                                                     </div>
                                                 </div>
-                                                <div class="flex-1">
+                                                <div class="w-full md:w-3/6">
                                                     <div
                                                         class="grid grid-cols-3 gap-2 text-sm"
                                                     >
@@ -236,7 +236,7 @@
                                                     </div>
                                                 </div>
                                                 <div
-                                                    class="flex flex-col gap-1"
+                                                    class="flex flex-wor md:flex-col gap-1 w-full md:w-1/6"
                                                 >
                                                     {#if battle.status == "win"}
                                                         <div

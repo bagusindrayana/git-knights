@@ -94,7 +94,7 @@
     <title>D-D-D-DUELLLLLL</title>
 </svelte:head>
 <div class="container mx-auto p-0 md:p-8">
-    <div class="flex items-center justify-center mt-4">
+    <div class="flex items-center justify-center mt-0 md:mt-4">
         <div class="main-card">
             <div class=" p-2 md:p-8">
                 <div
@@ -134,6 +134,7 @@
                             <button
                                 on:click={() => {
                                     filter = "recomended";
+                                    page = 1;
                                     players = [];
                                     loadPlayers();
                                 }}
@@ -147,6 +148,7 @@
                             <button
                                 on:click={() => {
                                     filter = "all";
+                                    page = 1;
                                     players = [];
                                     loadPlayers();
                                 }}
@@ -179,10 +181,8 @@
                                     class="font-mono bg-[#d0d058] text-[#0f380f] rounded-lg overflow-hidden border-4 border-[#8bac0f]"
                                 >
                                     <div class="p-2 space-y-2">
-                                        <div
-                                            class="flex flex-col md:flex-row gap-2 md:gap-0 items-start space-x-2"
-                                        >
-                                            <div class="flex gap-1 w-56 items-center">
+                                        <div class="flex flex-col md:flex-row gap-2 items-start ">
+                                            <div class="flex gap-1  w-full md:w-2/6 items-center">
                                                 <img
                                                     src="https://avatars.githubusercontent.com/u/{player.id}"
                                                     alt="Pixel art character avatar"
@@ -218,7 +218,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="flex-1">
+                                            <div class="flex-1  w-full md:w-3/6">
                                                 <div
                                                     class="grid grid-cols-3 gap-2 text-sm"
                                                 >
@@ -279,9 +279,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div
-                                                class="flex flex-col gap-1 justify-center"
-                                            >
+                                            <div class="flex flex-col gap-1 justify-center w-full md:w-1/6">
                                                 <a
                                                     href="/player/battle?id={player.id}"
                                                     class="retro-btn red-retro-btn retro-btn-sm"

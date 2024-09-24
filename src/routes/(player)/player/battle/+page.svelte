@@ -473,6 +473,7 @@
         }
 
         const splitId = skill.id.split("_");
+       
         let item = null;
         if (from == "player") {
             item = player.getItem(splitId[1])!;
@@ -673,6 +674,7 @@
                 originalAttacker: true,
             })
             .then(async (res) => {
+                document.getElementById("background-filter")!.style.backdropFilter = "brightness(0.3)";
                 const enemyElm = document.getElementById("enemy-effect");
                 const enemyAudio = document.getElementById(
                     "enemy-audio",
@@ -710,6 +712,7 @@
                     }
                 }
                 battle = Battle.fromJson(JSON.stringify(res.data.battleData));
+                document.getElementById("background-filter")!.style.backdropFilter = "brightness(1)";
 
                 setTimeout(() => {
                     scrollEventLogs();
@@ -763,7 +766,7 @@
                 randomSkill = skills[Math.floor(Math.random() * skills.length)];
             }
         }
-
+        document.getElementById("background-filter")!.style.backdropFilter = "brightness(0.3)";
         const apiUrl = "/api/battle/attack";
         axios
             .post(apiUrl, {
@@ -807,9 +810,10 @@
                         playerElm!.innerHTML += `<div class="hit-text text-gray-700">Miss</div>`;
                         playerAudio!.src = "/sounds/35_Miss_Evade_02.wav";
                         playerAudio!.play();
+                        console.log(playerElm!.innerHTML);
                     }
                 }
-
+                document.getElementById("background-filter")!.style.backdropFilter = "brightness(1)";
                 // battle.attacker.currentHp = res.data.attacker.currentHp;
                 // battle.attacker.attack = res.data.attacker.attack;
                 // battle.attacker.defense = res.data.attacker.defense;
@@ -826,7 +830,7 @@
 
                 round = round + 1;
                 status = "idle";
-                playerElm!.innerHTML = "";
+                // playerElm!.innerHTML = "";
                 // if (battle.status != "pending") {
                 //     alert(battle.status);
                 // }
@@ -849,7 +853,12 @@
             e.currentTarget.getAttribute("data-skill"),
         );
         const splitId = skill.id.split("_");
-        let item: Item = player.getItem(splitId[1])!;
+        let item: Item | undefined;
+        if(e.currentTarget.getAttribute("data-from") == enemyPlayer.id){
+            item = enemyPlayer.getItem(splitId[1])
+        } else{
+            item = player.getItem(splitId[1]);
+        }
 
         // console.log(splitId[splitId.length-1]);
 
@@ -874,13 +883,13 @@
         <b class="text-green-800"> Cooldown : ${skill.cooldownRound} turns</b>`;
         if (skill.doAttack == true) {
             desc += `<br>
-                    <b class="text-green-800"> Base Damage : ${item.currentItemSkillDamage(skill)}</b> `;
+                    <b class="text-green-800"> Base Damage : ${item!.currentItemSkillDamage(skill)}</b> `;
         }
         if (skill.effects.length > 0) {
             desc += `<hr><b>Effects:</b><ul class="list-disc">`;
             skill.effects.forEach((effect: any) => {
                 desc += `<li>
-                    ${effect.name}: ${effect.type} ${item.currentItemSkillEffect(effect)}${effect.unit == "Percent" ? "%" : ""} ${effect.for} ${effect.attrTarget.toUpperCase()}
+                    ${effect.name}: ${effect.type} ${item!.currentItemSkillEffect(effect)}${effect.unit == "Percent" ? "%" : ""} ${effect.for} ${effect.attrTarget.toUpperCase()}
                     </li>
                 `;
             });
@@ -1136,13 +1145,17 @@
         button[disabled] {
             cursor: no-drop;
         }
+        
+        #background-filter {
+            transition:all 0.5s;
+        }
     </style>
 </svelte:head>
 
 <main class="w-full h-screen font-mono bg-arena overflow-hidden">
     {#if enemyTurn}
         <div
-            class="text-center absolute bg-[#d05858] text-[#380f0f] rounded-lg overflow-hidden border-4 border-[#ac0f0f] shadow-[8px_8px_0px_#380f0f] m-4 mt-20 md:mt-4 p-4 w-full md:w-1/3 mx-auto left-0 right-0"
+            class="z-50 text-center absolute bg-[#d05858] text-[#380f0f] rounded-lg overflow-hidden border-4 border-[#ac0f0f] shadow-[8px_8px_0px_#380f0f] m-4 mt-20 md:mt-4 p-4 w-full md:w-1/3 mx-auto left-0 right-0"
         >
             <h2 class="font-bold text-white text-2xl">ENEMY TURN</h2>
         </div>
@@ -1172,10 +1185,11 @@
                 <p class="text-xl text-green-700 mb-6 pixel-font">
                     Congratulations, knight! You've conquered the arena!
                 </p>
+                <p class="text-2xl text-green-500 mb-6">
+                    +{battle.score}
+                </p>
                 <div class="space-y-4">
-                    <!-- <button class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded pixel-font">
-                    Next Level
-                </button> -->
+                   
                     <a
                         href="/player/duel"
                         class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded pixel-font"
@@ -1207,6 +1221,9 @@
                 </h2>
                 <p class="text-xl text-yellow-300 mb-6 pixel-font">
                     Don't give up, knight! The duel awaits your return!
+                </p>
+                <p class="text-2xl text-red-500 mb-6">
+                    {battle.score}
                 </p>
                 <div class="space-y-4">
                     <a
@@ -1261,45 +1278,44 @@
             <p class="text-lg mt-4">{dataStatus}</p>
         </div>
     {:else}
-        <div
-            class="w-full h-screen flex flex-col justify-center font-mono bg-arena overflow-hidden"
-        >
-            <div class="w-full flex justify-around" id="arena">
-                <div
-                    class="h-40 w-40 relative flex justify-center items-center"
-                >
-                    <div
-                        class="h-40 w-40 absolute flex justify-center items-center"
-                        id="player-character"
+        <div class="w-full h-screen flex flex-col justify-center font-mono bg-arena overflow-hidden">
+            <div class="w-full h-screen flex justify-around items-center" id="background-filter">
+                <div class="w-full flex justify-around items-center " id="arena">
+                    <div class="h-40 w-40 relative flex justify-center items-center"
                     >
-                        <div id="player-animation-idle" class="absolute"></div>
                         <div
-                            id="player-animation-attack"
-                            class="absolute"
+                            class="h-40 w-40 absolute flex justify-center items-center"
+                            id="player-character"
+                        >
+                            <div id="player-animation-idle" class="absolute"></div>
+                            <div
+                                id="player-animation-attack"
+                                class="absolute"
+                            ></div>
+                        </div>
+                        <div
+                            class="h-40 w-40 relative flex justify-center items-center"
+                            id="player-effect"
                         ></div>
+                        <audio src="" id="player-audio" class="hidden"></audio>
                     </div>
+    
                     <div
                         class="h-40 w-40 relative flex justify-center items-center"
-                        id="player-effect"
-                    ></div>
-                    <audio src="" id="player-audio" class="hidden"></audio>
-                </div>
-
-                <div
-                    class="h-40 w-40 relative flex justify-center items-center"
-                >
-                    <div
-                        class="h-40 w-40 absolute flex justify-center items-center"
-                        id="enemy-character"
                     >
-                        <div id="enemy-animation-idle" class="absolute"></div>
-                        <div id="enemy-animation-attack" class="absolute"></div>
+                        <div
+                            class="h-40 w-40 absolute flex justify-center items-center"
+                            id="enemy-character"
+                        >
+                            <div id="enemy-animation-idle" class="absolute"></div>
+                            <div id="enemy-animation-attack" class="absolute"></div>
+                        </div>
+                        <div
+                            class="h-40 w-40 relative flex justify-center items-center"
+                            id="enemy-effect"
+                        ></div>
+                        <audio src="" id="enemy-audio" class="hidden"></audio>
                     </div>
-                    <div
-                        class="h-40 w-40 relative flex justify-center items-center"
-                        id="enemy-effect"
-                    ></div>
-                    <audio src="" id="enemy-audio" class="hidden"></audio>
                 </div>
             </div>
         </div>
@@ -1519,6 +1535,7 @@
                                                 use
                                                 <b
                                                     class="text-blue-700"
+                                                    data-from="{log.from}"
                                                     data-skill={JSON.stringify(
                                                         log.skill,
                                                     )}
@@ -1543,6 +1560,7 @@
                                                 using
                                                 <b
                                                     class="text-blue-700"
+                                                    data-from="{log.from}"
                                                     data-skill={JSON.stringify(
                                                         log.skill,
                                                     )}

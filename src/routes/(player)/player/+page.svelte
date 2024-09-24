@@ -1114,7 +1114,7 @@ DEF: accumulation of levels with number of issues`,
         </div>
     {/if}
     <div class="container mx-auto p-0 md:p-8">
-        <div class="flex items-center justify-center">
+        <div class="flex items-center justify-center mt-0 md:mt-4">
             <div
                 class="w-full max-w-5xl min-h-screen md:min-h-28 font-mono bg-[#d0d058] text-[#0f380f] rounded-lg overflow-hidden border-4 border-[#8bac0f] shadow-[8px_8px_0px_#306230]"
             >

@@ -21,7 +21,7 @@
                {
                   "name":"Strength Enhancement",
                   "description":"Increases your Strength.",
-                  "value":130,
+                  "value":190,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -31,7 +31,7 @@
                {
                   "name":"Speed Surge",
                   "description":"Boosts your Speed.",
-                  "value":90,
+                  "value":210,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -58,7 +58,7 @@
                {
                   "name":"Defense Boost",
                   "description":"Increases your Defense.",
-                  "value":90,
+                  "value":210,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -85,7 +85,7 @@
                {
                   "name":"Defense Weakening",
                   "description":"Decreases your opponent's Defense.",
-                  "value":110,
+                  "value":100,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -112,7 +112,7 @@
                {
                   "name":"Attack Enhancement",
                   "description":"Increases your Attack power.",
-                  "value":150,
+                  "value":180,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -126,10 +126,10 @@
             "name":"JavaScript Manipulation",
             "description":"Use JavaScript to manipulate your opponent's health, dealing a significant blow.",
             "animation":"magic",
-            "baseDamage":158,
+            "baseDamage":19,
             "doAttack":true,
             "isUltimate":true,
-            "ultimateDamage":531,
+            "ultimateDamage":220,
             "ultimateAnimation":"ultimate-magic-3",
             "ultimateRequire":[
                {
@@ -142,7 +142,7 @@
                {
                   "name":"Health Drain",
                   "description":"Drains your opponent's Health.",
-                  "value":150,
+                  "value":120,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -175,7 +175,7 @@
                {
                   "name":"Strength Boost",
                   "description":"Increase strength by 150 points.",
-                  "value":100,
+                  "value":130,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -185,7 +185,7 @@
                {
                   "name":"Attack Boost",
                   "description":"Increase attack by 120 points.",
-                  "value":150,
+                  "value":120,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -212,7 +212,7 @@
                {
                   "name":"Speed Surge",
                   "description":"Increase speed by 10%.",
-                  "value":5,
+                  "value":3,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -222,7 +222,7 @@
                {
                   "name":"Agility Boost",
                   "description":"Increase defense by 8%.",
-                  "value":1,
+                  "value":4,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -249,7 +249,7 @@
                {
                   "name":"Weaken Defenses",
                   "description":"Decrease enemy's defense by 10%.",
-                  "value":2,
+                  "value":5,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -281,15 +281,15 @@
             "name":"Object Literal",
             "description":"Create an object to unleash a devastating attack.",
             "animation":"explosion",
-            "baseDamage":200,
+            "baseDamage":11,
             "doAttack":true,
             "isUltimate":true,
-            "ultimateDamage":400,
+            "ultimateDamage":270,
             "ultimateAnimation":"ultimate-explosion-3",
             "ultimateRequire":[
                {
                   "skillLanguage":"javascript",
-                  "skillLanguageAmmount":2
+                  "skillLanguageAmmount":3
                }
             ],
             "cooldownRound":6,
@@ -297,7 +297,7 @@
                {
                   "name":"Object Destruction",
                   "description":"Inflict massive damage to the enemy.",
-                  "value":120,
+                  "value":210,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -330,7 +330,7 @@
                {
                   "name":"Wind Speed",
                   "description":"Increases speed by 100.",
-                  "value":120,
+                  "value":160,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -367,7 +367,7 @@
                {
                   "name":"Bloodthirsty",
                   "description":"Increases attack by 7%.",
-                  "value":1,
+                  "value":5,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -377,7 +377,7 @@
                {
                   "name":"Vulnerability",
                   "description":"Decreases defense by 3%.",
-                  "value":1,
+                  "value":2,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Decrease",
@@ -404,7 +404,7 @@
                {
                   "name":"Unbreakable",
                   "description":"Increases defense by 125.",
-                  "value":130,
+                  "value":90,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -414,7 +414,7 @@
                {
                   "name":"Fortitude",
                   "description":"Increases HP by 150.",
-                  "value":120,
+                  "value":110,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -428,15 +428,15 @@
             "name":"Shadow Strike",
             "description":"A swift and silent strike from the shadows, increases attack and speed, but weakens defense.",
             "animation":"slash",
-            "baseDamage":104,
+            "baseDamage":15,
             "doAttack":true,
             "isUltimate":true,
-            "ultimateDamage":391,
+            "ultimateDamage":460,
             "ultimateAnimation":"ultimate-slash-4",
             "ultimateRequire":[
                {
                   "skillLanguage":"blade",
-                  "skillLanguageAmmount":2
+                  "skillLanguageAmmount":5
                }
             ],
             "cooldownRound":6,
@@ -444,7 +444,7 @@
                {
                   "name":"Shadow Speed",
                   "description":"Increases speed by 150.",
-                  "value":130,
+                  "value":150,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -454,7 +454,7 @@
                {
                   "name":"Shadow Fury",
                   "description":"Increases attack by 10%.",
-                  "value":1,
+                  "value":4,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -464,7 +464,7 @@
                {
                   "name":"Shadow Vulnerability",
                   "description":"Decreases defense by 5%.",
-                  "value":4,
+                  "value":5,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Decrease",
@@ -497,7 +497,7 @@
                {
                   "name":"Attack Power Boost",
                   "description":"Increases your attack power.",
-                  "value":170,
+                  "value":200,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -507,7 +507,7 @@
                {
                   "name":"Speed Surge",
                   "description":"Increases your speed.",
-                  "value":90,
+                  "value":180,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -534,7 +534,7 @@
                {
                   "name":"Defense Reduction",
                   "description":"Decreases the enemy's defense.",
-                  "value":2,
+                  "value":4,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -544,7 +544,7 @@
                {
                   "name":"Massive Damage",
                   "description":"Deals massive damage to the enemy.",
-                  "value":130,
+                  "value":200,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -571,7 +571,7 @@
                {
                   "name":"Attack Power Reduction",
                   "description":"Decreases the enemy's attack power.",
-                  "value":3,
+                  "value":5,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -595,15 +595,15 @@
             "name":"Object-Oriented Obliteration",
             "description":"A devastating attack that obliterates the enemy's object, dealing massive damage and reducing their strength.",
             "animation":"explosion",
-            "baseDamage":120,
+            "baseDamage":12,
             "doAttack":true,
             "isUltimate":true,
-            "ultimateDamage":450,
+            "ultimateDamage":400,
             "ultimateAnimation":"ultimate-explosion-3",
             "ultimateRequire":[
                {
                   "skillLanguage":"php",
-                  "skillLanguageAmmount":3
+                  "skillLanguageAmmount":1
                }
             ],
             "cooldownRound":8,
@@ -611,7 +611,7 @@
                {
                   "name":"Strength Reduction",
                   "description":"Decreases the enemy's strength.",
-                  "value":1,
+                  "value":4,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -644,7 +644,7 @@
                {
                   "name":"Attack Boost",
                   "description":"Increases attack power.",
-                  "value":200,
+                  "value":190,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -654,7 +654,7 @@
                {
                   "name":"Defensive Wall",
                   "description":"Enhances your defensive capabilities.",
-                  "value":130,
+                  "value":190,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -681,7 +681,7 @@
                {
                   "name":"Speed Reduction",
                   "description":"Decreases the enemy's speed.",
-                  "value":5,
+                  "value":1,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -718,7 +718,7 @@
                {
                   "name":"Health Regeneration",
                   "description":"Restores a significant amount of health.",
-                  "value":200,
+                  "value":180,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -732,10 +732,10 @@
             "name":"Style of Destruction",
             "description":"A torrential wave of destructive energy crashes down upon your opponent, dealing massive damage.",
             "animation":"explosion",
-            "baseDamage":400,
+            "baseDamage":18,
             "doAttack":true,
             "isUltimate":true,
-            "ultimateDamage":1000,
+            "ultimateDamage":310,
             "ultimateAnimation":"ultimate-explosion-3",
             "ultimateRequire":[
                {
@@ -748,7 +748,7 @@
                {
                   "name":"Massive Damage",
                   "description":"Inflicts devastating damage to the enemy.",
-                  "value":90,
+                  "value":190,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -781,7 +781,7 @@
                {
                   "name":"Strength Boost",
                   "description":"Increases the attack power of all allies by a significant amount.",
-                  "value":210,
+                  "value":110,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -791,7 +791,7 @@
                {
                   "name":"Defense Reinforcement",
                   "description":"Grants allies a powerful shield, increasing their defense.",
-                  "value":160,
+                  "value":100,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -818,7 +818,7 @@
                {
                   "name":"Weakening Bind",
                   "description":"Reduces the enemy's attack power by a significant amount.",
-                  "value":180,
+                  "value":130,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -845,7 +845,7 @@
                {
                   "name":"Speed Surge",
                   "description":"Increases your speed for a short duration, allowing you to act faster!",
-                  "value":120,
+                  "value":210,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -872,7 +872,7 @@
                {
                   "name":"Life Force Surge",
                   "description":"Temporarily restores a significant amount of your health.",
-                  "value":110,
+                  "value":150,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -886,15 +886,15 @@
             "name":"Vuex Store",
             "description":"A storehouse of power! You unleash a wave of energy, boosting your allies' strength.",
             "animation":"magic",
-            "baseDamage":185,
+            "baseDamage":11,
             "doAttack":true,
             "isUltimate":true,
-            "ultimateDamage":419,
+            "ultimateDamage":400,
             "ultimateAnimation":"ultimate-magic-1",
             "ultimateRequire":[
                {
                   "skillLanguage":"vue",
-                  "skillLanguageAmmount":5
+                  "skillLanguageAmmount":1
                }
             ],
             "cooldownRound":5,
@@ -902,7 +902,7 @@
                {
                   "name":"Empowering Surge",
                   "description":"Dramatically increases the attack power of all allies.",
-                  "value":170,
+                  "value":120,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -935,7 +935,7 @@
                {
                   "name":"Enhanced Speed",
                   "description":"Boost your speed to quickly react to your opponent's attacks.",
-                  "value":5,
+                  "value":1,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -945,7 +945,7 @@
                {
                   "name":"Resilience Boost",
                   "description":"Strengthen your defenses to withstand powerful attacks.",
-                  "value":150,
+                  "value":170,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -955,7 +955,7 @@
                {
                   "name":"Focused Mind",
                   "description":"Increase your mental fortitude, boosting your attack power.",
-                  "value":150,
+                  "value":110,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -982,7 +982,7 @@
                {
                   "name":"Swift Strike",
                   "description":"Increase your attack speed to deliver a series of rapid blows.",
-                  "value":1,
+                  "value":3,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -1002,7 +1002,7 @@
                {
                   "name":"Tempered Body",
                   "description":"Toughen your body, making you more resistant to attacks.",
-                  "value":170,
+                  "value":90,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -1029,7 +1029,7 @@
                {
                   "name":"Mana Infusion",
                   "description":"Channel a surge of magical energy, increasing your maximum HP.",
-                  "value":130,
+                  "value":180,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -1039,7 +1039,7 @@
                {
                   "name":"Focused Energy",
                   "description":"Sharpen your senses, granting you a burst of speed.",
-                  "value":1,
+                  "value":2,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -1049,7 +1049,7 @@
                {
                   "name":"Arcane Shield",
                   "description":"Invoke an ethereal shield to protect you from incoming attacks.",
-                  "value":120,
+                  "value":210,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -1086,7 +1086,7 @@
                {
                   "name":"Frozen Defenses",
                   "description":"Weaken your opponent's defenses, making them more vulnerable to your attacks.",
-                  "value":210,
+                  "value":120,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -1096,7 +1096,7 @@
                {
                   "name":"Frozen Heart",
                   "description":"Freeze your opponent's heart, reducing their attack power.",
-                  "value":110,
+                  "value":120,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -1123,7 +1123,7 @@
                {
                   "name":"Thunderbolt Strike",
                   "description":"Call upon a lightning strike to deal damage to your opponent.",
-                  "value":140,
+                  "value":110,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -1143,7 +1143,7 @@
                {
                   "name":"Static Shock",
                   "description":"Weaken your opponent's defenses with a burst of static electricity.",
-                  "value":100,
+                  "value":110,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -1176,7 +1176,7 @@
                {
                   "name":"Attack Boost",
                   "description":"Increases attack power.",
-                  "value":150,
+                  "value":170,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -1186,7 +1186,7 @@
                {
                   "name":"Speed Surge",
                   "description":"Increases speed.",
-                  "value":150,
+                  "value":90,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -1213,7 +1213,7 @@
                {
                   "name":"Defensive Code",
                   "description":"Reduces incoming damage.",
-                  "value":2,
+                  "value":3,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -1240,7 +1240,7 @@
                {
                   "name":"Instant Healing",
                   "description":"Restores a portion of your health.",
-                  "value":110,
+                  "value":150,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -1254,15 +1254,15 @@
             "name":"Code Crash",
             "description":"Overwhelm your opponent with a barrage of code, significantly reducing their attack and defense.",
             "animation":"magic",
-            "baseDamage":173,
+            "baseDamage":10,
             "doAttack":true,
             "isUltimate":true,
-            "ultimateDamage":420,
+            "ultimateDamage":450,
             "ultimateAnimation":"ultimate-magic-2",
             "ultimateRequire":[
                {
                   "skillLanguage":"svelte",
-                  "skillLanguageAmmount":1
+                  "skillLanguageAmmount":5
                }
             ],
             "cooldownRound":10,
@@ -1270,7 +1270,7 @@
                {
                   "name":"Attack Suppression",
                   "description":"Reduces enemy attack power.",
-                  "value":150,
+                  "value":120,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -1280,7 +1280,7 @@
                {
                   "name":"Defense Disruption",
                   "description":"Reduces enemy defense.",
-                  "value":180,
+                  "value":190,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -1313,7 +1313,7 @@
                {
                   "name":"Strength Surge",
                   "description":"Increases attack power.",
-                  "value":130,
+                  "value":180,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -1323,7 +1323,7 @@
                {
                   "name":"Vitality Boost",
                   "description":"Increases health.",
-                  "value":210,
+                  "value":190,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -1350,7 +1350,7 @@
                {
                   "name":"Agile Grace",
                   "description":"Increases speed.",
-                  "value":120,
+                  "value":170,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -1360,7 +1360,7 @@
                {
                   "name":"Defensive Fortitude",
                   "description":"Increases defense.",
-                  "value":140,
+                  "value":210,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -1387,7 +1387,7 @@
                {
                   "name":"Weakening Wave",
                   "description":"Decreases enemy's defense.",
-                  "value":200,
+                  "value":160,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -1414,7 +1414,7 @@
                {
                   "name":"Resilient Shield",
                   "description":"Increases your own defense.",
-                  "value":130,
+                  "value":100,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -1428,10 +1428,10 @@
             "name":"Controller Command",
             "description":"Master the power of controllers, unleashing a surge of raw power.",
             "animation":"magic",
-            "baseDamage":172,
+            "baseDamage":12,
             "doAttack":true,
             "isUltimate":true,
-            "ultimateDamage":496,
+            "ultimateDamage":230,
             "ultimateAnimation":"ultimate-magic-1",
             "ultimateRequire":[
                {
@@ -1444,7 +1444,7 @@
                {
                   "name":"Overwhelming Force",
                   "description":"Increases your attack power.",
-                  "value":130,
+                  "value":150,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -1454,7 +1454,7 @@
                {
                   "name":"Commanding Presence",
                   "description":"Decreases enemy's attack power.",
-                  "value":190,
+                  "value":120,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -1497,7 +1497,7 @@
                {
                   "name":"Speed Surge",
                   "description":"Increases your speed by 10%.",
-                  "value":5,
+                  "value":4,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -1524,7 +1524,7 @@
                {
                   "name":"Attack Reduction",
                   "description":"Decreases the enemy's attack by 150.",
-                  "value":140,
+                  "value":100,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -1534,7 +1534,7 @@
                {
                   "name":"Defense Reduction",
                   "description":"Decreases the enemy's defense by 120.",
-                  "value":210,
+                  "value":120,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -1561,7 +1561,7 @@
                {
                   "name":"Defense Purge",
                   "description":"Decreases the enemy's defense by 200.",
-                  "value":120,
+                  "value":110,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -1588,7 +1588,7 @@
                {
                   "name":"Attack Surge",
                   "description":"Increases your attack by 250.",
-                  "value":130,
+                  "value":200,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -1602,15 +1602,15 @@
             "name":"Object-Oriented Programming",
             "description":"Embrace the power of modularity, granting a significant boost to both your attack and defense.",
             "animation":"magic",
-            "baseDamage":138,
+            "baseDamage":14,
             "doAttack":true,
             "isUltimate":true,
-            "ultimateDamage":393,
+            "ultimateDamage":420,
             "ultimateAnimation":"ultimate-magic-1",
             "ultimateRequire":[
                {
                   "skillLanguage":"csharp",
-                  "skillLanguageAmmount":1
+                  "skillLanguageAmmount":2
                }
             ],
             "cooldownRound":8,
@@ -1618,7 +1618,7 @@
                {
                   "name":"Attack Boost",
                   "description":"Increases your attack by 150.",
-                  "value":170,
+                  "value":100,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -1628,7 +1628,7 @@
                {
                   "name":"Defense Boost",
                   "description":"Increases your defense by 170.",
-                  "value":100,
+                  "value":90,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -1661,7 +1661,7 @@
                {
                   "name":"Attack Boost",
                   "description":"Increases your attack power.",
-                  "value":110,
+                  "value":100,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -1671,7 +1671,7 @@
                {
                   "name":"Speed Surge",
                   "description":"Enhances your speed.",
-                  "value":1,
+                  "value":4,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -1698,7 +1698,7 @@
                {
                   "name":"Damage Reduction",
                   "description":"Reduces incoming damage.",
-                  "value":3,
+                  "value":1,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Decrease",
@@ -1725,7 +1725,7 @@
                {
                   "name":"Attack Surge",
                   "description":"Increases your attack power.",
-                  "value":180,
+                  "value":170,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -1762,7 +1762,7 @@
                {
                   "name":"Health Surge",
                   "description":"Boosts your maximum health.",
-                  "value":190,
+                  "value":130,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -1772,7 +1772,7 @@
                {
                   "name":"Attack Power",
                   "description":"Increases your attack power.",
-                  "value":100,
+                  "value":120,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -1799,7 +1799,7 @@
                {
                   "name":"Weaken Attack",
                   "description":"Decreases enemy attack.",
-                  "value":2,
+                  "value":4,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -1809,7 +1809,7 @@
                {
                   "name":"Weaken Defense",
                   "description":"Decreases enemy defense.",
-                  "value":1,
+                  "value":5,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -1836,7 +1836,7 @@
                {
                   "name":"Defensive Barrier",
                   "description":"Increases your defense.",
-                  "value":140,
+                  "value":180,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -1890,7 +1890,7 @@
                {
                   "name":"Attack Boost",
                   "description":"Increases your attack power.",
-                  "value":210,
+                  "value":100,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -1900,7 +1900,7 @@
                {
                   "name":"Health Boost",
                   "description":"Increases your health.",
-                  "value":160,
+                  "value":210,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -1933,7 +1933,7 @@
                {
                   "name":"Strength Enhancement",
                   "description":"Increases your Strength.",
-                  "value":190,
+                  "value":170,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -1943,7 +1943,7 @@
                {
                   "name":"Attack Surge",
                   "description":"Boosts your Attack.",
-                  "value":130,
+                  "value":150,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -1970,7 +1970,7 @@
                {
                   "name":"Code Shield",
                   "description":"Increases your Defense.",
-                  "value":130,
+                  "value":180,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -1997,7 +1997,7 @@
                {
                   "name":"Data Overload",
                   "description":"Decreases the enemy's Speed.",
-                  "value":4,
+                  "value":5,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -2011,15 +2011,15 @@
             "name":"System Crash",
             "description":"Force a system overload on your opponent, causing a significant drop in their health.",
             "animation":"explosion",
-            "baseDamage":107,
+            "baseDamage":17,
             "doAttack":true,
             "isUltimate":true,
-            "ultimateDamage":514,
+            "ultimateDamage":310,
             "ultimateAnimation":"ultimate-explosion-3",
             "ultimateRequire":[
                {
                   "skillLanguage":"c",
-                  "skillLanguageAmmount":1
+                  "skillLanguageAmmount":3
                }
             ],
             "cooldownRound":10,
@@ -2027,7 +2027,7 @@
                {
                   "name":"Critical Error",
                   "description":"Decreases the enemy's HP.",
-                  "value":200,
+                  "value":160,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -2060,7 +2060,7 @@
                {
                   "name":"Swiftness Boost",
                   "description":"Increases your speed for a short duration.",
-                  "value":5,
+                  "value":2,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -2070,7 +2070,7 @@
                {
                   "name":"Wind's Grace",
                   "description":"Grants a temporary boost to your agility, making it harder for enemies to hit you.",
-                  "value":5,
+                  "value":3,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -2097,7 +2097,7 @@
                {
                   "name":"Earth's Embrace",
                   "description":"Enhances your defenses for a short duration.",
-                  "value":90,
+                  "value":190,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -2124,7 +2124,7 @@
                {
                   "name":"Fortified Resolve",
                   "description":"Increases your maximum health and strength.",
-                  "value":1,
+                  "value":2,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -2134,7 +2134,7 @@
                {
                   "name":"Iron Heart",
                   "description":"Increases your physical strength.",
-                  "value":130,
+                  "value":140,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -2161,7 +2161,7 @@
                {
                   "name":"Shadow's Touch",
                   "description":"Decreases your enemy's defenses for a short duration.",
-                  "value":2,
+                  "value":5,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -2171,7 +2171,7 @@
                {
                   "name":"Shadow's Grip",
                   "description":"Reduces your enemy's attack power for a short duration.",
-                  "value":210,
+                  "value":180,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -2208,7 +2208,7 @@
                {
                   "name":"Frozen Grip",
                   "description":"Reduces your enemy's physical strength.",
-                  "value":110,
+                  "value":170,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -2241,7 +2241,7 @@
                {
                   "name":"Defense Boost",
                   "description":"Increases your defense by 10% for the next 2 rounds.",
-                  "value":5,
+                  "value":3,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -2305,7 +2305,7 @@
                {
                   "name":"Strength Surge",
                   "description":"Increases your strength by 20% for the next 4 rounds.",
-                  "value":3,
+                  "value":4,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -2342,7 +2342,7 @@
                {
                   "name":"Iron Shield",
                   "description":"Increases your defense by 30% for the next 3 rounds.",
-                  "value":1,
+                  "value":3,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -2356,15 +2356,15 @@
             "name":"Iron Storm",
             "description":"Summon a storm of iron shards that bombard the enemy, dealing massive damage and slowing their speed.",
             "animation":"explosion",
-            "baseDamage":150,
+            "baseDamage":20,
             "doAttack":true,
             "isUltimate":true,
-            "ultimateDamage":450,
+            "ultimateDamage":390,
             "ultimateAnimation":"ultimate-explosion-2",
             "ultimateRequire":[
                {
                   "skillLanguage":"rust",
-                  "skillLanguageAmmount":2
+                  "skillLanguageAmmount":1
                }
             ],
             "cooldownRound":6,
@@ -2382,7 +2382,7 @@
                {
                   "name":"Speed Reduction",
                   "description":"Decreases the enemy's speed by 20% for the next 3 rounds.",
-                  "value":1,
+                  "value":3,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -2425,7 +2425,7 @@
                {
                   "name":"Evasion Surge",
                   "description":"Increases your chance to dodge attacks.",
-                  "value":2,
+                  "value":1,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -2452,7 +2452,7 @@
                {
                   "name":"Ironclad Shield",
                   "description":"Increases your defense.",
-                  "value":120,
+                  "value":90,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -2462,7 +2462,7 @@
                {
                   "name":"Unbreakable Resolve",
                   "description":"Increases your HP.",
-                  "value":200,
+                  "value":90,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -2489,7 +2489,7 @@
                {
                   "name":"Shadow's Bite",
                   "description":"Deals additional damage.",
-                  "value":90,
+                  "value":120,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -2499,7 +2499,7 @@
                {
                   "name":"Weakening Touch",
                   "description":"Decreases your opponent's strength.",
-                  "value":150,
+                  "value":90,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -2513,15 +2513,15 @@
             "name":"Storm of Swords",
             "description":"Summon a whirlwind of blades, unleashing a furious barrage upon your foe.",
             "animation":"slash",
-            "baseDamage":100,
+            "baseDamage":10,
             "doAttack":true,
             "isUltimate":true,
-            "ultimateDamage":500,
+            "ultimateDamage":370,
             "ultimateAnimation":"ultimate-slash-4",
             "ultimateRequire":[
                {
                   "skillLanguage":"dart",
-                  "skillLanguageAmmount":4
+                  "skillLanguageAmmount":2
                }
             ],
             "cooldownRound":10,
@@ -2529,7 +2529,7 @@
                {
                   "name":"Whirlwind Assault",
                   "description":"Deals massive damage.",
-                  "value":180,
+                  "value":140,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -2539,7 +2539,7 @@
                {
                   "name":"Shattered Defense",
                   "description":"Decreases your opponent's defense.",
-                  "value":110,
+                  "value":100,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -2572,7 +2572,7 @@
                {
                   "name":"Speed Surge",
                   "description":"Increases your speed.",
-                  "value":200,
+                  "value":130,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -2582,7 +2582,7 @@
                {
                   "name":"Swift Strike",
                   "description":"Increases your attack power.",
-                  "value":130,
+                  "value":110,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -2609,7 +2609,7 @@
                {
                   "name":"Shadow Protection",
                   "description":"Increases your defense.",
-                  "value":150,
+                  "value":120,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -2619,7 +2619,7 @@
                {
                   "name":"Shadow Blur",
                   "description":"Decreases your opponent's attack power.",
-                  "value":120,
+                  "value":130,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -2646,7 +2646,7 @@
                {
                   "name":"Fortified Resolve",
                   "description":"Increases your maximum HP.",
-                  "value":190,
+                  "value":210,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -2656,7 +2656,7 @@
                {
                   "name":"Unbreakable Spirit",
                   "description":"Increases your defense.",
-                  "value":210,
+                  "value":120,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -2670,15 +2670,15 @@
             "name":"Storm of Blades",
             "description":"A whirlwind of blades erupts around you, relentlessly assaulting your opponent with a barrage of strikes.",
             "animation":"slash",
-            "baseDamage":170,
+            "baseDamage":10,
             "doAttack":true,
             "isUltimate":true,
-            "ultimateDamage":400,
+            "ultimateDamage":260,
             "ultimateAnimation":"ultimate-slash-1",
             "ultimateRequire":[
                {
                   "skillLanguage":"swift",
-                  "skillLanguageAmmount":4
+                  "skillLanguageAmmount":1
                }
             ],
             "cooldownRound":6,
@@ -2686,7 +2686,7 @@
                {
                   "name":"Blinding Fury",
                   "description":"Decreases your opponent's speed.",
-                  "value":100,
+                  "value":130,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -2696,7 +2696,7 @@
                {
                   "name":"Relentless Assault",
                   "description":"Increases your attack power.",
-                  "value":150,
+                  "value":110,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -2729,7 +2729,7 @@
                {
                   "name":"Attack Boost",
                   "description":"Increases attack power for one round.",
-                  "value":210,
+                  "value":130,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -2756,7 +2756,7 @@
                {
                   "name":"Defense Reinforcement",
                   "description":"Increases defense for three rounds.",
-                  "value":180,
+                  "value":210,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -2783,7 +2783,7 @@
                {
                   "name":"Speed Surge",
                   "description":"Increases speed for two rounds.",
-                  "value":180,
+                  "value":160,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -2810,7 +2810,7 @@
                {
                   "name":"Negative Energy Purge",
                   "description":"Decreases the opponent's HP for one round.",
-                  "value":170,
+                  "value":90,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -2837,7 +2837,7 @@
                {
                   "name":"Strength Inheritance",
                   "description":"Increases strength for two rounds.",
-                  "value":130,
+                  "value":140,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -2864,7 +2864,7 @@
                {
                   "name":"Protective Shield",
                   "description":"Increases defense for one round.",
-                  "value":5,
+                  "value":3,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -2896,10 +2896,10 @@
             "name":"Virtual Machine",
             "description":"A magnificent ability that invokes the power of the Java Virtual Machine, granting you a substantial attack boost for a short time.",
             "animation":"explosion",
-            "baseDamage":112,
+            "baseDamage":18,
             "doAttack":true,
             "isUltimate":true,
-            "ultimateDamage":479,
+            "ultimateDamage":220,
             "ultimateAnimation":"ultimate-explosion-1",
             "ultimateRequire":[
                {
@@ -2912,7 +2912,7 @@
                {
                   "name":"Attack Boost",
                   "description":"Increases attack power for three rounds.",
-                  "value":210,
+                  "value":100,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -2945,7 +2945,7 @@
                {
                   "name":"Enhanced Stats",
                   "description":"Increase the player's Attack by 120 points.",
-                  "value":110,
+                  "value":100,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -2955,7 +2955,7 @@
                {
                   "name":"Defensive Boost",
                   "description":"Increase the player's Defense by 110 points.",
-                  "value":110,
+                  "value":120,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -2982,7 +2982,7 @@
                {
                   "name":"Heal the Wounds",
                   "description":"Restore 130 HP to the player.",
-                  "value":130,
+                  "value":100,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -3009,7 +3009,7 @@
                {
                   "name":"Swiftness",
                   "description":"Increase the player's Speed by 5%.",
-                  "value":1,
+                  "value":4,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -3019,7 +3019,7 @@
                {
                   "name":"Weaken Enemy",
                   "description":"Decrease the enemy's Attack by 8%.",
-                  "value":5,
+                  "value":3,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -3046,7 +3046,7 @@
                {
                   "name":"Rapid Restoration",
                   "description":"Increase the player's HP regeneration by 150 points per round.",
-                  "value":150,
+                  "value":160,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -3073,7 +3073,7 @@
                {
                   "name":"Mana Shield",
                   "description":"Increase the player's Defense by 100 points and reduce incoming damage by 5% for one round.",
-                  "value":150,
+                  "value":90,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -3116,7 +3116,7 @@
                {
                   "name":"HP Boost",
                   "description":"Increases the target's HP.",
-                  "value":90,
+                  "value":130,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -3126,7 +3126,7 @@
                {
                   "name":"Defense Reinforcement",
                   "description":"Enhances the target's defensive capabilities.",
-                  "value":190,
+                  "value":90,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -3153,7 +3153,7 @@
                {
                   "name":"Swift Strike",
                   "description":"Increases the user's attack speed.",
-                  "value":110,
+                  "value":160,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -3163,7 +3163,7 @@
                {
                   "name":"Attack Boost",
                   "description":"Increases the user's attack power.",
-                  "value":130,
+                  "value":150,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -3227,7 +3227,7 @@
                {
                   "name":"Weakening Pact",
                   "description":"Decreases the target's defensive capabilities.",
-                  "value":4,
+                  "value":1,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -3237,7 +3237,7 @@
                {
                   "name":"Slowing Pact",
                   "description":"Decreases the target's attack speed.",
-                  "value":190,
+                  "value":180,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -3264,7 +3264,7 @@
                {
                   "name":"Attack Blockade",
                   "description":"Decreases the target's attack power.",
-                  "value":3,
+                  "value":4,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -3274,7 +3274,7 @@
                {
                   "name":"Speed Blockade",
                   "description":"Decreases the target's attack speed.",
-                  "value":180,
+                  "value":210,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -3307,7 +3307,7 @@
                {
                   "name":"Strength Boost",
                   "description":"Increases strength.",
-                  "value":140,
+                  "value":200,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -3344,7 +3344,7 @@
                {
                   "name":"Defense Weakening",
                   "description":"Reduces the enemy's defense.",
-                  "value":3,
+                  "value":1,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -3371,7 +3371,7 @@
                {
                   "name":"Attack Boost",
                   "description":"Increases attack.",
-                  "value":210,
+                  "value":150,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -3381,7 +3381,7 @@
                {
                   "name":"Speed Surge",
                   "description":"Increases speed.",
-                  "value":140,
+                  "value":150,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -3408,7 +3408,7 @@
                {
                   "name":"Strength Drain",
                   "description":"Decreases enemy's strength.",
-                  "value":4,
+                  "value":5,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -3435,7 +3435,7 @@
                {
                   "name":"Health Regeneration",
                   "description":"Restores health.",
-                  "value":130,
+                  "value":110,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -3445,7 +3445,7 @@
                {
                   "name":"Defense Boost",
                   "description":"Increases defense.",
-                  "value":110,
+                  "value":130,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -3478,7 +3478,7 @@
                {
                   "name":"Attack Boost",
                   "description":"Increases your attack power.",
-                  "value":210,
+                  "value":130,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -3488,7 +3488,7 @@
                {
                   "name":"Speed Surge",
                   "description":"Increases your speed.",
-                  "value":150,
+                  "value":90,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -3498,7 +3498,7 @@
                {
                   "name":"Defensive Weakening",
                   "description":"Decreases the enemy's defense.",
-                  "value":4,
+                  "value":5,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -3525,7 +3525,7 @@
                {
                   "name":"Spectral Barrier",
                   "description":"Grants immunity to all attacks.",
-                  "value":3,
+                  "value":5,
                   "unit":"None",
                   "for":"Player",
                   "type":"Increase",
@@ -3535,7 +3535,7 @@
                {
                   "name":"Health Surge",
                   "description":"Increases your health.",
-                  "value":100,
+                  "value":210,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -3549,10 +3549,10 @@
             "name":"Fractal Storm",
             "description":"Summon a swirling fractal storm that deals heavy damage to the enemy and reduces their attack power.",
             "animation":"magic",
-            "baseDamage":300,
+            "baseDamage":11,
             "doAttack":true,
             "isUltimate":true,
-            "ultimateDamage":900,
+            "ultimateDamage":290,
             "ultimateAnimation":"ultimate-magic-1",
             "ultimateRequire":[
                {
@@ -3565,7 +3565,7 @@
                {
                   "name":"Fractal Assault",
                   "description":"Deals heavy damage to the enemy.",
-                  "value":2,
+                  "value":5,
                   "unit":"None",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -3575,7 +3575,7 @@
                {
                   "name":"Attack Weakening",
                   "description":"Decreases the enemy's attack power.",
-                  "value":1,
+                  "value":5,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -3602,7 +3602,7 @@
                {
                   "name":"Prismatic Strike",
                   "description":"Deals moderate damage to the enemy.",
-                  "value":4,
+                  "value":2,
                   "unit":"None",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -3612,7 +3612,7 @@
                {
                   "name":"Speed Reduction",
                   "description":"Decreases the enemy's speed.",
-                  "value":3,
+                  "value":2,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -3639,7 +3639,7 @@
                {
                   "name":"Void Drain",
                   "description":"Drains the enemy's health.",
-                  "value":3,
+                  "value":2,
                   "unit":"None",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -3649,7 +3649,7 @@
                {
                   "name":"Strength Reduction",
                   "description":"Decreases the enemy's strength.",
-                  "value":5,
+                  "value":3,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -3682,7 +3682,7 @@
                {
                   "name":"Vitality Surge",
                   "description":"Increases the user's HP.",
-                  "value":140,
+                  "value":110,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -3692,7 +3692,7 @@
                {
                   "name":"Resilient Spirit",
                   "description":"Increases the user's defense.",
-                  "value":110,
+                  "value":160,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -3719,7 +3719,7 @@
                {
                   "name":"Shadow's Embrace",
                   "description":"Reduces the enemy's attack power.",
-                  "value":3,
+                  "value":5,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -3756,7 +3756,7 @@
                {
                   "name":"Swiftness",
                   "description":"Increases the user's speed.",
-                  "value":200,
+                  "value":90,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -3766,7 +3766,7 @@
                {
                   "name":"Lightning's Grace",
                   "description":"Increases the user's attack.",
-                  "value":190,
+                  "value":140,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -3780,15 +3780,15 @@
             "name":"Ancient Fortitude",
             "description":"An ancient power that imbues the user with unwavering strength and stamina, granting them increased health and resilience.",
             "animation":"magic",
-            "baseDamage":188,
+            "baseDamage":18,
             "doAttack":true,
             "isUltimate":true,
-            "ultimateDamage":544,
+            "ultimateDamage":320,
             "ultimateAnimation":"ultimate-magic-3",
             "ultimateRequire":[
                {
                   "skillLanguage":"less",
-                  "skillLanguageAmmount":5
+                  "skillLanguageAmmount":2
                }
             ],
             "cooldownRound":6,
@@ -3796,7 +3796,7 @@
                {
                   "name":"Unwavering Strength",
                   "description":"Increases the user's attack power.",
-                  "value":140,
+                  "value":200,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -3806,7 +3806,7 @@
                {
                   "name":"Ancient Resilience",
                   "description":"Increases the user's defense.",
-                  "value":100,
+                  "value":190,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -3816,7 +3816,7 @@
                {
                   "name":"Unending Vitality",
                   "description":"Increases the user's HP.",
-                  "value":200,
+                  "value":90,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -3849,7 +3849,7 @@
                {
                   "name":"Vigor",
                   "description":"Increases your maximum HP.",
-                  "value":190,
+                  "value":150,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -3859,7 +3859,7 @@
                {
                   "name":"Might",
                   "description":"Increases your attack power.",
-                  "value":170,
+                  "value":160,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -3886,7 +3886,7 @@
                {
                   "name":"Weakened",
                   "description":"Decreases the enemy's attack power.",
-                  "value":3,
+                  "value":5,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -3896,7 +3896,7 @@
                {
                   "name":"Enfeebled",
                   "description":"Decreases the enemy's speed.",
-                  "value":3,
+                  "value":2,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -3923,7 +3923,7 @@
                {
                   "name":"Stone Skin",
                   "description":"Increases your defense.",
-                  "value":100,
+                  "value":190,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -3950,7 +3950,7 @@
                {
                   "name":"Swift Wind",
                   "description":"Increases your speed.",
-                  "value":3,
+                  "value":5,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -3964,10 +3964,10 @@
             "name":"Divine Fury",
             "description":"The heavens unleash their fury upon your opponent, weakening them and granting you divine strength.",
             "animation":"magic",
-            "baseDamage":107,
+            "baseDamage":15,
             "doAttack":true,
             "isUltimate":true,
-            "ultimateDamage":470,
+            "ultimateDamage":300,
             "ultimateAnimation":"ultimate-magic-2",
             "ultimateRequire":[
                {
@@ -3980,7 +3980,7 @@
                {
                   "name":"Divine Fury",
                   "description":"Increases your attack power.",
-                  "value":100,
+                  "value":90,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -3990,7 +3990,7 @@
                {
                   "name":"Weakened",
                   "description":"Decreases the enemy's attack power.",
-                  "value":5,
+                  "value":4,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -4023,7 +4023,7 @@
                {
                   "name":"Defensive Boost",
                   "description":"Increases your defense.",
-                  "value":110,
+                  "value":210,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -4033,7 +4033,7 @@
                {
                   "name":"Vitality Surge",
                   "description":"Increases your HP.",
-                  "value":140,
+                  "value":90,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -4060,7 +4060,7 @@
                {
                   "name":"Speed Boost",
                   "description":"Increases your attack speed.",
-                  "value":5,
+                  "value":1,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -4087,7 +4087,7 @@
                {
                   "name":"Weakening Strike",
                   "description":"Decreases your opponent's defense.",
-                  "value":180,
+                  "value":210,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -4101,10 +4101,10 @@
             "name":"Ancient Might",
             "description":"Harness the power of the ancients, significantly boosting your strength and attack power!",
             "animation":"explosion",
-            "baseDamage":126,
+            "baseDamage":19,
             "doAttack":true,
             "isUltimate":true,
-            "ultimateDamage":314,
+            "ultimateDamage":410,
             "ultimateAnimation":"ultimate-explosion-2",
             "ultimateRequire":[
                {
@@ -4117,7 +4117,7 @@
                {
                   "name":"Strength Surge",
                   "description":"Increases your strength.",
-                  "value":110,
+                  "value":200,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -4127,7 +4127,7 @@
                {
                   "name":"Attack Power Boost",
                   "description":"Increases your attack power.",
-                  "value":160,
+                  "value":200,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -4160,7 +4160,7 @@
                {
                   "name":"Attack Power Surge",
                   "description":"Increases the player's attack power.",
-                  "value":180,
+                  "value":150,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -4170,7 +4170,7 @@
                {
                   "name":"Swiftness Enhancement",
                   "description":"Boosts the player's speed.",
-                  "value":100,
+                  "value":170,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -4197,7 +4197,7 @@
                {
                   "name":"Defense Weakening",
                   "description":"Decreases the enemy's defense.",
-                  "value":4,
+                  "value":2,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -4207,7 +4207,7 @@
                {
                   "name":"Slowing Aura",
                   "description":"Reduces the enemy's speed.",
-                  "value":5,
+                  "value":4,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -4234,7 +4234,7 @@
                {
                   "name":"Defensive Fortification",
                   "description":"Increases the player's defense.",
-                  "value":170,
+                  "value":190,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -4271,7 +4271,7 @@
                {
                   "name":"Attack Power Reduction",
                   "description":"Decreases the enemy's attack power.",
-                  "value":90,
+                  "value":160,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -4298,7 +4298,7 @@
                {
                   "name":"Attack Power Boost",
                   "description":"Increases the player's attack power.",
-                  "value":140,
+                  "value":200,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -4308,7 +4308,7 @@
                {
                   "name":"Health Infusion",
                   "description":"Boosts the player's health.",
-                  "value":140,
+                  "value":170,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -4341,7 +4341,7 @@
                {
                   "name":"Attack Boost",
                   "description":"Increases attack power.",
-                  "value":130,
+                  "value":140,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -4351,7 +4351,7 @@
                {
                   "name":"Speed Surge",
                   "description":"Enhances speed for a swift strike.",
-                  "value":150,
+                  "value":100,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -4378,7 +4378,7 @@
                {
                   "name":"Ironclad Defense",
                   "description":"Reinforces your defense.",
-                  "value":170,
+                  "value":160,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -4388,7 +4388,7 @@
                {
                   "name":"Resilient Health",
                   "description":"Regenerates a portion of your health.",
-                  "value":160,
+                  "value":170,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -4415,7 +4415,7 @@
                {
                   "name":"Frozen Fury",
                   "description":"Reduces enemy attack power.",
-                  "value":5,
+                  "value":1,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -4425,7 +4425,7 @@
                {
                   "name":"Frozen Steps",
                   "description":"Slows down enemy speed.",
-                  "value":3,
+                  "value":1,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -4452,7 +4452,7 @@
                {
                   "name":"Shadow's Embrace",
                   "description":"Weakens enemy defense.",
-                  "value":3,
+                  "value":1,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -4485,7 +4485,7 @@
                {
                   "name":"Speed Boost",
                   "description":"Increases your speed.",
-                  "value":1,
+                  "value":4,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -4495,7 +4495,7 @@
                {
                   "name":"Attack Enhancement",
                   "description":"Increases your attack power.",
-                  "value":170,
+                  "value":140,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -4522,7 +4522,7 @@
                {
                   "name":"Defense Boost",
                   "description":"Increases your defense.",
-                  "value":130,
+                  "value":210,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -4576,7 +4576,7 @@
                {
                   "name":"Defense Weakening",
                   "description":"Decreases your opponent's defense.",
-                  "value":1,
+                  "value":3,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -4603,7 +4603,7 @@
                {
                   "name":"Attack Weakening",
                   "description":"Decreases your opponent's attack power.",
-                  "value":2,
+                  "value":1,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -4630,7 +4630,7 @@
                {
                   "name":"Temporary Blindness",
                   "description":"Decreases your opponent's attack power.",
-                  "value":1,
+                  "value":4,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -4644,15 +4644,15 @@
             "name":"Big Data Analysis",
             "description":"Analyze vast amounts of data, overwhelming your opponent with sheer information.",
             "animation":"magic",
-            "baseDamage":147,
+            "baseDamage":10,
             "doAttack":true,
             "isUltimate":true,
-            "ultimateDamage":586,
+            "ultimateDamage":350,
             "ultimateAnimation":"ultimate-magic-2",
             "ultimateRequire":[
                {
                   "skillLanguage":"python",
-                  "skillLanguageAmmount":4
+                  "skillLanguageAmmount":5
                }
             ],
             "cooldownRound":5,
@@ -4660,7 +4660,7 @@
                {
                   "name":"Information Overload",
                   "description":"Overwhelms your opponent, decreasing their attack power and defense.",
-                  "value":3,
+                  "value":2,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -4670,7 +4670,7 @@
                {
                   "name":"Data Overload",
                   "description":"Overwhelms your opponent, decreasing their attack power and defense.",
-                  "value":1,
+                  "value":3,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -4703,7 +4703,7 @@
                {
                   "name":"Burning Inferno",
                   "description":"Inflicts a burning effect on the enemy, reducing their health over time.",
-                  "value":2,
+                  "value":4,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -4730,7 +4730,7 @@
                {
                   "name":"Blazing Strength",
                   "description":"Increases the warrior's strength, boosting their attack power.",
-                  "value":200,
+                  "value":170,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -4740,7 +4740,7 @@
                {
                   "name":"Fiery Assault",
                   "description":"Increases the warrior's attack power, granting them a fiery edge.",
-                  "value":130,
+                  "value":190,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -4781,15 +4781,15 @@
             "name":"Volcanic Eruption",
             "description":"A devastating eruption of molten rock engulfs the battlefield, causing immense damage to the enemy.",
             "animation":"explosion",
-            "baseDamage":100,
+            "baseDamage":11,
             "doAttack":true,
             "isUltimate":true,
-            "ultimateDamage":500,
+            "ultimateDamage":230,
             "ultimateAnimation":"ultimate-explosion-2",
             "ultimateRequire":[
                {
                   "skillLanguage":"ruby",
-                  "skillLanguageAmmount":4
+                  "skillLanguageAmmount":3
                }
             ],
             "cooldownRound":5,
@@ -4797,7 +4797,7 @@
                {
                   "name":"Volcanic Fury",
                   "description":"The eruption inflicts a burning effect on the enemy, reducing their health over time.",
-                  "value":2,
+                  "value":1,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -4830,7 +4830,7 @@
                {
                   "name":"Attack Boost",
                   "description":"Increases attack power.",
-                  "value":200,
+                  "value":150,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -4857,7 +4857,7 @@
                {
                   "name":"Speed Surge",
                   "description":"Increases speed.",
-                  "value":210,
+                  "value":120,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -4884,7 +4884,7 @@
                {
                   "name":"Defense Down",
                   "description":"Decreases the enemy's defense.",
-                  "value":4,
+                  "value":1,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -4911,7 +4911,7 @@
                {
                   "name":"Rejuvenation",
                   "description":"Heals the user.",
-                  "value":170,
+                  "value":130,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -4925,10 +4925,10 @@
             "name":"Drop Table",
             "description":"Destroys a table within the database.  Deals massive damage to the enemy.",
             "animation":"explosion",
-            "baseDamage":250,
+            "baseDamage":16,
             "doAttack":true,
             "isUltimate":true,
-            "ultimateDamage":600,
+            "ultimateDamage":440,
             "ultimateAnimation":"ultimate-explosion-3",
             "ultimateRequire":[
                {
@@ -4974,7 +4974,7 @@
                {
                   "name":"Health Restoration",
                   "description":"Restores a portion of the user's health.",
-                  "value":180,
+                  "value":160,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -5011,7 +5011,7 @@
                {
                   "name":"Attack Power Surge",
                   "description":"Increases the user's attack power.",
-                  "value":170,
+                  "value":150,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -5021,7 +5021,7 @@
                {
                   "name":"Swiftness Infusion",
                   "description":"Grants the user increased speed.",
-                  "value":5,
+                  "value":4,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -5048,7 +5048,7 @@
                {
                   "name":"Attack Power Reduction",
                   "description":"Decreases the enemy's attack power.",
-                  "value":100,
+                  "value":130,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -5085,7 +5085,7 @@
                {
                   "name":"Speed Reduction",
                   "description":"Slows the enemy's speed.",
-                  "value":2,
+                  "value":4,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -5095,7 +5095,7 @@
                {
                   "name":"Attack Power Reduction",
                   "description":"Decreases the enemy's attack power.",
-                  "value":190,
+                  "value":160,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -5109,15 +5109,15 @@
             "name":"Unyielding Might",
             "description":"A surge of raw power empowers the user, greatly increasing their attack and strength.",
             "animation":"magic",
-            "baseDamage":139,
+            "baseDamage":11,
             "doAttack":true,
             "isUltimate":true,
-            "ultimateDamage":463,
+            "ultimateDamage":430,
             "ultimateAnimation":"ultimate-magic-3",
             "ultimateRequire":[
                {
                   "skillLanguage":"lua",
-                  "skillLanguageAmmount":2
+                  "skillLanguageAmmount":4
                }
             ],
             "cooldownRound":5,
@@ -5125,7 +5125,7 @@
                {
                   "name":"Attack Power Surge",
                   "description":"Increases the user's attack power.",
-                  "value":200,
+                  "value":130,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -5135,7 +5135,7 @@
                {
                   "name":"Strength Enhancement",
                   "description":"Increases the user's strength.",
-                  "value":150,
+                  "value":130,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -5168,7 +5168,7 @@
                {
                   "name":"ATK Boost",
                   "description":"Increases your ATK.",
-                  "value":100,
+                  "value":170,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -5178,7 +5178,7 @@
                {
                   "name":"SPD Boost",
                   "description":"Increases your SPD.",
-                  "value":160,
+                  "value":130,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -5205,7 +5205,7 @@
                {
                   "name":"DEF Reduction",
                   "description":"Decreases the enemy's DEF.",
-                  "value":1,
+                  "value":5,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -5232,7 +5232,7 @@
                {
                   "name":"Damage",
                   "description":"Deals damage to the enemy.",
-                  "value":140,
+                  "value":170,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -5259,7 +5259,7 @@
                {
                   "name":"HP Boost",
                   "description":"Increases your HP.",
-                  "value":4,
+                  "value":5,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -5269,7 +5269,7 @@
                {
                   "name":"STR Boost",
                   "description":"Increases your STR.",
-                  "value":170,
+                  "value":100,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -5283,15 +5283,15 @@
             "name":"Object-Oriented Programming",
             "description":"Employ powerful object-oriented programming techniques to enhance your defenses and unleash a devastating attack.",
             "animation":"explosion",
-            "baseDamage":199,
+            "baseDamage":15,
             "doAttack":true,
             "isUltimate":true,
-            "ultimateDamage":371,
+            "ultimateDamage":210,
             "ultimateAnimation":"ultimate-explosion-3",
             "ultimateRequire":[
                {
                   "skillLanguage":"visual-basic-6-0",
-                  "skillLanguageAmmount":1
+                  "skillLanguageAmmount":4
                }
             ],
             "cooldownRound":8,
@@ -5299,7 +5299,7 @@
                {
                   "name":"DEF Boost",
                   "description":"Increases your DEF.",
-                  "value":5,
+                  "value":2,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -5309,7 +5309,7 @@
                {
                   "name":"Ultimate Attack",
                   "description":"Deals massive damage to the enemy.",
-                  "value":140,
+                  "value":190,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -5342,7 +5342,7 @@
                {
                   "name":"Attack Boost",
                   "description":"Increases attack power.",
-                  "value":140,
+                  "value":200,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -5352,7 +5352,7 @@
                {
                   "name":"Defensive Stance",
                   "description":"Raises your defenses.",
-                  "value":200,
+                  "value":180,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -5379,7 +5379,7 @@
                {
                   "name":"Time Distortion",
                   "description":"Slows the enemy's speed.",
-                  "value":5,
+                  "value":1,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -5406,7 +5406,7 @@
                {
                   "name":"Unbreakable Resolve",
                   "description":"Grants temporary invincibility.",
-                  "value":200,
+                  "value":110,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -5416,7 +5416,7 @@
                {
                   "name":"Drained Strength",
                   "description":"Reduces your attack power.",
-                  "value":190,
+                  "value":150,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Decrease",
@@ -5443,7 +5443,7 @@
                {
                   "name":"Renewal of Strength",
                   "description":"Heals a portion of your health.",
-                  "value":130,
+                  "value":100,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -5476,7 +5476,7 @@
                {
                   "name":"Enhanced Awareness",
                   "description":"Increases the player's understanding of the battlefield.",
-                  "value":2,
+                  "value":1,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -5486,7 +5486,7 @@
                {
                   "name":"Strategic Insight",
                   "description":"Grants a temporary boost to the player's tactical decisions.",
-                  "value":150,
+                  "value":90,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -5523,7 +5523,7 @@
                {
                   "name":"Swift Adaptation",
                   "description":"Grants the player increased speed and agility.",
-                  "value":3,
+                  "value":2,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -5550,7 +5550,7 @@
                {
                   "name":"Unbreakable Shield",
                   "description":"Raises the player's defenses to an extraordinary level.",
-                  "value":200,
+                  "value":160,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -5587,7 +5587,7 @@
                {
                   "name":"Unleashed Power",
                   "description":"Increases the player's attack power to overwhelming levels.",
-                  "value":110,
+                  "value":160,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -5597,7 +5597,7 @@
                {
                   "name":"Unyielding Strength",
                   "description":"The player's physical strength is bolstered.",
-                  "value":150,
+                  "value":120,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -5630,7 +5630,7 @@
                {
                   "name":"Code Boost",
                   "description":"Increases attack power.",
-                  "value":110,
+                  "value":200,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -5667,7 +5667,7 @@
                {
                   "name":"Weakness Exposed",
                   "description":"Decreases enemy defense.",
-                  "value":4,
+                  "value":5,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -5694,7 +5694,7 @@
                {
                   "name":"Health Restoration",
                   "description":"Restores health.",
-                  "value":120,
+                  "value":200,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -5721,7 +5721,7 @@
                {
                   "name":"Confused",
                   "description":"Decreases enemy attack power.",
-                  "value":3,
+                  "value":4,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -5735,15 +5735,15 @@
             "name":"Runtime Error",
             "description":"Triggers a runtime error, causing a massive explosion that damages the enemy.",
             "animation":"explosion",
-            "baseDamage":140,
+            "baseDamage":18,
             "doAttack":true,
             "isUltimate":true,
-            "ultimateDamage":400,
+            "ultimateDamage":410,
             "ultimateAnimation":"ultimate-explosion-1",
             "ultimateRequire":[
                {
                   "skillLanguage":"gdscript",
-                  "skillLanguageAmmount":2
+                  "skillLanguageAmmount":5
                }
             ],
             "cooldownRound":8,
@@ -5751,7 +5751,7 @@
                {
                   "name":"Explosion Damage",
                   "description":"Deals massive damage to the enemy.",
-                  "value":160,
+                  "value":180,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -5784,7 +5784,7 @@
                {
                   "name":"Ocean's Grace",
                   "description":"Increases your HP by 500 points.",
-                  "value":90,
+                  "value":130,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -5794,7 +5794,7 @@
                {
                   "name":"Ocean's Might",
                   "description":"Increases your attack by 100 points.",
-                  "value":200,
+                  "value":90,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -5821,7 +5821,7 @@
                {
                   "name":"Wave's Fury",
                   "description":"Decreases your opponent's defense by 150 points.",
-                  "value":190,
+                  "value":140,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -5831,7 +5831,7 @@
                {
                   "name":"Ocean's Wrath",
                   "description":"Decreases your opponent's speed by 5% for 3 turns.",
-                  "value":4,
+                  "value":2,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -5845,15 +5845,15 @@
             "name":"Abyssal Storm",
             "description":"Unleash a swirling maelstrom of the deepest ocean, draining your opponent's strength.",
             "animation":"magic",
-            "baseDamage":100,
+            "baseDamage":18,
             "doAttack":true,
             "isUltimate":true,
-            "ultimateDamage":300,
+            "ultimateDamage":360,
             "ultimateAnimation":"ultimate-magic-2",
             "ultimateRequire":[
                {
                   "skillLanguage":"mako",
-                  "skillLanguageAmmount":2
+                  "skillLanguageAmmount":4
                }
             ],
             "cooldownRound":6,
@@ -5861,7 +5861,7 @@
                {
                   "name":"Storm's Drain",
                   "description":"Decreases your opponent's attack by 15% for 2 turns.",
-                  "value":4,
+                  "value":2,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -5871,7 +5871,7 @@
                {
                   "name":"Abyssal Grip",
                   "description":"Decreases your opponent's strength by 100 points.",
-                  "value":200,
+                  "value":90,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -5904,7 +5904,7 @@
                {
                   "name":"Code Overload",
                   "description":"Reduces enemy's attack by 100.",
-                  "value":120,
+                  "value":180,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -5931,7 +5931,7 @@
                {
                   "name":"System Overflow",
                   "description":"Reduces enemy's defense by 100.",
-                  "value":120,
+                  "value":190,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -5958,7 +5958,7 @@
                {
                   "name":"System Lag",
                   "description":"Reduces enemy's speed by 100.",
-                  "value":120,
+                  "value":90,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -5985,7 +5985,7 @@
                {
                   "name":"System Reset",
                   "description":"Resets enemy's attack to their base value.",
-                  "value":100,
+                  "value":170,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -5995,7 +5995,7 @@
                {
                   "name":"System Reset",
                   "description":"Resets enemy's defense to their base value.",
-                  "value":100,
+                  "value":180,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -6005,7 +6005,7 @@
                {
                   "name":"System Reset",
                   "description":"Resets enemy's speed to their base value.",
-                  "value":100,
+                  "value":180,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -6032,7 +6032,7 @@
                {
                   "name":"Code Boost",
                   "description":"Increases your attack by 100.",
-                  "value":110,
+                  "value":130,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -6042,7 +6042,7 @@
                {
                   "name":"Code Boost",
                   "description":"Increases your speed by 100.",
-                  "value":140,
+                  "value":200,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -6079,7 +6079,7 @@
                {
                   "name":"System Enhancement",
                   "description":"Increases your strength by 100.",
-                  "value":190,
+                  "value":100,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -6106,7 +6106,7 @@
                {
                   "name":"Optimized Code",
                   "description":"Increases your attack by 200.",
-                  "value":110,
+                  "value":200,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -6120,15 +6120,15 @@
             "name":"System Overdrive",
             "description":"Push your system to its limits, temporarily increasing your attack, speed and defense.",
             "animation":"magic",
-            "baseDamage":150,
+            "baseDamage":18,
             "doAttack":true,
             "isUltimate":true,
-            "ultimateDamage":350,
+            "ultimateDamage":370,
             "ultimateAnimation":"ultimate-magic-2",
             "ultimateRequire":[
                {
                   "skillLanguage":"procfile",
-                  "skillLanguageAmmount":5
+                  "skillLanguageAmmount":3
                }
             ],
             "cooldownRound":6,
@@ -6136,7 +6136,7 @@
                {
                   "name":"System Overdrive",
                   "description":"Increases your attack by 200.",
-                  "value":110,
+                  "value":130,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -6146,7 +6146,7 @@
                {
                   "name":"System Overdrive",
                   "description":"Increases your speed by 200.",
-                  "value":200,
+                  "value":100,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -6156,7 +6156,7 @@
                {
                   "name":"System Overdrive",
                   "description":"Increases your defense by 200.",
-                  "value":120,
+                  "value":170,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -6189,7 +6189,7 @@
                {
                   "name":"Increased Speed",
                   "description":"Your movement becomes swift as a shadow.",
-                  "value":200,
+                  "value":90,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -6199,7 +6199,7 @@
                {
                   "name":"Weakened Defense",
                   "description":"Your opponent's defenses crumble under the weight of shadows.",
-                  "value":3,
+                  "value":2,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -6226,7 +6226,7 @@
                {
                   "name":"Shadow Rend",
                   "description":"A surge of dark energy tears through your enemy, inflicting significant damage and lowering their attack power.",
-                  "value":3,
+                  "value":1,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -6253,7 +6253,7 @@
                {
                   "name":"Void Shield",
                   "description":"Call upon the power of the void, creating a protective barrier around yourself, significantly increasing your defense and granting a temporary boost to your health.",
-                  "value":150,
+                  "value":200,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -6263,7 +6263,7 @@
                {
                   "name":"Void Shield",
                   "description":"Call upon the power of the void, creating a protective barrier around yourself, significantly increasing your defense and granting a temporary boost to your health.",
-                  "value":90,
+                  "value":150,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -6277,15 +6277,15 @@
             "name":"Abyssal Storm",
             "description":"Unleash a tempest of dark energy, dealing massive damage to your enemy and decreasing their attack power and speed.",
             "animation":"explosion",
-            "baseDamage":130,
+            "baseDamage":16,
             "doAttack":true,
             "isUltimate":true,
-            "ultimateDamage":500,
+            "ultimateDamage":260,
             "ultimateAnimation":"ultimate-explosion-1",
             "ultimateRequire":[
                {
                   "skillLanguage":"nix",
-                  "skillLanguageAmmount":5
+                  "skillLanguageAmmount":4
                }
             ],
             "cooldownRound":6,
@@ -6293,7 +6293,7 @@
                {
                   "name":"Abyssal Storm",
                   "description":"Unleash a tempest of dark energy, dealing massive damage to your enemy and decreasing their attack power and speed.",
-                  "value":2,
+                  "value":1,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -6303,7 +6303,7 @@
                {
                   "name":"Abyssal Storm",
                   "description":"Unleash a tempest of dark energy, dealing massive damage to your enemy and decreasing their attack power and speed.",
-                  "value":1,
+                  "value":5,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -6336,7 +6336,7 @@
                {
                   "name":"Increased Efficiency",
                   "description":"Boosts your project's build speed.",
-                  "value":2,
+                  "value":3,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -6346,7 +6346,7 @@
                {
                   "name":"Optimized Code",
                   "description":"Improves the overall performance of your project.",
-                  "value":140,
+                  "value":130,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -6373,7 +6373,7 @@
                {
                   "name":"Faster Development",
                   "description":"Increases your coding speed, allowing you to iterate faster and make progress quicker.",
-                  "value":2,
+                  "value":4,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -6410,7 +6410,7 @@
                {
                   "name":"Expanded Capabilities",
                   "description":"Unlocks new features and functionalities for your project.",
-                  "value":2,
+                  "value":5,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -6420,7 +6420,7 @@
                {
                   "name":"Enhanced Stability",
                   "description":"Improves the robustness and reliability of your project.",
-                  "value":1,
+                  "value":5,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -6447,7 +6447,7 @@
                {
                   "name":"Optimized Performance",
                   "description":"Enhances the performance of your project by leveraging specific compiler features.",
-                  "value":3,
+                  "value":5,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -6457,7 +6457,7 @@
                {
                   "name":"Reduced Memory Usage",
                   "description":"Minimizes the memory footprint of your project, making it more efficient.",
-                  "value":5,
+                  "value":4,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -6494,7 +6494,7 @@
                {
                   "name":"Increased Complexity",
                   "description":"Increases the complexity of your project, allowing you to build more intricate features.",
-                  "value":5,
+                  "value":2,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -6521,7 +6521,7 @@
                {
                   "name":"Easy Deployment",
                   "description":"Simplifies the process of deploying your project to a target system.",
-                  "value":1,
+                  "value":5,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -6531,7 +6531,7 @@
                {
                   "name":"Wide Accessibility",
                   "description":"Makes your project accessible to a wider audience.",
-                  "value":1,
+                  "value":3,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -6558,7 +6558,7 @@
                {
                   "name":"Expanded Functionality",
                   "description":"Unlocks new features and abilities for your project.",
-                  "value":1,
+                  "value":4,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -6568,7 +6568,7 @@
                {
                   "name":"Enhanced Stability",
                   "description":"Improves the robustness and reliability of your project.",
-                  "value":5,
+                  "value":2,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -6601,7 +6601,7 @@
                {
                   "name":"Attribute Boost",
                   "description":"Increase your character's strength and defense, fortifying them against enemy attacks.",
-                  "value":3,
+                  "value":4,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -6611,7 +6611,7 @@
                {
                   "name":"Defense Enhancement",
                   "description":"Enhance your character's defenses, making them more resistant to incoming attacks.",
-                  "value":3,
+                  "value":5,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -6648,7 +6648,17 @@
                {
                   "name":"Event-Driven Attack",
                   "description":"Trigger a chain of events, each causing a burst of damage to the enemy.",
-                  "value":190,
+                  "value":140,
+                  "unit":"Number",
+                  "for":"Enemy",
+                  "type":"Decrease",
+                  "attrTarget":"hp",
+                  "effectRound":1
+               },
+               {
+                  "name":"Event-Driven Attack",
+                  "description":"Trigger a chain of events, each causing a burst of damage to the enemy.",
+                  "value":140,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -6659,16 +6669,6 @@
                   "name":"Event-Driven Attack",
                   "description":"Trigger a chain of events, each causing a burst of damage to the enemy.",
                   "value":170,
-                  "unit":"Number",
-                  "for":"Enemy",
-                  "type":"Decrease",
-                  "attrTarget":"hp",
-                  "effectRound":1
-               },
-               {
-                  "name":"Event-Driven Attack",
-                  "description":"Trigger a chain of events, each causing a burst of damage to the enemy.",
-                  "value":150,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -6695,27 +6695,27 @@
                {
                   "name":"Barrier",
                   "description":"A powerful barrier protects you from incoming attacks.",
+                  "value":100,
+                  "unit":"Number",
+                  "for":"Player",
+                  "type":"Increase",
+                  "attrTarget":"def",
+                  "effectRound":1
+               },
+               {
+                  "name":"Barrier",
+                  "description":"A powerful barrier protects you from incoming attacks.",
+                  "value":160,
+                  "unit":"Number",
+                  "for":"Player",
+                  "type":"Increase",
+                  "attrTarget":"def",
+                  "effectRound":1
+               },
+               {
+                  "name":"Barrier",
+                  "description":"A powerful barrier protects you from incoming attacks.",
                   "value":190,
-                  "unit":"Number",
-                  "for":"Player",
-                  "type":"Increase",
-                  "attrTarget":"def",
-                  "effectRound":1
-               },
-               {
-                  "name":"Barrier",
-                  "description":"A powerful barrier protects you from incoming attacks.",
-                  "value":130,
-                  "unit":"Number",
-                  "for":"Player",
-                  "type":"Increase",
-                  "attrTarget":"def",
-                  "effectRound":1
-               },
-               {
-                  "name":"Barrier",
-                  "description":"A powerful barrier protects you from incoming attacks.",
-                  "value":140,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -6742,7 +6742,7 @@
                {
                   "name":"Energy Drain",
                   "description":"Drain the enemy's vital energy, weakening them.",
-                  "value":110,
+                  "value":150,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -6752,7 +6752,7 @@
                {
                   "name":"Energy Drain",
                   "description":"Drain the enemy's vital energy, weakening them.",
-                  "value":90,
+                  "value":120,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -6762,7 +6762,7 @@
                {
                   "name":"Energy Drain",
                   "description":"Drain the enemy's vital energy, weakening them.",
-                  "value":210,
+                  "value":180,
                   "unit":"Number",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -6795,7 +6795,7 @@
                {
                   "name":"Strength Surge",
                   "description":"Increases your strength by 150.",
-                  "value":100,
+                  "value":180,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -6805,7 +6805,7 @@
                {
                   "name":"Ironclad Defense",
                   "description":"Bolsters your defense by 120.",
-                  "value":90,
+                  "value":150,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -6832,7 +6832,7 @@
                {
                   "name":"Swiftness",
                   "description":"Increases your speed by 7%.",
-                  "value":4,
+                  "value":2,
                   "unit":"Percent",
                   "for":"Player",
                   "type":"Increase",
@@ -6859,7 +6859,7 @@
                {
                   "name":"Fury's Might",
                   "description":"Increases your attack by 100.",
-                  "value":200,
+                  "value":120,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",
@@ -6869,7 +6869,7 @@
                {
                   "name":"Weakening Aura",
                   "description":"Decreases the enemy's defense by 5%.",
-                  "value":3,
+                  "value":4,
                   "unit":"Percent",
                   "for":"Enemy",
                   "type":"Decrease",
@@ -6896,7 +6896,7 @@
                {
                   "name":"Vitality Surge",
                   "description":"Increases your HP by 180.",
-                  "value":200,
+                  "value":90,
                   "unit":"Number",
                   "for":"Player",
                   "type":"Increase",

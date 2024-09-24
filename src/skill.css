@@ -10,7 +10,7 @@
 }
 .explosion-animation {
             
-    background-image: url("/animations/Explosion_sprite_sheet_single.png");
+    background-image: url("/animations/Explosion_sprite_sheet_single-min.png");
     width:512px;
     height:512px;
     animation: explosion 1s steps(40) forwards;
@@ -27,7 +27,7 @@
 }
 
 .debuff-animation {
-    background-image: url("/animations/Breakdown_sprite_sheet_single.png");
+    background-image: url("/animations/Breakdown_sprite_sheet_single-min.png");
     width:512px;
     height:512px;
     animation: debuff 1s steps(30) forwards;
@@ -44,7 +44,7 @@
 }
 
 .buff-animation {
-    background-image: url("/animations/Buff_512_40960.png");
+    background-image: url("/animations/Buff_512_40960-min.png");
     width:512px;
     height:512px;
     animation: buff 1s steps(40) forwards;
@@ -61,7 +61,7 @@
 }
 
 .hit-animation {
-    background-image: url("/animations/Hit_512_30720.png");
+    background-image: url("/animations/Hit_512_30720-min.png");
     width:512px;
     height:512px;
     animation: hit 1s steps(30) forwards;
@@ -78,7 +78,7 @@
 }
 
 .big-hit-animation {
-    background-image: url("/animations/Big_Hit_758_45480.png");
+    background-image: url("/animations/Big_Hit_758_45480-min.png");
     width:758px;
     height:758px;
     animation: big-hit 1s steps(30) forwards;
@@ -95,7 +95,7 @@
 }
 
 .healing-animation {
-    background-image: url("/animations/Healing_512_61440.png");
+    background-image: url("/animations/Healing_512_61440-min.png");
     width:512px;
     height:512px;
     animation: healing 1s steps(60) forwards;
@@ -112,7 +112,7 @@
 }
 
 .poison-animation {
-    background-image: url("/animations/Poison_512_30720.png");
+    background-image: url("/animations/Poison_512_30720-min.png");
     width:512px;
     height:512px;
     animation: poison 1s steps(30) forwards;
@@ -129,7 +129,7 @@
 }
 
 .magic-animation {
-    background-image: url("/animations/Magic_512_40960.png");
+    background-image: url("/animations/Magic_512_40960-min.png");
     width:512px;
     height:512px;
     animation: magic 1s steps(40) forwards;
@@ -146,7 +146,7 @@
 }
 
 .fire-animation {
-    background-image: url("/animations/Fire_512_40960.png");
+    background-image: url("/animations/Fire_512_40960-min.png");
     width:512px;
     height:512px;
     animation: fire 1s steps(40) forwards;
@@ -163,7 +163,7 @@
 }
 
 .ice-animation {
-    background-image: url("/animations/Ice_512_40960.png");
+    background-image: url("/animations/Ice_512_40960-min.png");
     width:512px;
     height:512px;
     animation: ice 1s steps(40) forwards;
@@ -180,7 +180,7 @@
 }
 
 .thunder-animation {
-    background-image: url("/animations/Thunder_512_40960.png");
+    background-image: url("/animations/Thunder_512_40960-min.png");
     width:512px;
     height:512px;
     animation: thunder 1s steps(40) forwards;
@@ -197,7 +197,7 @@
 }
 
 .slash-animation {
-    background-image: url("/animations/Slash_512_51200.png");
+    background-image: url("/animations/Slash_512_51200-min.png");
     width:512px;
     height:512px;
     animation: slash 1s steps(50) forwards;
