@@ -80,6 +80,61 @@
             sound: "/sounds/21_Debuff_01.wav",
             image: "/animations/Breakdown_sprite_sheet_single-min.png",
         },
+        "ultimate-slash-1": {
+            wait: 1500,
+            sound: "/sounds/22_Slash_04.wav",
+            image: "/animations/Ultimate_Slash_1_758_60640_80-min.png",
+        },
+        "ultimate-slash-2": {
+            wait: 1500,
+            sound: "/sounds/22_Slash_04.wav",
+            image: "/animations/Ultimate_Slash_2_758_60640_80-min.png",
+        },
+        "ultimate-slash-3": {
+            wait: 1500,
+            sound: "/sounds/22_Slash_04.wav",
+            image: "/animations/Ultimate_Slash_3_758_50028_66-min.png",
+        },
+        "ultimate-slash-4": {
+            wait: 2000,
+            sound: "/sounds/22_Slash_04.wav",
+            image: "/animations/Ultimate_Slash_4_758_512_51200_100-min.png",
+        },
+        "ultimate-slash-5": {
+            wait: 3000,
+            sound: "/sounds/22_Slash_04.wav",
+            image: "/animations/Ultimate_Slash_5_758_121280_160-min.png",
+        },
+        "ultimate-explosion-1": {
+            wait: 1500,
+            sound: "/sounds/04_Fire_explosion_04_medium.wav",
+            image: "/animations/Ultimate_Explosion_1_758_45480_60-min.png",
+        },
+        "ultimate-explosion-2": {
+            wait: 2000,
+            sound: "/sounds/04_Fire_explosion_04_medium.wav",
+            image: "/animations/Ultimate_Explosion_2_758_75800_100-min.png",
+        },
+        "ultimate-explosion-3": {
+            wait: 3000,
+            sound: "/sounds/04_Fire_explosion_04_medium.wav",
+            image: "/animations/Ultimate_Explosion_3_758_106120_140-min.png",
+        },
+        "ultimate-magic-1": {
+            wait: 1500,
+            sound: "/sounds/25_Wind_01.wav",
+            image: "/animations/Ultimate_Magic_1_758_60640_80-min.png",
+        },
+        "ultimate-magic-2": {
+            wait: 2500,
+            sound: "/sounds/25_Wind_01.wav",
+            image: "/animations/Ultimate_Magic_2_758_98540_130-min.png",
+        },
+        "ultimate-magic-3": {
+            wait: 2000,
+            sound: "/sounds/25_Wind_01.wav",
+            image: "/animations/Ultimate_Magic_3_758_512_40960_80-min.png",
+        },
     };
 
     const enemyUsername = $page.url.searchParams.get("username");
@@ -263,8 +318,6 @@
                 defenderId: enemyPlayer.id,
             });
 
-            
-
             battle = Battle.fromJson(JSON.stringify(response.data.data));
             round = battle.round;
             dataStatus = "done";
@@ -345,8 +398,7 @@
                     enemyAnimationColor();
                 });
             }, 300);
-        } catch (error:any) {
-            
+        } catch (error: any) {
             if (error.response != undefined && error.status != 200) {
                 dataStatus = "Ops : " + error.response.data.message;
             } else {
@@ -371,8 +423,6 @@
             }
             dataStatus = "starting battle...";
             await startBattle();
-
-            
         } catch (error: any) {
             console.log(error);
             dataStatus = "error : " + error.message;
@@ -473,7 +523,7 @@
         }
 
         const splitId = skill.id.split("_");
-       
+
         let item = null;
         if (from == "player") {
             item = player.getItem(splitId[1])!;
@@ -557,9 +607,13 @@
         document.getElementById("arena")!.classList.remove("move-right");
         await timer(500);
         if (skill.animation && elm != null && skill.animation != "none") {
+            let animationKey = skill.animation;
+            if (skill.isUltimate) {
+                animationKey = skill.ultimateAnimation!;
+            }
             if (damageResult.finalDamage > 0) {
                 elm.parentElement!.classList.add("shake");
-                elm.innerHTML += `<div class="animation-effect ${skill.animation}-animation"/>`;
+                elm.innerHTML = `<div class="animation-effect ${animationKey}-animation"/>`;
             }
             if (skill.doAttack) {
                 if (from == "player") {
@@ -574,7 +628,7 @@
                         } else {
                             enemyElm!.innerHTML += `<div class="hit-text bg-yellow-500">${damageResult.finalDamage}</div>`;
                         }
-                        enemyAudio!.src = animations[skill.animation!].sound;
+                        enemyAudio!.src = animations[animationKey!].sound;
                         enemyAudio!.play();
                     } else {
                         enemyElm!.innerHTML += `<div class="hit-text bg-gray-500">Miss</div>`;
@@ -588,7 +642,7 @@
                     }, 1300);
                     await timer(500);
                     if (damageResult.finalDamage > 0) {
-                        playerAdio!.src = animations[skill.animation!].sound;
+                        playerAdio!.src = animations[animationKey!].sound;
                         playerAdio!.play();
                         if (damageResult.isCriticalHit) {
                             playerElm!.innerHTML += `<div class="hit-text bg-red-500">${damageResult.finalDamage}</div>`;
@@ -612,8 +666,8 @@
                     playerAdio!.play();
                 }
             }
-            if (skill.animation != "none") {
-                await timer(1000 + animations[skill.animation].wait);
+            if (animationKey != "none" && animations[animationKey] != undefined) {
+                await timer(1000 + animations[animationKey].wait);
             } else {
                 await timer(1000);
             }
@@ -674,7 +728,9 @@
                 originalAttacker: true,
             })
             .then(async (res) => {
-                document.getElementById("background-filter")!.style.backdropFilter = "brightness(0.3)";
+                document.getElementById(
+                    "background-filter",
+                )!.style.backdropFilter = "brightness(0.3)";
                 const enemyElm = document.getElementById("enemy-effect");
                 const enemyAudio = document.getElementById(
                     "enemy-audio",
@@ -711,8 +767,13 @@
                         enemyAudio!.play();
                     }
                 }
-                battle = Battle.fromJson(JSON.stringify(res.data.battleData));
-                document.getElementById("background-filter")!.style.backdropFilter = "brightness(1)";
+                const battleResponse = Battle.fromJson(JSON.stringify(res.data.battleData));
+                // battle.attacker = battleResponse.attacker;
+                // battle.defender = battleResponse.defender;
+                battle = battleResponse;
+                document.getElementById(
+                    "background-filter",
+                )!.style.backdropFilter = "brightness(1)";
 
                 setTimeout(() => {
                     scrollEventLogs();
@@ -739,6 +800,9 @@
                 console.log(err);
                 status = "idle";
                 enemyTurn = false;
+                document.getElementById(
+                    "background-filter",
+                )!.style.backdropFilter = "brightness(1)";
             });
     }
 
@@ -750,23 +814,24 @@
 
         //if isPrimeRound find skill that "doAttack" with high cooldownRound
         if (isPrimeRound) {
-            const skills = battle.defender.skills.filter(
+            const defSkills = battle.defender.skills.filter(
                 (skill) => skill.doAttack && skill.currentCooldown == 0,
             );
-            if (skills.length > 0) {
-                randomSkill = skills[Math.floor(Math.random() * skills.length)];
+            if (defSkills.length > 0) {
+                randomSkill = defSkills[Math.floor(Math.random() * defSkills.length)];
             }
         } else {
             //else sort skill with less "cooldownRound"
-            const skills = battle.defender.skills
+            const defSkills = battle.defender.skills
                 .sort((a, b) => a.cooldownRound - b.cooldownRound)
                 .filter((skill) => skill.currentCooldown == 0);
 
-            if (skills.length > 0) {
-                randomSkill = skills[Math.floor(Math.random() * skills.length)];
+            if (defSkills.length > 0) {
+                randomSkill = defSkills[Math.floor(Math.random() * defSkills.length)];
             }
         }
-        document.getElementById("background-filter")!.style.backdropFilter = "brightness(0.3)";
+        document.getElementById("background-filter")!.style.backdropFilter =
+            "brightness(0.3)";
         const apiUrl = "/api/battle/attack";
         axios
             .post(apiUrl, {
@@ -813,7 +878,9 @@
                         console.log(playerElm!.innerHTML);
                     }
                 }
-                document.getElementById("background-filter")!.style.backdropFilter = "brightness(1)";
+                document.getElementById(
+                    "background-filter",
+                )!.style.backdropFilter = "brightness(1)";
                 // battle.attacker.currentHp = res.data.attacker.currentHp;
                 // battle.attacker.attack = res.data.attacker.attack;
                 // battle.attacker.defense = res.data.attacker.defense;
@@ -844,6 +911,9 @@
                 console.log(err);
                 status = "idle";
                 enemyTurn = false;
+                document.getElementById(
+                    "background-filter",
+                )!.style.backdropFilter = "brightness(1)";
             });
     }
 
@@ -854,9 +924,9 @@
         );
         const splitId = skill.id.split("_");
         let item: Item | undefined;
-        if(e.currentTarget.getAttribute("data-from") == enemyPlayer.id){
-            item = enemyPlayer.getItem(splitId[1])
-        } else{
+        if (e.currentTarget.getAttribute("data-from") == enemyPlayer.id) {
+            item = enemyPlayer.getItem(splitId[1]);
+        } else {
             item = player.getItem(splitId[1]);
         }
 
@@ -874,10 +944,27 @@
             desc += `<br>
             <b class="text-red-600"> Attack Skill </b>`;
         }
-        // if (skill.isUltimate === true) {
-        //     desc += `<br>
-        //     <b class="text-red-800"> Ultimate Skill </b>`;
-        // }
+        if (skill.isUltimate === true && skill.ultimateRequires != undefined) {
+            var count = 0;
+            for (let i = 0; i < battle.battleLog.length; i++) {
+                const log = battle.battleLog[i];
+               
+                if(log.skill != null){
+                    const splitId = log.skill.id.split("_");
+                    if(log.skill.id == skill.id){
+                        count = 0;
+                    } else if(splitId[1] == skill.ultimateRequires[0].skillLanguage) {
+                        count ++;
+                    }  
+                }
+
+                if(skill.ultimateRequires[0].skillLanguageAmmount <= count){
+                    console.log("CAN USE");
+                }
+            }
+            desc += `<br>
+            <b class="text-red-800"> Ultimate Skill </b>`;
+        }
         desc += `
         <br>
         <b class="text-green-800"> Cooldown : ${skill.cooldownRound} turns</b>`;
@@ -1145,9 +1232,9 @@
         button[disabled] {
             cursor: no-drop;
         }
-        
+
         #background-filter {
-            transition:all 0.5s;
+            transition: all 0.5s;
         }
     </style>
 </svelte:head>
@@ -1189,7 +1276,6 @@
                     +{battle.score}
                 </p>
                 <div class="space-y-4">
-                   
                     <a
                         href="/player/duel"
                         class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded pixel-font"
@@ -1267,7 +1353,9 @@
                 <button class="retro-btn blue-retro-btn" on:click={loadAllData}>
                     Retry...
                 </button>
-                <a class="retro-btn yellow-retro-btn" href="/player?tab=battle"> Back </a>
+                <a class="retro-btn yellow-retro-btn" href="/player?tab=battle">
+                    Back
+                </a>
             </div>
         </div>
     {:else if dataStatus != "done"}
@@ -1278,16 +1366,25 @@
             <p class="text-lg mt-4">{dataStatus}</p>
         </div>
     {:else}
-        <div class="w-full h-screen flex flex-col justify-center font-mono bg-arena overflow-hidden">
-            <div class="w-full h-screen flex justify-around items-center" id="background-filter">
-                <div class="w-full flex justify-around items-center " id="arena">
-                    <div class="h-40 w-40 relative flex justify-center items-center"
+        <div
+            class="w-full h-screen flex flex-col justify-center font-mono bg-arena overflow-hidden"
+        >
+            <div
+                class="w-full h-screen flex justify-around items-center"
+                id="background-filter"
+            >
+                <div class="w-full flex justify-around items-center" id="arena">
+                    <div
+                        class="h-40 w-40 relative flex justify-center items-center"
                     >
                         <div
                             class="h-40 w-40 absolute flex justify-center items-center"
                             id="player-character"
                         >
-                            <div id="player-animation-idle" class="absolute"></div>
+                            <div
+                                id="player-animation-idle"
+                                class="absolute"
+                            ></div>
                             <div
                                 id="player-animation-attack"
                                 class="absolute"
@@ -1299,7 +1396,7 @@
                         ></div>
                         <audio src="" id="player-audio" class="hidden"></audio>
                     </div>
-    
+
                     <div
                         class="h-40 w-40 relative flex justify-center items-center"
                     >
@@ -1307,8 +1404,14 @@
                             class="h-40 w-40 absolute flex justify-center items-center"
                             id="enemy-character"
                         >
-                            <div id="enemy-animation-idle" class="absolute"></div>
-                            <div id="enemy-animation-attack" class="absolute"></div>
+                            <div
+                                id="enemy-animation-idle"
+                                class="absolute"
+                            ></div>
+                            <div
+                                id="enemy-animation-attack"
+                                class="absolute"
+                            ></div>
                         </div>
                         <div
                             class="h-40 w-40 relative flex justify-center items-center"
@@ -1376,10 +1479,20 @@
                                 })?.name}</small
                             >
                             {#if useSkillAttack.doAttack}
-                                <small
-                                    class="absolute text-xs bottom-0 left-0 bg-red-700 rounded-md p-1 text-white"
-                                    >A</small
+                                <div
+                                    class="flex absolute bottom-0 left-0 gap-1"
                                 >
+                                    <small
+                                        class=" text-xs bg-red-600 rounded-md p-1 text-white"
+                                        >A</small
+                                    >
+                                    {#if useSkillAttack.isUltimate}
+                                        <small
+                                            class="text-xs bg-red-800 rounded-md p-1 text-white"
+                                            >U</small
+                                        >
+                                    {/if}
+                                </div>
                             {/if}
                         </button>
                     {/if}
@@ -1395,25 +1508,7 @@
                         strength={battle.attacker?.strength || 0}
                         defense={battle.attacker?.defense || 0}
                         speed={battle.attacker?.speed || 0}
-                    >
-                        <div
-                            class="  hidden md:grid grid-cols-2 md:grid-cols-3 gap-2"
-                        >
-                            {#each battle.attacker?.items as item}
-                                <div
-                                    class="p-2 rounded-md border-2 border-green-600 text-center min-h-16 flex justify-center items-center"
-                                >
-                                    <small>
-                                        {#if item != null}
-                                            {item?.name}
-                                        {:else}
-                                            0
-                                        {/if}
-                                    </small>
-                                </div>
-                            {/each}
-                        </div>
-                    </PlayerCard>
+                    />
 
                     <div
                         class="font-mono relative w-full md:w-2/4 mt-4 md:mt-0 m-0 md:m-4 bg-[#d0d058] text-[#0f380f] rounded-lg border-4 border-[#8bac0f] shadow-[8px_8px_0px_#306230]"
@@ -1494,10 +1589,20 @@
                                                     )?.name}</small
                                                 >
                                                 {#if skill.doAttack}
-                                                    <small
-                                                        class="absolute text-xs bottom-0 left-0 bg-red-700 rounded-md p-1 text-white"
-                                                        >A</small
+                                                    <div
+                                                        class="flex absolute bottom-0 left-0 gap-1"
                                                     >
+                                                        <small
+                                                            class=" text-xs bg-red-600 rounded-md p-1 text-white"
+                                                            >A</small
+                                                        >
+                                                        {#if skill.isUltimate}
+                                                            <small
+                                                                class="text-xs bg-red-800 rounded-md p-1 text-white"
+                                                                >U</small
+                                                            >
+                                                        {/if}
+                                                    </div>
                                                 {/if}
 
                                                 {#if skill.currentCooldown > 0}
@@ -1535,7 +1640,7 @@
                                                 use
                                                 <b
                                                     class="text-blue-700"
-                                                    data-from="{log.from}"
+                                                    data-from={log.from}
                                                     data-skill={JSON.stringify(
                                                         log.skill,
                                                     )}
@@ -1560,7 +1665,7 @@
                                                 using
                                                 <b
                                                     class="text-blue-700"
-                                                    data-from="{log.from}"
+                                                    data-from={log.from}
                                                     data-skill={JSON.stringify(
                                                         log.skill,
                                                     )}

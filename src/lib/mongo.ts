@@ -83,7 +83,8 @@ export async function countBattleToday(playerId: String, enemyId: string) {
         timestamp: {
             $gte: startOfToday.getTime(),
             $lt: endOfToday.getTime()
-        }
+        },
+        status: { $nin: ["pending"] }
     });
     return count;
 }

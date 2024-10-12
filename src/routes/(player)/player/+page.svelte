@@ -614,7 +614,7 @@ DEF: accumulation of levels with number of issues`,
             (skill: any) => skill.id == item.id,
         )?.skills;
         itemSkills?.forEach((skill: any) => {
-            desc += `<li>${skill.name}</li>`;
+            desc += `<li>${skill.name}  ${(skill.doAttack)?'(A)':''}${(skill.isUltimate)?'(U)':''}</li>`;
         });
         desc += "</ul></div>";
 
@@ -643,10 +643,10 @@ DEF: accumulation of levels with number of issues`,
             desc += `<br>
             <b class="text-red-600"> Attack Skill </b>`;
         }
-        // if (skill.isUltimate === true) {
-        //     desc += `<br>
-        //     <b class="text-red-800"> Ultimate Skill </b>`;
-        // }
+        if (skill.isUltimate === true) {
+            desc += `<br>
+            <b class="text-red-800"> Ultimate Skill </b>`;
+        }
         desc += `
         <br>
         <b class="text-green-800"> Cooldown : ${skill.cooldownRound} turns</b>`;
@@ -1735,21 +1735,18 @@ DEF: accumulation of levels with number of issues`,
                                                                 >{skill.itemName}</small
                                                             >
                                                             {#if skill.doAttack}
-                                                                <small
-                                                                    class="absolute text-xs bottom-0 left-0 bg-red-600 rounded-md p-1 text-white"
+                                                                <div class="flex absolute bottom-0 left-0 gap-1">
+                                                                    <small
+                                                                    class=" text-xs  bg-red-600 rounded-md p-1 text-white"
                                                                     >A</small
                                                                 >
-                                                                <!-- {#if skill.isUltimate}
+                                                                {#if skill.isUltimate}
                                                                     <small
-                                                                        class="absolute text-xs bottom-0 left-0 bg-red-800 rounded-md p-1 text-white"
+                                                                        class="text-xs  bg-red-800 rounded-md p-1 text-white"
                                                                         >U</small
                                                                     >
-                                                                {:else}
-                                                                    <small
-                                                                        class="absolute text-xs bottom-0 left-0 bg-red-600 rounded-md p-1 text-white"
-                                                                        >A</small
-                                                                    >
-                                                                {/if} -->
+                                                                {/if}
+                                                                </div>
                                                             {/if}
                                                         </button>
                                                     {/each}

@@ -13,7 +13,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -50,7 +50,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -77,7 +77,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -104,7 +104,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -131,7 +131,7 @@
             "isUltimate":true,
             "ultimateDamage":220,
             "ultimateAnimation":"ultimate-magic-3",
-            "ultimateRequire":[
+            "ultimateRequires":[
                {
                   "skillLanguage":"html",
                   "skillLanguageAmmount":4
@@ -167,7 +167,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -204,7 +204,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -241,7 +241,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -268,7 +268,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -286,7 +286,7 @@
             "isUltimate":true,
             "ultimateDamage":270,
             "ultimateAnimation":"ultimate-explosion-3",
-            "ultimateRequire":[
+            "ultimateRequires":[
                {
                   "skillLanguage":"javascript",
                   "skillLanguageAmmount":3
@@ -322,7 +322,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":2,
@@ -359,7 +359,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -396,7 +396,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":4,
@@ -433,7 +433,7 @@
             "isUltimate":true,
             "ultimateDamage":460,
             "ultimateAnimation":"ultimate-slash-4",
-            "ultimateRequire":[
+            "ultimateRequires":[
                {
                   "skillLanguage":"blade",
                   "skillLanguageAmmount":5
@@ -489,7 +489,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -526,7 +526,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":4,
@@ -563,7 +563,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":5,
@@ -600,7 +600,7 @@
             "isUltimate":true,
             "ultimateDamage":400,
             "ultimateAnimation":"ultimate-explosion-3",
-            "ultimateRequire":[
+            "ultimateRequires":[
                {
                   "skillLanguage":"php",
                   "skillLanguageAmmount":1
@@ -636,7 +636,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -673,7 +673,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -710,7 +710,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -737,7 +737,7 @@
             "isUltimate":true,
             "ultimateDamage":310,
             "ultimateAnimation":"ultimate-explosion-3",
-            "ultimateRequire":[
+            "ultimateRequires":[
                {
                   "skillLanguage":"css",
                   "skillLanguageAmmount":5
@@ -773,7 +773,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -810,7 +810,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":2,
@@ -837,7 +837,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -864,7 +864,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":2,
@@ -891,7 +891,7 @@
             "isUltimate":true,
             "ultimateDamage":400,
             "ultimateAnimation":"ultimate-magic-1",
-            "ultimateRequire":[
+            "ultimateRequires":[
                {
                   "skillLanguage":"vue",
                   "skillLanguageAmmount":1
@@ -927,7 +927,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -974,7 +974,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -1021,7 +1021,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -1068,7 +1068,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -1115,7 +1115,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -1168,7 +1168,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -1205,7 +1205,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":4,
@@ -1232,7 +1232,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":5,
@@ -1259,7 +1259,7 @@
             "isUltimate":true,
             "ultimateDamage":450,
             "ultimateAnimation":"ultimate-magic-2",
-            "ultimateRequire":[
+            "ultimateRequires":[
                {
                   "skillLanguage":"svelte",
                   "skillLanguageAmmount":5
@@ -1305,7 +1305,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -1342,7 +1342,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -1379,7 +1379,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -1406,7 +1406,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -1433,7 +1433,7 @@
             "isUltimate":true,
             "ultimateDamage":230,
             "ultimateAnimation":"ultimate-magic-1",
-            "ultimateRequire":[
+            "ultimateRequires":[
                {
                   "skillLanguage":"laravel",
                   "skillLanguageAmmount":5
@@ -1479,7 +1479,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -1516,7 +1516,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -1553,7 +1553,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":4,
@@ -1580,7 +1580,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":5,
@@ -1607,7 +1607,7 @@
             "isUltimate":true,
             "ultimateDamage":420,
             "ultimateAnimation":"ultimate-magic-1",
-            "ultimateRequire":[
+            "ultimateRequires":[
                {
                   "skillLanguage":"csharp",
                   "skillLanguageAmmount":2
@@ -1653,7 +1653,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -1690,7 +1690,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":4,
@@ -1717,7 +1717,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":5,
@@ -1754,7 +1754,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":6,
@@ -1791,7 +1791,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":4,
@@ -1828,7 +1828,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -1855,7 +1855,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":5,
@@ -1882,7 +1882,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":4,
@@ -1925,7 +1925,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -1962,7 +1962,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":4,
@@ -1989,7 +1989,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":5,
@@ -2016,7 +2016,7 @@
             "isUltimate":true,
             "ultimateDamage":310,
             "ultimateAnimation":"ultimate-explosion-3",
-            "ultimateRequire":[
+            "ultimateRequires":[
                {
                   "skillLanguage":"c",
                   "skillLanguageAmmount":3
@@ -2052,7 +2052,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -2089,7 +2089,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":4,
@@ -2116,7 +2116,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":5,
@@ -2153,7 +2153,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -2190,7 +2190,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":4,
@@ -2233,7 +2233,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":2,
@@ -2270,7 +2270,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -2297,7 +2297,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":4,
@@ -2334,7 +2334,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -2361,7 +2361,7 @@
             "isUltimate":true,
             "ultimateDamage":390,
             "ultimateAnimation":"ultimate-explosion-2",
-            "ultimateRequire":[
+            "ultimateRequires":[
                {
                   "skillLanguage":"rust",
                   "skillLanguageAmmount":1
@@ -2407,7 +2407,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -2444,7 +2444,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -2481,7 +2481,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":5,
@@ -2518,7 +2518,7 @@
             "isUltimate":true,
             "ultimateDamage":370,
             "ultimateAnimation":"ultimate-slash-4",
-            "ultimateRequire":[
+            "ultimateRequires":[
                {
                   "skillLanguage":"dart",
                   "skillLanguageAmmount":2
@@ -2564,7 +2564,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -2601,7 +2601,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -2638,7 +2638,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -2675,7 +2675,7 @@
             "isUltimate":true,
             "ultimateDamage":260,
             "ultimateAnimation":"ultimate-slash-1",
-            "ultimateRequire":[
+            "ultimateRequires":[
                {
                   "skillLanguage":"swift",
                   "skillLanguageAmmount":1
@@ -2721,7 +2721,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -2748,7 +2748,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":5,
@@ -2775,7 +2775,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":4,
@@ -2802,7 +2802,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -2829,7 +2829,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":4,
@@ -2856,7 +2856,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -2883,7 +2883,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":5,
@@ -2901,7 +2901,7 @@
             "isUltimate":true,
             "ultimateDamage":220,
             "ultimateAnimation":"ultimate-explosion-1",
-            "ultimateRequire":[
+            "ultimateRequires":[
                {
                   "skillLanguage":"java",
                   "skillLanguageAmmount":4
@@ -2937,7 +2937,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":1,
@@ -2974,7 +2974,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":1,
@@ -3001,7 +3001,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":1,
@@ -3038,7 +3038,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":1,
@@ -3065,7 +3065,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":1,
@@ -3108,7 +3108,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":1,
@@ -3145,7 +3145,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":1,
@@ -3182,7 +3182,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":1,
@@ -3219,7 +3219,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":1,
@@ -3256,7 +3256,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":1,
@@ -3299,7 +3299,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":1,
@@ -3336,7 +3336,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":1,
@@ -3363,7 +3363,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":1,
@@ -3400,7 +3400,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":1,
@@ -3427,7 +3427,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -3470,7 +3470,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -3517,7 +3517,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":5,
@@ -3554,7 +3554,7 @@
             "isUltimate":true,
             "ultimateDamage":290,
             "ultimateAnimation":"ultimate-magic-1",
-            "ultimateRequire":[
+            "ultimateRequires":[
                {
                   "skillLanguage":"shaderlab",
                   "skillLanguageAmmount":3
@@ -3594,7 +3594,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":4,
@@ -3631,7 +3631,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -3674,7 +3674,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -3711,7 +3711,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":4,
@@ -3748,7 +3748,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":2,
@@ -3785,7 +3785,7 @@
             "isUltimate":true,
             "ultimateDamage":320,
             "ultimateAnimation":"ultimate-magic-3",
-            "ultimateRequire":[
+            "ultimateRequires":[
                {
                   "skillLanguage":"less",
                   "skillLanguageAmmount":2
@@ -3841,7 +3841,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -3878,7 +3878,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -3915,7 +3915,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -3942,7 +3942,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -3969,7 +3969,7 @@
             "isUltimate":true,
             "ultimateDamage":300,
             "ultimateAnimation":"ultimate-magic-2",
-            "ultimateRequire":[
+            "ultimateRequires":[
                {
                   "skillLanguage":"scss",
                   "skillLanguageAmmount":5
@@ -4015,7 +4015,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -4052,7 +4052,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":2,
@@ -4079,7 +4079,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":5,
@@ -4106,7 +4106,7 @@
             "isUltimate":true,
             "ultimateDamage":410,
             "ultimateAnimation":"ultimate-explosion-2",
-            "ultimateRequire":[
+            "ultimateRequires":[
                {
                   "skillLanguage":"shell",
                   "skillLanguageAmmount":2
@@ -4152,7 +4152,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -4189,7 +4189,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -4226,7 +4226,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":4,
@@ -4263,7 +4263,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -4290,7 +4290,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":4,
@@ -4333,7 +4333,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -4370,7 +4370,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -4407,7 +4407,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -4444,7 +4444,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -4477,7 +4477,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -4514,7 +4514,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -4541,7 +4541,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -4568,7 +4568,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -4595,7 +4595,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -4622,7 +4622,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -4649,7 +4649,7 @@
             "isUltimate":true,
             "ultimateDamage":350,
             "ultimateAnimation":"ultimate-magic-2",
-            "ultimateRequire":[
+            "ultimateRequires":[
                {
                   "skillLanguage":"python",
                   "skillLanguageAmmount":5
@@ -4695,7 +4695,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -4722,7 +4722,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":2,
@@ -4759,7 +4759,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":4,
@@ -4786,7 +4786,7 @@
             "isUltimate":true,
             "ultimateDamage":230,
             "ultimateAnimation":"ultimate-explosion-2",
-            "ultimateRequire":[
+            "ultimateRequires":[
                {
                   "skillLanguage":"ruby",
                   "skillLanguageAmmount":3
@@ -4822,7 +4822,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -4849,7 +4849,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -4876,7 +4876,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -4903,7 +4903,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -4930,7 +4930,7 @@
             "isUltimate":true,
             "ultimateDamage":440,
             "ultimateAnimation":"ultimate-explosion-3",
-            "ultimateRequire":[
+            "ultimateRequires":[
                {
                   "skillLanguage":"sql",
                   "skillLanguageAmmount":5
@@ -4966,7 +4966,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -5003,7 +5003,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -5040,7 +5040,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -5077,7 +5077,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -5114,7 +5114,7 @@
             "isUltimate":true,
             "ultimateDamage":430,
             "ultimateAnimation":"ultimate-magic-3",
-            "ultimateRequire":[
+            "ultimateRequires":[
                {
                   "skillLanguage":"lua",
                   "skillLanguageAmmount":4
@@ -5160,7 +5160,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -5197,7 +5197,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":2,
@@ -5224,7 +5224,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":5,
@@ -5251,7 +5251,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -5288,7 +5288,7 @@
             "isUltimate":true,
             "ultimateDamage":210,
             "ultimateAnimation":"ultimate-explosion-3",
-            "ultimateRequire":[
+            "ultimateRequires":[
                {
                   "skillLanguage":"visual-basic-6-0",
                   "skillLanguageAmmount":4
@@ -5334,7 +5334,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -5371,7 +5371,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":4,
@@ -5398,7 +5398,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":8,
@@ -5435,7 +5435,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":6,
@@ -5468,7 +5468,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":1,
@@ -5505,7 +5505,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":1,
@@ -5542,7 +5542,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":1,
@@ -5579,7 +5579,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":1,
@@ -5622,7 +5622,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -5659,7 +5659,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -5686,7 +5686,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":5,
@@ -5713,7 +5713,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":4,
@@ -5740,7 +5740,7 @@
             "isUltimate":true,
             "ultimateDamage":410,
             "ultimateAnimation":"ultimate-explosion-1",
-            "ultimateRequire":[
+            "ultimateRequires":[
                {
                   "skillLanguage":"gdscript",
                   "skillLanguageAmmount":5
@@ -5776,7 +5776,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -5813,7 +5813,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":5,
@@ -5850,7 +5850,7 @@
             "isUltimate":true,
             "ultimateDamage":360,
             "ultimateAnimation":"ultimate-magic-2",
-            "ultimateRequire":[
+            "ultimateRequires":[
                {
                   "skillLanguage":"mako",
                   "skillLanguageAmmount":4
@@ -5896,7 +5896,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":2,
@@ -5923,7 +5923,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":2,
@@ -5950,7 +5950,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":2,
@@ -5977,7 +5977,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -6024,7 +6024,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":2,
@@ -6061,7 +6061,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":2,
@@ -6098,7 +6098,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -6125,7 +6125,7 @@
             "isUltimate":true,
             "ultimateDamage":370,
             "ultimateAnimation":"ultimate-magic-2",
-            "ultimateRequire":[
+            "ultimateRequires":[
                {
                   "skillLanguage":"procfile",
                   "skillLanguageAmmount":3
@@ -6181,7 +6181,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -6218,7 +6218,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":4,
@@ -6245,7 +6245,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":5,
@@ -6282,7 +6282,7 @@
             "isUltimate":true,
             "ultimateDamage":260,
             "ultimateAnimation":"ultimate-explosion-1",
-            "ultimateRequire":[
+            "ultimateRequires":[
                {
                   "skillLanguage":"nix",
                   "skillLanguageAmmount":4
@@ -6328,7 +6328,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":2,
@@ -6365,7 +6365,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":2,
@@ -6402,7 +6402,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":2,
@@ -6439,7 +6439,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":2,
@@ -6476,7 +6476,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":2,
@@ -6513,7 +6513,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":2,
@@ -6550,7 +6550,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":2,
@@ -6593,7 +6593,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -6640,7 +6640,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":2,
@@ -6687,7 +6687,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -6734,7 +6734,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -6787,7 +6787,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":3,
@@ -6824,7 +6824,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":2,
@@ -6851,7 +6851,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":4,
@@ -6888,7 +6888,7 @@
             "isUltimate":false,
             "ultimateDamage":0,
             "ultimateAnimation":"none",
-            "ultimateRequire":[
+            "ultimateRequires":[
                
             ],
             "cooldownRound":5,

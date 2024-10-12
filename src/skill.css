@@ -212,3 +212,190 @@
         background-position: 0px -51200px;
     }
 }
+
+.ultimate-slash-1-animation {
+    background-image: url("/animations/Ultimate_Slash_1_758_60640_80-min.png");
+    width:758px;
+    height:758px;
+    animation: ultimate-slash-1 1.3s steps(40) forwards;
+    background-repeat: no-repeat;
+}
+
+@keyframes ultimate-slash-1 {
+    0% {
+        background-position: 0px 0px;
+    }
+    100% {
+        background-position: 0px -60640px;
+    }
+}
+
+.ultimate-slash-2-animation {
+    background-image: url("/animations/Ultimate_Slash_2_758_60640_80-min.png");
+    width:758px;
+    height:758px;
+    animation: ultimate-slash-2 1.3s steps(40) forwards;
+    background-repeat: no-repeat;
+}
+
+@keyframes ultimate-slash-2 {
+    0% {
+        background-position: 0px 0px;
+    }
+    100% {
+        background-position: 0px -60640px;
+    }
+}
+
+.ultimate-slash-3-animation {
+    background-image: url("/animations/Ultimate_Slash_3_758_50028_66-min.png");
+    width:758px;
+    height:758px;
+    animation: ultimate-slash-3 1.1s steps(33) forwards;
+    background-repeat: no-repeat;
+}
+
+@keyframes ultimate-slash-3 {
+    0% {
+        background-position: 0px 0px;
+    }
+    100% {
+        background-position: 0px -50028px;
+    }
+}
+
+.ultimate-slash-4-animation {
+    background-image: url("/animations/Ultimate_Slash_4_758_512_51200_100-min.png");
+    width:758px;
+    height:512px;
+    animation: ultimate-slash-4 1.6s steps(50) forwards;
+    background-repeat: no-repeat;
+}
+
+@keyframes ultimate-slash-4 {
+    0% {
+        background-position: 0px 0px;
+    }
+    100% {
+        background-position: 0px -51200px;
+    }
+}
+
+.ultimate-slash-5-animation {
+    background-image: url("/animations/Ultimate_Slash_5_758_121280_160-min.png");
+    width:758px;
+    height:758px;
+    animation: ultimate-slash-5 2.6s steps(80) forwards;
+    background-repeat: no-repeat;
+}
+
+@keyframes ultimate-slash-5 {
+    0% {
+        background-position: 0px 0px;
+    }
+    100% {
+        background-position: 0px -121280px;
+    }
+}
+
+.ultimate-explosion-1-animation {
+    background-image: url("/animations/Ultimate_Explosion_1_758_45480_60-min.png");
+    width:758px;
+    height:758px;
+    animation: ultimate-explosion-1 1s steps(30) forwards;
+    background-repeat: no-repeat;
+}
+
+@keyframes ultimate-explosion-1 {
+    0% {
+        background-position: 0px 0px;
+    }
+    100% {
+        background-position: 0px -45480px;
+    }
+}
+
+.ultimate-explosion-2-animation {
+    background-image: url("/animations/Ultimate_Explosion_2_758_75800_100-min.png");
+    width:758px;
+    height:758px;
+    animation: ultimate-explosion-2 1.6s steps(50) forwards;
+    background-repeat: no-repeat;
+}
+
+@keyframes ultimate-explosion-2 {
+    0% {
+        background-position: 0px 0px;
+    }
+    100% {
+        background-position: 0px -75800px;
+    }
+}
+
+.ultimate-explosion-3-animation {
+    background-image: url("/animations/Ultimate_Explosion_3_758_106120_140-min.png");
+    width:758px;
+    height:758px;
+    animation: ultimate-explosion-3 2.3s steps(70) forwards;
+    background-repeat: no-repeat;
+}
+
+@keyframes ultimate-explosion-3 {
+    0% {
+        background-position: 0px 0px;
+    }
+    100% {
+        background-position: 0px -106120px;
+    }
+}
+
+.ultimate-magic-1-animation {
+    background-image: url("/animations/Ultimate_Magic_1_758_60640_80-min.png");
+    width:758px;
+    height:758px;
+    animation: ultimate-magic-1 1.3s steps(40) forwards;
+    background-repeat: no-repeat;
+}
+
+@keyframes ultimate-magic-1 {
+    0% {
+        background-position: 0px 0px;
+    }
+    100% {
+        background-position: 0px -60640px;
+    }
+}
+
+.ultimate-magic-2-animation {
+    background-image: url("/animations/Ultimate_Magic_2_758_98540_130-min.png");
+    width:758px;
+    height:758px;
+    animation: ultimate-magic-2 2.16s steps(65) forwards;
+    background-repeat: no-repeat;
+}
+
+@keyframes ultimate-magic-2 {
+    0% {
+        background-position: 0px 0px;
+    }
+    100% {
+        background-position: 0px -98540px;
+    }
+}
+
+.ultimate-magic-3-animation {
+    background-image: url("/animations/Ultimate_Magic_3_758_512_40960_80-min.png");
+    width:758px;
+    height:512px;
+    animation: ultimate-magic-3 1.3s steps(40) forwards;
+    background-repeat: no-repeat;
+}
+
+@keyframes ultimate-magic-3 {
+    0% {
+        background-position: 0px 0px;
+    }
+    100% {
+        background-position: 0px -40960px;
+    }
+}

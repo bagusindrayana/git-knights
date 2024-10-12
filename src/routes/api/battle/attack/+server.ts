@@ -239,17 +239,7 @@ export const POST: RequestHandler = async (event): Promise<Response> => {
         return json({ error: "Defender not found" }, { status: 404 });
     }
 
-    battleData.attacker.skills.forEach((skill) => {
-        if (skill.currentCooldown > 0) {
-            skill.currentCooldown -= 1;
-        }
-    });
-
-    battleData.defender.skills.forEach((skill) => {
-        if (skill.currentCooldown > 0) {
-            skill.currentCooldown -= 1;
-        }
-    });
+    
 
     let player: Player = Player.fromJson(JSON.stringify(await getPlayer(findAttacker.playerId)));
     let skilDamage = 0;
@@ -366,7 +356,7 @@ export const POST: RequestHandler = async (event): Promise<Response> => {
     }
 
     battleData.battleLog.push(new BattleLog({
-        round: battleData.battleLog.length + 1,
+        round: battleData.round,
         from: findAttacker.playerId,
         to: findDefender.playerId,
         skill: skill,
@@ -424,6 +414,20 @@ export const POST: RequestHandler = async (event): Promise<Response> => {
 
     if(!originalAttacker){
         battleData.round += 1;
+
+        
+    } else {
+        battleData.attacker.skills.forEach((skill) => {
+            if (skill.currentCooldown > 0) {
+                skill.currentCooldown -= 1;
+            }
+        });
+    
+        battleData.defender.skills.forEach((skill) => {
+            if (skill.currentCooldown > 0) {
+                skill.currentCooldown -= 1;
+            }
+        });
     }
 
     await insertBattleData(battleData);
